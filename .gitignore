@@ -1,0 +1,3 @@
+# Chaves SSH Pessoais
+# Seus arquivos de acesso SSH para outros servidores não devem ser versionados
+.ssh/

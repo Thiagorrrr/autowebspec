@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      # 1. ETAPA DE DEPLOY: Sincroniza os arquivos finais com o bucket de produção
+      - aws s3 sync . s3://autowebspec.com.br --delete
+      
+      # 2. ETAPA DE PÓS-DEPLOY: Garante que o CloudFront use os novos arquivos
+      - aws cloudfront create-invalidation --distribution-id E37VMDJJ880GJR --paths "/*"
+
+artifacts:
+  files:
+    - '**/*' 
