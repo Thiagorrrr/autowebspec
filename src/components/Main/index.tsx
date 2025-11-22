@@ -826,7 +826,7 @@ const Main: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans pb-24 md:pb-0">
       <header className="bg-white border-b border-gray-200 p-4 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-4xl mx-auto flex justify-between items-center">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="bg-[#6319F7] p-2.5 rounded-xl shadow-lg shadow-[#6319F7]/30 transform -rotate-3"><Flame className="text-white" size={20} fill="currentColor" /></div>
             <div><h1 className="text-xl font-black tracking-tighter text-gray-900">AUTO<span className="text-[#6319F7]">WEBSPEC</span></h1><p className="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold">Comparador Pro</p></div>
@@ -835,10 +835,12 @@ const Main: React.FC = () => {
             <button onClick={() => setActiveTab('versus')} className={`hover:text-[#6319F7] transition-colors ${activeTab === 'versus' ? 'text-[#6319F7]' : ''}`}>SIMULADOR</button>
             <button onClick={() => setActiveTab('ranking')} className={`hover:text-[#6319F7] transition-colors ${activeTab === 'ranking' ? 'text-[#6319F7]' : ''}`}>RANKING</button>
             <button onClick={() => setActiveTab('details')} className={`hover:text-[#6319F7] transition-colors ${activeTab === 'details' ? 'text-[#6319F7]' : ''}`}>DETALHES</button>
+            <button onClick={() => setActiveTab('calculator')} className={`hover:text-[#6319F7] transition-colors ${activeTab === 'calculator' ? 'text-[#6319F7]' : ''}`}>CALCULAR</button>
+            <button onClick={() => setActiveTab('events')} className={`hover:text-[#6319F7] transition-colors ${activeTab === 'events' ? 'text-[#6319F7]' : ''}`}>EVENTS</button>
           </div>
         </div>
       </header>
-      <main className="max-w-2xl mx-auto p-6">
+      <main className="max-w-7xl mx-auto p-6">
         {activeTab === 'versus' && <div className="animate-fade-in"><DragRace /></div>}
         {activeTab === 'ranking' && <Ranking />}
         {activeTab === 'calculator' && <CostCalculator />}
