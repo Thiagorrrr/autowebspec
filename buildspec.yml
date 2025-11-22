@@ -1,14 +1,20 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      - npm ci
+
   build:
     commands:
-      # 1. ETAPA DE DEPLOY: Sincroniza os arquivos finais com o bucket de produção
-      - aws s3 sync . s3://autowebspec.com.br --delete
-      
-      # 2. ETAPA DE PÓS-DEPLOY: Garante que o CloudFront use os novos arquivos
+      - npm run build        # Gera .next
+      - npm run export       # Gera a pasta out/
+
+  post_build:
+    commands:
+      - aws s3 sync out/ s3://autowebspec.com.br --delete
       - aws cloudfront create-invalidation --distribution-id E37VMDJJ880GJR --paths "/*"
 
 artifacts:
   files:
-    - '**/*' 
+    - '**/*'
