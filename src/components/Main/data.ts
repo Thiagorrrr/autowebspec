@@ -8,11 +8,6 @@ export interface CarSpecsData {
   hp: number;
   torque: number;
   zeroToHundred: number;
-  capacidade?: string;
-  autonomia_inmetro?: string;
-  autonomia_eletrica_inmetro?: string;
-  autonomia_combinada?: string;
-  tipo?: string
 }
 
 interface CarSpecs {
@@ -20,7 +15,6 @@ interface CarSpecs {
   stage1: CarSpecsData;
   stage2: CarSpecsData;
   stage3: CarSpecsData;
-  bateria?: CarSpecsData;
 }
 
 export interface Car {
@@ -288,7 +282,6 @@ export const dataCars  = () :Car[] =>  [
         "stage1": { "hp": 85, "torque": 15.0, "zeroToHundred": 14.0 },
         "stage2": { "hp": 95, "torque": 16.5, "zeroToHundred": 13.0 },
         "stage3": { "hp": 105, "torque": 18.0, "zeroToHundred": 12.0 },
-        "bateria": { "hp": 0, "torque": 0, "zeroToHundred": 0,"capacidade": "38 kWh", "autonomia_inmetro": "280 km" }
     },
     "equipment": {
         "Teto Solar": false,
@@ -322,7 +315,6 @@ export const dataCars  = () :Car[] =>  [
         "stage1": { "hp": 105, "torque": 20.0, "zeroToHundred": 10.0 },
         "stage2": { "hp": 115, "torque": 22.0, "zeroToHundred": 9.2 },
         "stage3": { "hp": 130, "torque": 24.0, "zeroToHundred": 8.5 },
-        "bateria": { "hp": 0, "torque": 0, "zeroToHundred": 0,"capacidade": "44.9 kWh", "autonomia_inmetro": "291 km" }
     },
     "equipment": {
         "Teto Solar": false,
@@ -455,7 +447,6 @@ export const dataCars  = () :Car[] =>  [
         "stage1": { "hp": 250, "torque": 35.0, "zeroToHundred": 6.8 },
         "stage2": { "hp": 265, "torque": 37.0, "zeroToHundred": 6.3 },
         "stage3": { "hp": 280, "torque": 39.0, "zeroToHundred": 5.8 },
-        "bateria": {"hp": 0, "torque": 0, "zeroToHundred": 0 , "capacidade": "18.3 kWh", "autonomia_eletrica_inmetro": "80 km", "autonomia_combinada": "1.200 km" }
     },
     "equipment": {
         "Teto Solar": false,
@@ -1116,7 +1107,6 @@ export const dataCars  = () :Car[] =>  [
         "stage1": { "hp": 260, "torque": 56.0, "zeroToHundred": 7.5 },
         "stage2": { "hp": 280, "torque": 59.0, "zeroToHundred": 7.0 },
         "stage3": { "hp": 300, "torque": 62.0, "zeroToHundred": 6.5 },
-        "bateria": { "hp": 0, "torque": 0, "zeroToHundred": 0 ,"tipo": "Convencional (HEV)" }
     },
     "equipment": {
         "Teto Solar": true,
@@ -1183,7 +1173,6 @@ export const dataCars  = () :Car[] =>  [
         "stage1": { "hp": 250, "torque": 43.0, "zeroToHundred": 8.0 },
         "stage2": { "hp": 270, "torque": 46.0, "zeroToHundred": 7.4 },
         "stage3": { "hp": 290, "torque": 49.0, "zeroToHundred": 6.8 },
-        "bateria": { "hp": 0, "torque": 0, "zeroToHundred": 0 ,"capacidade": "18.3 kWh", "autonomia_eletrica_inmetro": "50 km", "autonomia_combinada": "1.000 km" }
     },
     "equipment": {
         "Teto Solar": true,

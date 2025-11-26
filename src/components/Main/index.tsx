@@ -392,7 +392,7 @@ const DragRace: React.FC = () => {
             time: car.specs[p.stage].zeroToHundred,
             speed: car.specs[p.stage].zeroToHundred // usando para animação
         };
-    }).sort((a, b) => a.time - b.time); // Ordena por tempo (menor primeiro)
+    }).sort((a, b) => a?.time - b.time); // Ordena por tempo (menor primeiro)
 
     const maxTime = Math.max(...results.map(r => r.time));
 
