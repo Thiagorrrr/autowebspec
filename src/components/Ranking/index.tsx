@@ -24,8 +24,8 @@ export const Ranking = ({ data }:RankingProps) => {
         {sortedCars.map((car, index) => (
           <div key={car.id} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col sm:flex-row items-center gap-4 hover:shadow-md transition-all">
             <div className="flex items-center gap-4 w-full sm:w-auto">
-                <div className="text-2xl font-black text-gray-200 w-8 text-center">#{index + 1}</div>
-                <img src={car.image} alt={car.name} className="w-full sm:w-32 h-20 object-cover rounded-lg shadow-sm" />
+                <div className="text-2xl font-black text-[#6319F7] w-8 text-center">#{index + 1}</div>
+                <img src={car.image} alt={car.name} className="w-full sm:w-32 h-40 object-cover rounded-lg shadow-sm" />
             </div>
             <div className="flex-1 w-full text-center sm:text-left">
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">

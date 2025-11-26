@@ -97,9 +97,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Desvalorização acima da média", "Acabamento interno simples", "Ruído na suspensão dianteira"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "hyundai-hb20-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "hyundai-hb20-2025.webp"
     ]
 },
 {
@@ -130,9 +130,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Rede de concessionárias menor", "Teto panorâmico não abre", "Desvalorização ligeiramente maior"],
-    "image": "https://images.unsplash.com/photo-1623916946059-0f2c4a92e1b4?auto=format&fit=crop&w=800",
+    "image": "peugeot-208-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1623916946059-0f2c4a92e1b4?auto=format&fit=crop&w=400"
+        "peugeot-208-2025.webp"
     ]
 },
 {
@@ -163,9 +163,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Acabamento interno simplificado (pós-facelift)", "Menos airbags de série (4)", "Suspensão rígida para uso urbano"],
-    "image": "https://images.unsplash.com/photo-1598224534151-51214c783e72?auto=format&fit=crop&w=800",
+    "image": "volkswagen-polo-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1598224534151-51214c783e72?auto=format&fit=crop&w=400"
+        "volkswagen-polo-2025.webp"
     ]
 },
 {
@@ -196,174 +196,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Acabamento interno simples", "Apenas 2 airbags de série", "Desempenho limitado (em relação aos 1.0 turbo)"],
-    "image": "https://images.unsplash.com/photo-1620986701540-3a137956a7c4?auto=format&fit=crop&w=800",
+    "image": "fiat-argo-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1620986701540-3a137956a7c4?auto=format&fit=crop&w=400"
-    ]
-},
-{
-    "id": "fiat-mobi-2025",
-    "make": "Fiat",
-    "model": "Mobi",
-    "version": "1.0 Firefly Manual Trekking",
-    "year": 2025,
-    "category": "Subcompacto",
-    "price": 82990,
-    "fipe": "R$ 81.500",
-    "weight": 969,
-    "specs": {
-        "stock": { "hp": 75, "torque": 10.7, "zeroToHundred": 13.8 },
-        "stage1": { "hp": 82, "torque": 11.5, "zeroToHundred": 13.0 },
-        "stage2": { "hp": 90, "torque": 12.5, "zeroToHundred": 12.0 },
-        "stage3": { "hp": 100, "torque": 14.0, "zeroToHundred": 11.0 }
-    },
-    "equipment": {
-        "Teto Solar": false,
-        "Painel Digital": false,
-        "Controle de Largada": false,
-        "Faróis Full LED": false,
-        "Freio de Mão Elet.": false,
-        "Susp. Adaptativa": false,
-        "Tração Integral": false,
-        "Banco Elétrico": false,
-        "ACC": false
-    },
-    "chronic": ["Apenas 2 airbags (sem laterais)", "Porta-malas minúsculo (200L)", "Motor ruidoso em alta rotação", "Ausência de câmbio automático"],
-    "image": "https://images.unsplash.com/photo-1620986701540-3a137956a7c4?auto=format&fit=crop&w=800",
-    "photos": [
-        "https://images.unsplash.com/photo-1620986701540-3a137956a7c4?auto=format&fit=crop&w=400"
-    ]
-},
-{
-    "id": "renault-kwid-2025",
-    "make": "Renault",
-    "model": "Kwid",
-    "version": "1.0 Manual Outsider",
-    "year": 2025,
-    "category": "Subcompacto",
-    "price": 86990,
-    "fipe": "R$ 85.000",
-    "weight": 818,
-    "specs": {
-        "stock": { "hp": 71, "torque": 10.0, "zeroToHundred": 13.2 },
-        "stage1": { "hp": 78, "torque": 10.8, "zeroToHundred": 12.5 },
-        "stage2": { "hp": 85, "torque": 11.8, "zeroToHundred": 11.7 },
-        "stage3": { "hp": 95, "torque": 13.0, "zeroToHundred": 10.8 }
-    },
-    "equipment": {
-        "Teto Solar": false,
-        "Painel Digital": false,
-        "Controle de Largada": false,
-        "Faróis Full LED": false,
-        "Freio de Mão Elet.": false,
-        "Susp. Adaptativa": false,
-        "Tração Integral": false,
-        "Banco Elétrico": false,
-        "ACC": false
-    },
-    "chronic": ["Motor 1.0 fraco em subidas", "Baixa qualidade do acabamento interno", "Posição de dirigir elevada", "Baixo isolamento acústico"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
-    "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
-    ]
-},
-{
-    "id": "byd-dolphin-mini-2025",
-    "make": "BYD",
-    "model": "Dolphin Mini",
-    "version": "EV GS 38 kWh",
-    "year": 2025,
-    "category": "Hatch Elétrico Compacto",
-    "price": 118990,
-    "fipe": "R$ 118.990",
-    "weight": 1239,
-    "specs": {
-        "stock": { "hp": 75, "torque": 13.8, "zeroToHundred": 14.9 },
-        "stage1": { "hp": 85, "torque": 15.0, "zeroToHundred": 14.0 },
-        "stage2": { "hp": 95, "torque": 16.5, "zeroToHundred": 13.0 },
-        "stage3": { "hp": 105, "torque": 18.0, "zeroToHundred": 12.0 },
-    },
-    "equipment": {
-        "Teto Solar": false,
-        "Painel Digital": true,
-        "Controle de Largada": false,
-        "Faróis Full LED": true,
-        "Freio de Mão Elet.": true,
-        "Susp. Adaptativa": false,
-        "Tração Integral": false,
-        "Banco Elétrico": true,
-        "ACC": false
-    },
-    "chronic": ["Baixa potência em estrada", "Porta-malas pequeno (230L)", "Tempo de recarga em AC (6,6kW)", "Apenas 4 lugares"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
-    "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
-    ]
-},
-{
-    "id": "byd-dolphin-2025",
-    "make": "BYD",
-    "model": "Dolphin",
-    "version": "EV GS 44.9 kWh",
-    "year": 2025,
-    "category": "Hatch Elétrico Compacto",
-    "price": 149800,
-    "fipe": "R$ 148.900",
-    "weight": 1405,
-    "specs": {
-        "stock": { "hp": 95, "torque": 18.3, "zeroToHundred": 10.9 },
-        "stage1": { "hp": 105, "torque": 20.0, "zeroToHundred": 10.0 },
-        "stage2": { "hp": 115, "torque": 22.0, "zeroToHundred": 9.2 },
-        "stage3": { "hp": 130, "torque": 24.0, "zeroToHundred": 8.5 },
-    },
-    "equipment": {
-        "Teto Solar": false,
-        "Painel Digital": true,
-        "Controle de Largada": false,
-        "Faróis Full LED": true,
-        "Freio de Mão Elet.": true,
-        "Susp. Adaptativa": false,
-        "Tração Integral": false,
-        "Banco Elétrico": false,
-        "ACC": false
-    },
-    "chronic": ["Central multimídia rotativa pode ser distrativa", "Ausência de ajuste de profundidade do volante", "Acabamento em plástico rígido"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
-    "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
-    ]
-},
-{
-    "id": "honda-city-hatch-2025",
-    "make": "Honda",
-    "model": "City Hatch",
-    "version": "1.5 CVT Touring",
-    "year": 2025,
-    "category": "Hatch Compacto Premium",
-    "price": 142000,
-    "fipe": "R$ 138.900",
-    "weight": 1150,
-    "specs": {
-        "stock": { "hp": 126, "torque": 15.5, "zeroToHundred": 10.8 },
-        "stage1": { "hp": 135, "torque": 16.5, "zeroToHundred": 10.2 },
-        "stage2": { "hp": 145, "torque": 18.0, "zeroToHundred": 9.5 },
-        "stage3": { "hp": 160, "torque": 20.0, "zeroToHundred": 8.8 }
-    },
-    "equipment": {
-        "Teto Solar": false,
-        "Painel Digital": true,
-        "Controle de Largada": false,
-        "Faróis Full LED": true,
-        "Freio de Mão Elet.": false,
-        "Susp. Adaptativa": false,
-        "Tração Integral": false,
-        "Banco Elétrico": false,
-        "ACC": true
-    },
-    "chronic": ["Motor aspirado tem desempenho inferior aos turbos", "Preço de aquisição elevado", "Central multimídia poderia ser mais rápida"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
-    "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "fiat-argo-2025.webp"
     ]
 },
 {
@@ -394,9 +229,174 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Apenas 2 airbags de série (segurança básica)", "Câmbio automático de 6 marchas antiquado", "Acabamento interno muito simples", "Manutenção da revenda ainda incerta"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "citroen-c3-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "citroen-c3-2025.webp"
+    ]
+},
+{
+    "id": "fiat-mobi-2025",
+    "make": "Fiat",
+    "model": "Mobi",
+    "version": "1.0 Firefly Manual Trekking",
+    "year": 2025,
+    "category": "Subcompacto",
+    "price": 82990,
+    "fipe": "R$ 81.500",
+    "weight": 969,
+    "specs": {
+        "stock": { "hp": 75, "torque": 10.7, "zeroToHundred": 13.8 },
+        "stage1": { "hp": 82, "torque": 11.5, "zeroToHundred": 13.0 },
+        "stage2": { "hp": 90, "torque": 12.5, "zeroToHundred": 12.0 },
+        "stage3": { "hp": 100, "torque": 14.0, "zeroToHundred": 11.0 }
+    },
+    "equipment": {
+        "Teto Solar": false,
+        "Painel Digital": false,
+        "Controle de Largada": false,
+        "Faróis Full LED": false,
+        "Freio de Mão Elet.": false,
+        "Susp. Adaptativa": false,
+        "Tração Integral": false,
+        "Banco Elétrico": false,
+        "ACC": false
+    },
+    "chronic": ["Apenas 2 airbags (sem laterais)", "Porta-malas minúsculo (200L)", "Motor ruidoso em alta rotação", "Ausência de câmbio automático"],
+    "image": "fiat-mobi-2025.webp",
+    "photos": [
+        "fiat-mobi-2025.webp"
+    ]
+},
+{
+    "id": "renault-kwid-2025",
+    "make": "Renault",
+    "model": "Kwid",
+    "version": "1.0 Manual Outsider",
+    "year": 2025,
+    "category": "Subcompacto",
+    "price": 86990,
+    "fipe": "R$ 85.000",
+    "weight": 818,
+    "specs": {
+        "stock": { "hp": 71, "torque": 10.0, "zeroToHundred": 13.2 },
+        "stage1": { "hp": 78, "torque": 10.8, "zeroToHundred": 12.5 },
+        "stage2": { "hp": 85, "torque": 11.8, "zeroToHundred": 11.7 },
+        "stage3": { "hp": 95, "torque": 13.0, "zeroToHundred": 10.8 }
+    },
+    "equipment": {
+        "Teto Solar": false,
+        "Painel Digital": false,
+        "Controle de Largada": false,
+        "Faróis Full LED": false,
+        "Freio de Mão Elet.": false,
+        "Susp. Adaptativa": false,
+        "Tração Integral": false,
+        "Banco Elétrico": false,
+        "ACC": false
+    },
+    "chronic": ["Motor 1.0 fraco em subidas", "Baixa qualidade do acabamento interno", "Posição de dirigir elevada", "Baixo isolamento acústico"],
+    "image": "renault-kwid-2025.webp",
+    "photos": [
+        "renault-kwid-2025.webp"
+    ]
+},
+{
+    "id": "byd-dolphin-mini-2025",
+    "make": "BYD",
+    "model": "Dolphin Mini",
+    "version": "EV GS 38 kWh",
+    "year": 2025,
+    "category": "Hatch Elétrico Compacto",
+    "price": 118990,
+    "fipe": "R$ 118.990",
+    "weight": 1239,
+    "specs": {
+        "stock": { "hp": 75, "torque": 13.8, "zeroToHundred": 14.9 },
+        "stage1": { "hp": 85, "torque": 15.0, "zeroToHundred": 14.0 },
+        "stage2": { "hp": 95, "torque": 16.5, "zeroToHundred": 13.0 },
+        "stage3": { "hp": 105, "torque": 18.0, "zeroToHundred": 12.0 },
+    },
+    "equipment": {
+        "Teto Solar": false,
+        "Painel Digital": true,
+        "Controle de Largada": false,
+        "Faróis Full LED": true,
+        "Freio de Mão Elet.": true,
+        "Susp. Adaptativa": false,
+        "Tração Integral": false,
+        "Banco Elétrico": true,
+        "ACC": false
+    },
+    "chronic": ["Baixa potência em estrada", "Porta-malas pequeno (230L)", "Tempo de recarga em AC (6,6kW)", "Apenas 4 lugares"],
+    "image": "byd-dolphin-mini-2025.webp",
+    "photos": [
+        "byd-dolphin-mini-2025.webp"
+    ]
+},
+{
+    "id": "byd-dolphin-2025",
+    "make": "BYD",
+    "model": "Dolphin",
+    "version": "EV GS 44.9 kWh",
+    "year": 2025,
+    "category": "Hatch Elétrico Compacto",
+    "price": 149800,
+    "fipe": "R$ 148.900",
+    "weight": 1405,
+    "specs": {
+        "stock": { "hp": 95, "torque": 18.3, "zeroToHundred": 10.9 },
+        "stage1": { "hp": 105, "torque": 20.0, "zeroToHundred": 10.0 },
+        "stage2": { "hp": 115, "torque": 22.0, "zeroToHundred": 9.2 },
+        "stage3": { "hp": 130, "torque": 24.0, "zeroToHundred": 8.5 },
+    },
+    "equipment": {
+        "Teto Solar": false,
+        "Painel Digital": true,
+        "Controle de Largada": false,
+        "Faróis Full LED": true,
+        "Freio de Mão Elet.": true,
+        "Susp. Adaptativa": false,
+        "Tração Integral": false,
+        "Banco Elétrico": false,
+        "ACC": false
+    },
+    "chronic": ["Central multimídia rotativa pode ser distrativa", "Ausência de ajuste de profundidade do volante", "Acabamento em plástico rígido"],
+    "image": "byd-dolphin-2025.webp",
+    "photos": [
+        "byd-dolphin-2025.webp"
+    ]
+},
+{
+    "id": "honda-city-hatch-2025",
+    "make": "Honda",
+    "model": "City Hatch",
+    "version": "1.5 CVT Touring",
+    "year": 2025,
+    "category": "Hatch Compacto Premium",
+    "price": 142000,
+    "fipe": "R$ 138.900",
+    "weight": 1150,
+    "specs": {
+        "stock": { "hp": 126, "torque": 15.5, "zeroToHundred": 10.8 },
+        "stage1": { "hp": 135, "torque": 16.5, "zeroToHundred": 10.2 },
+        "stage2": { "hp": 145, "torque": 18.0, "zeroToHundred": 9.5 },
+        "stage3": { "hp": 160, "torque": 20.0, "zeroToHundred": 8.8 }
+    },
+    "equipment": {
+        "Teto Solar": false,
+        "Painel Digital": true,
+        "Controle de Largada": false,
+        "Faróis Full LED": true,
+        "Freio de Mão Elet.": false,
+        "Susp. Adaptativa": false,
+        "Tração Integral": false,
+        "Banco Elétrico": false,
+        "ACC": true
+    },
+    "chronic": ["Motor aspirado tem desempenho inferior aos turbos", "Preço de aquisição elevado", "Central multimídia poderia ser mais rápida"],
+    "image": "honda-city-hatch-2025.webp",
+    "photos": [
+        "honda-city-hatch-2025.webp"
     ]
 },
 {
@@ -427,9 +427,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Câmbio CVT (simulado) pode ser ruidoso em alta rotação", "Preço de seguro acima da média", "Acabamento interno conservador (em relação a concorrentes)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "toyota-corolla-sedan-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "toyota-corolla-sedan-2025.webp"
     ]
 },
 {
@@ -460,9 +460,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Ausência de itens ADAS (ACC, alerta de faixa)", "Potencial de desvalorização (marca nova)", "Consumo real depende do hábito de recarga (PHEV)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "byd-king-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "byd-king-2025.webp"
     ]
 },
 {
@@ -493,9 +493,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Motor 2.0 aspirado a gasolina (não é flex)", "Freio de estacionamento acionado por pedal", "Câmbio CVT sem opção manual para todas as versões"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "nissan-sentra-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "nissan-sentra-2025.webp"
     ]
 },
 {
@@ -526,9 +526,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Tela multimídia travando", "Barulho interno (acabamento simples)", "Espaço do banco traseiro apertado para 3 adultos"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "chevrolet-onix-plus-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "chevrolet-onix-plus-2025.webp"
     ]
 },
 {
@@ -537,7 +537,7 @@ export const dataCars  = () :Car[] =>  [
     "model": "Virtus",
     "version": "1.0 TSI AT Comfortline",
     "year": 2025,
-    "category": "Sedã Compacto/Médio",
+    "category": "Sedã Compacto",
     "price": 134990,
     "fipe": "R$ 133.737",
     "weight": 1202,
@@ -559,9 +559,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Acabamento interno com muito plástico rígido", "Ausência de disco de freio traseiro", "Câmbio automático de 6 marchas mais lento que o DSG (em modelos antigos)"],
-    "image": "https://images.unsplash.com/photo-1598224534151-51214c783e72?auto=format&fit=crop&w=800",
+    "image": "volkswagen-virtus-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1598224534151-51214c783e72?auto=format&fit=crop&w=400"
+        "volkswagen-virtus-2025.webp"
     ]
 },
 {
@@ -592,9 +592,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Acabamento em plástico rígido (como concorrentes)", "Design traseiro controverso (em relação a gerações anteriores)", "Apenas 6 airbags (Onix Plus e Virtus também oferecem)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "hyundai-hb20s-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "hyundai-hb20s-2025.webp"
     ]
 },
 {
@@ -625,9 +625,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Apenas 2 airbags de série (segurança básica)", "Motor 1.3 Firefly aspirado é fraco perto dos turbos", "Acabamento interno simples", "Baixa liquidez no mercado de usados"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "fiat-cronos-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "fiat-cronos-2025.webp"
     ]
 },
 {
@@ -658,9 +658,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Acabamento interno com plástico rígido (padrão da categoria)", "Porta-malas menor que o do Nivus e Virtus (373L)", "Revisões mais caras que as dos concorrentes japoneses/coreanos"],
-    "image": "https://images.unsplash.com/photo-1598224534151-51214c783e72?auto=format&fit=crop&w=800",
+    "image": "volkswagen-tcross-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1598224534151-51214c783e72?auto=format&fit=crop&w=400"
+        "volkswagen-tcross-2025.webp"
     ]
 },
 {
@@ -691,9 +691,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Design polarizador (muito amado ou odiado)", "Versões mais baratas têm apenas 2 airbags", "Ausência de ACC (apenas nas versões mais caras)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "hyundai-creta-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "hyundai-creta-2025.webp"
     ]
 },
 {
@@ -724,9 +724,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Freio de estacionamento acionado por pedal", "Ausência de teto solar (versão XRE)", "Design da traseira (silencioso e lanternas)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "toyota-corolla-cross-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "toyota-corolla-cross-2025.webp"
     ]
 },
 {
@@ -757,9 +757,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Motor 1.5 aspirado é fraco (comparado aos turbos)", "Preço elevado para versão aspirada", "Acabamento interno com muito plástico rígido"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "honda-hrv-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "honda-hrv-2025.webp"
     ]
 },
 {
@@ -790,9 +790,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Apenas 6 airbags (menos que alguns concorrentes)", "Ausência de ACC (presente em T-Cross/Creta topo de linha)", "Motor 1.2 turbo pode ter consumo elevado com pé pesado"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "chevrolet-tracker-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "chevrolet-tracker-2025.webp"
     ]
 },
 {
@@ -823,9 +823,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Consumo elevado (motor T270 Flex na cidade)", "Preço de manutenção e seguro altos", "Suspensão mais firme (menos confortável que a de alguns rivais)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "jeep-compass-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "jeep-compass-2025.webp"
     ]
 },
 {
@@ -856,9 +856,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Acabamento interno com muito plástico rígido", "Espaço no banco traseiro limitado (design cupê)", "Apenas 4 airbags (em todas as versões)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "fiat-fastback-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "fiat-fastback-2025.webp"
     ]
 },
 {
@@ -889,9 +889,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Motor 1.6 aspirado é fraco em ultrapassagens", "Acabamento interno simples (comparado ao preço)", "Câmbio CVT ruidoso em acelerações fortes"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "nissan-kicks-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "nissan-kicks-2025.webp"
     ]
 },
 {
@@ -922,9 +922,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Apenas 6 airbags (menos que alguns rivais)", "Acabamento interno com muito plástico rígido", "Espaço traseiro limitado (design cupê)"],
-    "image": "https://images.unsplash.com/photo-1598224534151-51214c783e72?auto=format&fit=crop&w=800",
+    "image": "volkswagen-nivus-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1598224534151-51214c783e72?auto=format&fit=crop&w=400"
+        "volkswagen-nivus-2025.webp"
     ]
 },
 {
@@ -955,13 +955,13 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Apenas 4 airbags (em todas as versões)", "Acabamento interno com muito plástico rígido", "Espaço interno limitado para 5 adultos"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "fiat-pulse-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "fiat-pulse-2025.webp"
     ]
 },
 {
-    "id": "peugeot-2008-turbo-2025-br",
+    "id": "peugeot-2008-turbo-2025",
     "make": "Peugeot",
     "model": "2008",
     "version": "1.0 Turbo 200 CVT Griffe",
@@ -988,9 +988,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Apenas 4 airbags (segurança inferior a T-Cross/Creta)", "Design da geração anterior (em relação à Europa)", "Ausência de ACC (mesmo nas versões topo de linha)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "peugeot-2008-turbo-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "peugeot-2008-turbo-2025.webp"
     ]
 },
 {
@@ -1021,9 +1021,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Porta-malas pequeno (320L)", "Consumo de combustível elevado (devido ao peso e 4x4)", "Espaço interno apertado no banco traseiro"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "jeep-renegade-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "jeep-renegade-2025.webp"
     ]
 },
 {
@@ -1054,9 +1054,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Rede de concessionárias menor que VW/GM", "Confiabilidade do novo motor TCe 1.0 e câmbio EDC (a ser comprovada)", "Preço de topo de linha alto para a marca"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "renault-kardian-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "renault-kardian-2025.webp"
     ]
 },
 {
@@ -1087,9 +1087,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Desvalorização e liquidez de revenda", "Rede de concessionárias limitada", "Consumo de combustível elevado em uso urbano"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "caoa-chery-tiggo-7-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "caoa-chery-tiggo-7-2025.webp"
     ]
 },
 {
@@ -1120,9 +1120,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": true
     },
     "chronic": ["Rede de concessionárias em expansão (limitada)", "Peso elevado (afeta a dirigibilidade mais esportiva)", "Central multimídia grande, mas complexa"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "gwm-haval-h6-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "gwm-haval-h6-2025.webp"
     ]
 },
 {
@@ -1153,9 +1153,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Apenas 2 airbags (herança da plataforma C3)", "Foco em custo-benefício (acabamento simples)", "Câmbio CVT (não tão rápido quanto o AT6)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "citroen-basalt-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "citroen-basalt-2025.webp"
     ]
 },
 {
@@ -1186,9 +1186,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Ausência de ACC e LKA (sistemas ADAS) nas versões atuais", "Peso elevado (impacta o consumo após o fim da carga)", "Rede de concessionárias em expansão (limitada)"],
-    "image": "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=800",
+    "image": "byd-song-plus-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1628172822709-661001a4e982?auto=format&fit=crop&w=400"
+        "byd-song-plus-2025.webp"
     ]
 },
 {
@@ -1223,9 +1223,9 @@ export const dataCars  = () :Car[] =>  [
     "ACC": true                      /* controle adaptativo de cruzeiro disponível em uma versão (Comfort) :contentReference[oaicite:4]{index=4} */
   },
   "chronic": [],
-  "image": "https://via.placeholder.com/800x600?text=VW+Tera",         /* placeholder — imagem real precisa de link válido */
+  "image": "vw-tera-2025.webp",
   "photos": [
-    "https://via.placeholder.com/400x300?text=VW+Tera+foto1"
+    "vw-tera-2025.webp"
   ]
 }
 
