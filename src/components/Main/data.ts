@@ -64,9 +64,9 @@ export const dataCars  = () :Car[] =>  [
         "ACC": false
     },
     "chronic": ["Tela multimídia travando", "Barulho interno"],
-    "image": "https://images.unsplash.com/photo-1617814070872-c53af829fa80?auto=format&fit=crop&w=800",
+    "image": "chevrolet-onix-2025.webp",
     "photos": [
-        "https://images.unsplash.com/photo-1617814070872-c53af829fa80?auto=format&fit=crop&w=400"
+        "chevrolet-onix-2025.webp"
     ]
 },
 {
