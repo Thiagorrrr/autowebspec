@@ -1,45 +1,11 @@
 "use client"
 import React, { useState, useEffect, useMemo } from 'react';
 import { Flame, Trophy, Calendar, DollarSign, Activity, ChevronRight, Info, MapPin, Clock, Zap, Scale, Check, X, Camera, Grid, Plus, Medal, Star, ThumbsUp } from 'lucide-react';
+import { Car, CarSpecsData, dataCars } from './data';
 
 // --- TYPES & INTERFACES ---
 
 type StageType = 'stock' | 'stage1' | 'stage2' | 'stage3';
-
-interface CarSpecsData {
-  hp: number;
-  torque: number;
-  zeroToHundred: number;
-}
-
-interface CarSpecs {
-  stock: CarSpecsData;
-  stage1: CarSpecsData;
-  stage2: CarSpecsData;
-  stage3: CarSpecsData;
-}
-
-interface CarEquipment {
-  [key: string]: boolean;
-}
-
-interface Car {
-  id: string;
-  make: string;
-  model: string;
-  version: string;
-  name?: string; // Adicionado após o map
-  year: number;
-  category: string;
-  price: number;
-  fipe: string;
-  weight: number;
-  specs: CarSpecs;
-  equipment: CarEquipment;
-  chronic: string[];
-  image: string;
-  photos: string[];
-}
 
 interface Participant {
   tempId: number;
@@ -72,132 +38,7 @@ interface EventData {
 
 // --- DADOS MOCKADOS ---
 
-const RAW_CARS: Car[] = [
-  {
-    id: 'vw-golf-gti',
-    make: 'Volkswagen',
-    model: 'Golf',
-    version: 'GTI 2.0 TSI',
-    year: 2019,
-    category: 'Hatch Médio',
-    price: 160000,
-    fipe: 'R$ 158.400',
-    weight: 1317,
-    specs: {
-      stock: { hp: 230, torque: 35.7, zeroToHundred: 6.4 },
-      stage1: { hp: 260, torque: 42.0, zeroToHundred: 5.9 },
-      stage2: { hp: 290, torque: 46.0, zeroToHundred: 5.4 },
-      stage3: { hp: 350, torque: 52.0, zeroToHundred: 4.8 },
-    },
-    equipment: {
-      'Teto Solar': true,
-      'Painel Digital': true,
-      'Controle de Largada': true,
-      'Faróis Full LED': true,
-      'Freio de Mão Elet.': true,
-      'Susp. Adaptativa': false,
-      'Tração Integral': false,
-      'Banco Elétrico': true,
-      'ACC': true,
-    },
-    chronic: ['Bomba d\'água', 'Termostática'],
-    image: 'https://images.unsplash.com/photo-1503376763036-066120622c74?auto=format&fit=crop&q=80&w=800',
-    photos: ['https://images.unsplash.com/photo-1503376763036-066120622c74?auto=format&fit=crop&q=80&w=400']
-  },
-  {
-    id: 'honda-civic-si',
-    make: 'Honda',
-    model: 'Civic',
-    version: 'Si 1.5 Turbo',
-    year: 2020,
-    category: 'Sedan / Coupé',
-    price: 190000,
-    fipe: 'R$ 188.200',
-    weight: 1321,
-    specs: {
-      stock: { hp: 208, torque: 26.5, zeroToHundred: 6.9 },
-      stage1: { hp: 230, torque: 32.0, zeroToHundred: 6.4 },
-      stage2: { hp: 250, torque: 36.0, zeroToHundred: 6.0 },
-      stage3: { hp: 300, torque: 40.0, zeroToHundred: 5.5 },
-    },
-    equipment: {
-      'Teto Solar': true,
-      'Painel Digital': true,
-      'Controle de Largada': false,
-      'Faróis Full LED': true,
-      'Freio de Mão Elet.': true,
-      'Susp. Adaptativa': true,
-      'Tração Integral': false,
-      'Banco Elétrico': false,
-      'ACC': false,
-    },
-    chronic: ['Embreagem', 'Coxim motor'],
-    image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&q=80&w=800',
-    photos: ['https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&q=80&w=400']
-  },
-  {
-    id: 'bmw-320i',
-    make: 'BMW',
-    model: 'Série 3',
-    version: '320i M Sport',
-    year: 2021,
-    category: 'Sedan Premium',
-    price: 230000,
-    fipe: 'R$ 225.000',
-    weight: 1460,
-    specs: {
-      stock: { hp: 184, torque: 30.6, zeroToHundred: 7.1 },
-      stage1: { hp: 240, torque: 40.0, zeroToHundred: 6.3 },
-      stage2: { hp: 270, torque: 45.0, zeroToHundred: 5.7 },
-      stage3: { hp: 310, torque: 50.0, zeroToHundred: 5.2 },
-    },
-    equipment: {
-      'Teto Solar': true,
-      'Painel Digital': true,
-      'Controle de Largada': true,
-      'Faróis Full LED': true,
-      'Freio de Mão Elet.': true,
-      'Susp. Adaptativa': false,
-      'Tração Integral': false,
-      'Banco Elétrico': true,
-      'ACC': true,
-    },
-    chronic: ['Vazamento óleo', 'Trocador calor'],
-    image: 'https://images.unsplash.com/photo-1555215695-3004980adade?auto=format&fit=crop&q=80&w=800',
-    photos: ['https://images.unsplash.com/photo-1555215695-3004980adade?auto=format&fit=crop&q=80&w=400']
-  },
-  {
-    id: 'audi-rs3',
-    make: 'Audi',
-    model: 'RS3',
-    version: 'Sportback 2.5 TFSI',
-    year: 2018,
-    category: 'Esportivo',
-    price: 450000,
-    fipe: 'R$ 445.000',
-    weight: 1530,
-    specs: {
-        stock: { hp: 400, torque: 48.9, zeroToHundred: 4.1 },
-        stage1: { hp: 450, torque: 55.0, zeroToHundred: 3.8 },
-        stage2: { hp: 500, torque: 62.0, zeroToHundred: 3.4 },
-        stage3: { hp: 600, torque: 70.0, zeroToHundred: 2.9 },
-    },
-    equipment: {
-        'Teto Solar': true,
-        'Painel Digital': true,
-        'Controle de Largada': true,
-        'Faróis Full LED': true,
-        'Freio de Mão Elet.': true,
-        'Susp. Adaptativa': true,
-        'Tração Integral': true,
-        'Banco Elétrico': false,
-        'ACC': true,
-    },
-    chronic: ['Freios cerâmica', 'Bomba combustível'],
-    image: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=800',
-    photos: ['https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=400']
-  }
-];
+const RAW_CARS = dataCars()
 
 const CARS: Car[] = RAW_CARS.map(c => ({ ...c, name: `${c.make} ${c.model} ${c.version}` }));
 
@@ -228,7 +69,7 @@ const calculateOverallRanking = (participants: Participant[]): RankingItem[] => 
         // 3. Equipamentos (peso 30%)
         
         // Normalização grosseira para o exemplo
-        const scoreHp = (stats.hp / 600) * 40; 
+        const scoreHp = stats.hp ? (stats.hp / 600) * 40 : 0 
         const scorePrice = (1 - (car.price / 500000)) * 30;
         const scoreEquip = (equipCount / 10) * 30;
         
@@ -240,7 +81,7 @@ const calculateOverallRanking = (participants: Participant[]): RankingItem[] => 
             stats,
             equipCount,
             totalScore,
-            pricePerHp: car.price / stats.hp
+            pricePerHp: stats.hp ? car.price / stats.hp : 0
         };
     }).sort((a, b) => b.totalScore - a.totalScore); // Maior score primeiro
 };
