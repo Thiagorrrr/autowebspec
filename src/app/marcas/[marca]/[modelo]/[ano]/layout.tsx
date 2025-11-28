@@ -5,7 +5,7 @@ export function generateStaticParams() {
     const cars = dataCars();
 
     return cars.map(car => ({
-        marca: car.make.toLowerCase(),
+        marca: car.make.toLowerCase().replace(/\s+/g, "-"),
         modelo: car.model.toLowerCase().replace(/\s+/g, "-"),
         ano: String(car.year)
     }));

@@ -81,7 +81,7 @@ export const BRAND_INFO: Record<string, { description: string; logoColor: string
             "Ícone americano especializado em SUVs e veículos off-road. Renegade e Compass mantêm a tradição da marca em robustez e versatilidade.",
         logoColor: "#1A1A1A"
     },
-    "caoa chery": {
+    "caoa-chery": {
         description:
             "Parceria entre CAOA e Chery, oferecendo veículos modernos, bem equipados e competitivos no mercado brasileiro, como Tiggo 5X e Arrizo 6.",
         logoColor: "#D0021B"
@@ -121,7 +121,7 @@ export const BrandsList: React.FC<{ carCatalog: CarBrand[] }> = ({ carCatalog })
                 {uniqueMakes.map(make => {
                     const info = BRAND_INFO[make] || { logoColor: COLORS.gray400 };
                     return (
-                        <Link href={`${pathname}/${make.toLocaleLowerCase()}`} key={make}>
+                        <Link href={`${pathname}/${make.toLowerCase().replace(/\s+/g, "-")}`} key={make}>
                             <Card
                                 key={make}
                                 className="text-center p-6 border-2 hover:border-[#6319F7]"

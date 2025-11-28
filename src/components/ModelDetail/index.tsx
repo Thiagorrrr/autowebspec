@@ -10,9 +10,8 @@ import Image from "next/image";
 
 
 const ModelDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string }> = ({ carCatalog, make, model }) => {
-    const brandData = carCatalog.find(b => b.make.toLocaleLowerCase() === make.toLocaleLowerCase());
+    const brandData = carCatalog.find(b => b.make.toLocaleLowerCase() === make.toLocaleLowerCase().replace("-", " "));
     const modelData = brandData?.models.find(m => m.model.toLowerCase().replace(/\s+/g, "-") === model);
-
     const router = useRouter()
     const pathname = usePathname();
 

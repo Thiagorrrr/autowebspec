@@ -8,7 +8,7 @@ export function generateStaticParams() {
     const uniqueBrands = [...new Set(cars.map(c => c.make))];
 
     return uniqueBrands.map(make => ({
-        marca: make.toLowerCase()
+        marca: make.toLowerCase().replace(/\s+/g, "-")
     }));
 }
 

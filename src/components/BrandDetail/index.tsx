@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
 
 const BrandDetail: React.FC<{ carCatalog: CarBrand[], make: string }> = ({ carCatalog, make }) => {
-    const brandData = carCatalog.find(b => b.make.toLocaleLowerCase() === make);
+    const brandData = carCatalog.find(b => b.make.toLowerCase().replace(/\s+/g, "-") === make);
     const info = BRAND_INFO[make] || {};
     const router = useRouter()
     const pathname = usePathname();
@@ -25,7 +25,7 @@ const BrandDetail: React.FC<{ carCatalog: CarBrand[], make: string }> = ({ carCa
                     <CarIcon size={32} className="text-white" />
                 </div>
                 <div>
-                    <h1 className="text-3xl font-black text-gray-900 mb-2 capitalize">{make}</h1>
+                    <h1 className="text-3xl font-black text-gray-900 mb-2 capitalize">{make.replaceAll("-", " ")}</h1>
                     <p className="text-lg text-gray-600">{info.description || 'Descrição da marca não disponível.'}</p>
                 </div>
             </Card>

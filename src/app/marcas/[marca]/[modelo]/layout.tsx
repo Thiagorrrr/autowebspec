@@ -10,7 +10,7 @@ export function generateStaticParams() {
         const key = `${car.make}-${car.model}`;
         if (!uniquePairs.has(key)) {
             uniquePairs.set(key, {
-                marca: car.make.toLowerCase(),
+                marca: car.make.toLowerCase().replace(/\s+/g, "-"),
                 modelo: car.model.toLowerCase().replace(/\s+/g, "-")
             });
         }

@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 const YearDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string, year: number }> = ({ carCatalog, make, model, year }) => {
     const yearNum = Number(year);
-    const brandData = carCatalog.find(b => b.make.toLocaleLowerCase() === make.toLocaleLowerCase());
+    const brandData = carCatalog.find(b => b.make.toLocaleLowerCase() === make.toLocaleLowerCase().replace("-", " "));
     const modelData = brandData?.models.find(m => m.model.toLowerCase().replace(/\s+/g, "-") === model.toLocaleLowerCase());
     const yearData = modelData?.years.find(y => y.year === yearNum);
 
