@@ -1,35 +1,36 @@
-import { useMemo } from "react";
-import { BackButton } from "../BackButton";
-import { SectionTitle } from "../SectionTitle";
-import { Activity, Camera, CarIcon, Check, Grid, X } from "lucide-react";
-import { Label } from "../Label";
+import { Activity, Camera, Check, Grid, X } from "lucide-react";
+import { useState } from "react";
 import { Car } from "../Main/data";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { Label } from "../Label";
+import { SectionTitle } from "../SectionTitle";
 
-const TechnicalDetails = ({ carId, cars }: { carId?: string, cars: Car[] }) => {
-  const router = useRouter()
-  const car = useMemo(() => {
-    if (carId) return cars.find(c => c.id === carId);
-    return cars[0];
-  }, [carId, cars]);
-
-  if (!car) return <div>Carro não encontrado.</div>;
+interface TechnicalDetailsProps {
+  data: Car[]
+}
+export const TechnicalDetailsSelected = ({ data }: TechnicalDetailsProps) => {
+  const [selectedCar, setSelectedCar] = useState<string>(data[0].id);
+  const car = data.find(c => c.id === selectedCar)!;
 
   return (
     <div className="space-y-6">
-      {carId && <BackButton onClick={() => router.back()} label={`Voltar para ${car.year}`} />}
-
-      <SectionTitle className="!mb-6">
-        <CarIcon size={24} className="text-[#6319F7]" /> Ficha Completa: {car.version}
-      </SectionTitle>
-
+      <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+        <h2 className="text-2xl font-bold text-gray-800 pb-1.5">Detalhes Tecnicos</h2>
+        <label className="text-xs font-bold text-gray-400 uppercase mb-2 block">Selecione o Carro</label>
+        <select value={selectedCar} onChange={(e) => setSelectedCar(e.target.value)} className="w-full bg-gray-50 text-gray-900 p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#6319F7] font-bold">
+          {data.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+        </select>
+      </div>
       <div className="space-y-2">
         <SectionTitle><Camera size={16} className="text-[#6319F7]" /> Galeria de Fotos</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {car.photos.map((photo, idx) => (
-            <div key={idx} className={`rounded-lg overflow-hidden border border-gray-200 h-24 ${idx === 0 ? 'col-span-2 md:col-span-3 h-fit' : ''}`}>
-              <Image src={`/${photo}`} alt={`${car.name} ${idx}`} width={300} height={400} className="w-full h-full object-cover" />
+            <div key={idx} className={`rounded-lg overflow-hidden border border-gray-200 h-24 ${idx === 0 ? 'col-span-2 md:col-span-3 h-48' : ''}`}>
+              <img
+                src={photo}
+                alt={`${car.name} ${idx}`}
+                className="w-full h-full object-cover"
+                onError={(e) => { e.currentTarget.src = `https://placehold.co/400x300/4F46E5/fff?text=Foto+${idx}`; }}
+              />
             </div>
           ))}
         </div>
@@ -64,7 +65,5 @@ const TechnicalDetails = ({ carId, cars }: { carId?: string, cars: Car[] }) => {
         </div>
       </div>
     </div>
-  )
-}
-
-export default TechnicalDetails
+  );
+};

@@ -1,16 +1,15 @@
 "use client"
-import { DragRace } from "@/components/DragRace";
+import { CostCalculator } from "@/components/CostCalculator"
 import { Car, dataCars } from "@/components/Main/data";
 
 const RAW_CARS = dataCars()
 
 const CARS: Car[] = RAW_CARS.map(c => ({ ...c, name: `${c.make} ${c.model} ${c.version}` }));
 
-export default function Home() {
-  return (
-    <>
-      <DragRace rawCars={RAW_CARS} cars={CARS} />
-
-    </>
-  )
+const calcular = ()=> {
+    return (
+        <CostCalculator data={CARS}/>
+    )
 }
+
+export default calcular
