@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_TAG} />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_TAG!} />
         <StyledComponentsRegistry>
           <Providers>
             <div className="min-h-screen bg-gray-50 text-gray-800 font-sans pb-24 md:pb-0">
