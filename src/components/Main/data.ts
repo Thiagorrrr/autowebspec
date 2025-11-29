@@ -203,7 +203,7 @@ export const dataCars = (): Car[] => [
     },
     {
         "id": "citroen-c3-2025",
-        "make": "Citroën",
+        "make": "Citroen",
         "model": "C3",
         "version": "1.6 AT Feel Pack",
         "year": 2025,
