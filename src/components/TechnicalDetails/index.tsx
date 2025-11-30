@@ -20,7 +20,7 @@ const TechnicalDetails = ({ carId, cars }: { carId?: string, cars: Car[] }) => {
     <div className="space-y-6">
       {carId && <BackButton onClick={() => router.back()} label={`Voltar para ${car.year}`} />}
 
-      <SectionTitle className="!mb-6">
+      <SectionTitle className="mb-6!">
         <CarIcon size={24} className="text-[#6319F7]" /> Ficha Completa: {car.version}
       </SectionTitle>
 

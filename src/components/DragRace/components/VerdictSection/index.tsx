@@ -10,10 +10,10 @@ interface VerdictSectionProps {
 }
 
 export const VerdictSection: React.FC<VerdictSectionProps> = ({ participants, cars }) => {
-    const ranking = useMemo(() => calculateOverallRanking({ participants, cars }), [participants]);
+    const ranking = useMemo(() => calculateOverallRanking({ participants, cars }), [cars, participants]);
 
     return (
-        <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl shadow-lg text-white mt-8 border-l-4 border-[#6319F7]">
+        <div className="bg-linear-to-br from-gray-900 to-gray-800 p-6 rounded-xl shadow-lg text-white mt-8 border-l-4 border-[#6319F7]">
             <div className="flex items-center gap-3 mb-6">
                 <div className="bg-[#6319F7] p-2 rounded-lg">
                     <Star className="text-white" fill="currentColor" size={20} />

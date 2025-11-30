@@ -7,7 +7,7 @@ import { DollarSign } from "lucide-react";
 
 export const CostCalculator = ({ cars, rawCars }: { rawCars: Car[], cars: Car[] }) => {
   const [selectedCarId, setSelectedCarId] = useState<string>(cars[0].id);
-  const car = useMemo(() => cars.find(c => c.id === selectedCarId) || cars[0], [selectedCarId]);
+  const car = useMemo(() => cars.find(c => c.id === selectedCarId) || cars[0], [cars, selectedCarId]);
 
   // States for cascading dropdowns
   const [selectedMake, setSelectedMake] = useState(car.make);
@@ -22,10 +22,10 @@ export const CostCalculator = ({ cars, rawCars }: { rawCars: Car[], cars: Car[] 
   }, [car.make, car.model, car.year, selectedCarId]); // Re-sync when selected ID changes
 
   // Derived lists
-  const makes = useMemo(() => [...new Set(rawCars.map(c => c.make))], []);
-  const models = useMemo(() => [...new Set(rawCars.filter(c => c.make === selectedMake).map(c => c.model))], [selectedMake]);
-  const years = useMemo(() => [...new Set(rawCars.filter(c => c.make === selectedMake && c.model === selectedModel).map(c => c.year))], [selectedMake, selectedModel]);
-  const versions = useMemo(() => rawCars.filter(c => c.make === selectedMake && c.model === selectedModel && c.year === selectedYear), [selectedMake, selectedModel, selectedYear]);
+  const makes = useMemo(() => [...new Set(rawCars.map(c => c.make))], [rawCars]);
+  const models = useMemo(() => [...new Set(rawCars.filter(c => c.make === selectedMake).map(c => c.model))], [rawCars, selectedMake]);
+  const years = useMemo(() => [...new Set(rawCars.filter(c => c.make === selectedMake && c.model === selectedModel).map(c => c.year))], [rawCars, selectedMake, selectedModel]);
+  const versions = useMemo(() => rawCars.filter(c => c.make === selectedMake && c.model === selectedModel && c.year === selectedYear), [rawCars, selectedMake, selectedModel, selectedYear]);
 
   // Handlers
   const handleMakeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

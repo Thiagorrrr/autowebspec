@@ -22,7 +22,7 @@ export const NewsList = ({ data }: { data: NewsArticle[] }) => {
                         <Card key={news.id} >
                             <div className="relative h-64 md:h-80 w-full">
                                 <img src={news.image} alt={news.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
+                                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
                                     <span className="bg-[#6319F7] text-white text-xs font-bold px-2 py-1 rounded w-fit mb-2">{news.category}</span>
                                     <h3 className="text-2xl md:text-3xl font-black text-white mb-2">{news.title}</h3>
                                     <p className="text-gray-200 text-sm md:text-base line-clamp-2">{news.summary}</p>
