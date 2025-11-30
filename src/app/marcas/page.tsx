@@ -64,7 +64,7 @@ const marcas = () => {
         });
 
         return Object.values(catalog);
-    }, []);
+    }, [CARS]);
     return (
         <BrandsList carCatalog={carCatalog} />
     )

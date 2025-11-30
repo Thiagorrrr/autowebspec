@@ -59,7 +59,7 @@ const ano = ({ params }: { params: { marca: string, modelo: string, ano: number 
         });
 
         return Object.values(catalog);
-    }, []);
+    }, [CARS]);
     return (
         <YearDetail carCatalog={carCatalog} make={marca} model={modelo} year={ano} />
     );

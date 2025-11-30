@@ -59,7 +59,7 @@ const marca = ({ params }: { params: { marca: string } }) => {
         });
 
         return Object.values(catalog);
-    }, []);
+    }, [CARS]);
     return (
         <BrandDetail carCatalog={carCatalog} make={marca} />
     )
