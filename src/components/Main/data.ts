@@ -22,7 +22,6 @@ export interface Car {
     make: string;
     model: string;
     version: string;
-    name?: string; // Adicionado após o map
     year: number;
     category: string;
     price: number;
@@ -1192,7 +1191,7 @@ export const dataCars = (): Car[] => [
         ]
     },
     {
-        "id": "vw-tera-2025",
+        "id": "volkswagen-tera-2025",
         "make": "Volkswagen",
         "model": "Tera",
         "version": "1.0 TSI AT",
@@ -1230,3 +1229,130 @@ export const dataCars = (): Car[] => [
     }
 
 ]
+
+export interface NewsArticle {
+    id: number;
+    title: string;
+    slug: string;
+    summary: string;
+    content: string;
+    date: string;
+    category: 'Lançamento' | 'Review' | 'Tech' | 'Mercado';
+    image: string;
+    author: string;
+    authorRole: string; // Novo campo
+    readTime: string;   // Novo campo
+}
+
+export const dataNews = (): NewsArticle[] => [
+    {
+        id: 1,
+        title: 'Novo Golf GTI 2025: O último a combustão?',
+        slug: 'novo-golf-gti-2025-o-ultimo-a-combustao',
+        summary: 'A Volkswagen revela detalhes do facelift da 8ª geração, prometendo mais potência e corrigindo as críticas ao sistema de infoentretenimento.',
+        content: `A Volkswagen apresentou oficialmente o novo Golf GTI 2025, uma atualização significativa da oitava geração (Mk8.5) que pode marcar o fim da linha para os motores puramente a combustão na icônica sigla "Grand Tourer Injection". Este lançamento não é apenas uma renovação estética; é uma resposta direta às críticas dos fãs e da imprensa especializada sobre a versão anterior.
+
+        ## Potência Refinada
+        
+        Sob o capô, o coração do GTI continua sendo o motor 2.0 TSI (EA888), mas agora afinado para entregar **265 cv**, um ganho notável de 20 cv em relação ao modelo anterior. O torque se mantém robusto, permitindo que o hatch acelere de 0 a 100 km/h em apenas 5,9 segundos. A velocidade máxima continua limitada eletronicamente a 250 km/h.
+        
+        Uma mudança que gerou controvérsia entre os puristas foi a descontinuação da transmissão manual. Para 2025, o GTI será oferecido exclusivamente com a caixa de dupla embreagem DSG de 7 velocidades. A VW justifica a decisão com base nas normas de emissões Euro 7, mas para muitos, perde-se uma parte da alma analógica do carro.
+
+        ## Interior: Ouvindo o Cliente
+        
+        Talvez a mudança mais bem-vinda esteja no interior. A Volkswagen admitiu que a ergonomia do Mk8 deixou a desejar. No modelo 2025, o sistema de infoentretenimento foi completamente renovado, apresentando uma tela flutuante de 12,9 polegadas com um software (MIB4) muito mais rápido e intuitivo.
+        
+        Mais importante ainda: os botões táteis no volante, fonte de frustração por acionamentos acidentais, foram eliminados. **Botões físicos tradicionais estão de volta**, proporcionando um feedback tátil real e melhorando a usabilidade durante a condução esportiva. Os sliders de temperatura e volume abaixo da tela agora são iluminados, corrigindo uma falha grave de design noturno do modelo anterior.
+
+        ## Design Exterior
+        
+        Visualmente, o GTI 2025 ganha faróis mais afilados com tecnologia IQ.LIGHT LED matrix atualizada, novas assinaturas de luzes traseiras em 3D e um para-choque dianteiro redesenhado que enfatiza a largura do veículo com "presas" aerodinâmicas nas extremidades. As clássicas rodas "Richmond" foram atualizadas e novas opções de cores, incluindo um azul metálico vibrante e um prata fosco, foram adicionadas ao catálogo.
+        
+        ## Veredito Inicial
+        
+        Com a eletrificação batendo à porta, o Golf GTI 2025 parece ser uma carta de amor final aos motores a combustão. Ele é mais rápido, mais inteligente e, crucialmente, mais fácil de conviver no dia a dia do que seu antecessor. Resta saber se estas melhorias serão suficientes para manter a coroa no segmento cada vez mais competitivo dos hot hatches.`,
+        date: 'Há 2 horas',
+        category: 'Lançamento',
+        image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800',
+        author: 'TP',
+        authorRole: 'Editor Chefe',
+        readTime: '5 min de leitura'
+    },
+    {
+        id: 2,
+        title: 'Civic Type R vs GR Corolla: A batalha japonesa',
+        slug: 'civic-type-r-vs-gr-corolla-a-batalha-japonesa',
+        summary: 'Levamos os dois hot hatches mais desejados do momento para a pista. Tração integral contra a melhor tração dianteira do mundo.',
+        content: `O embate que todos esperavam finalmente aconteceu. De um lado, o Honda Civic Type R (FL5), refinado ao longo de décadas para ser a máquina de tração dianteira definitiva. Do outro, o Toyota GR Corolla, um monstro de tração integral nascido das etapas de rali do WRC.
+        
+        Levamos ambos para o Autódromo de Interlagos para descobrir qual filosofia reina suprema: a precisão cirúrgica da Honda ou a agressividade mecânica da Toyota.
+
+        ## Na Pista: Type R
+        
+        O Type R é uma ferramenta de precisão. A direção é comunicativa, a suspensão é firme sem ser punitiva e a estabilidade em curvas de alta velocidade é inigualável para um FWD. O motor 2.0 Turbo entrega 297 cv de forma linear, parecendo quase aspirado em sua resposta. O câmbio manual de 6 marchas da Honda continua sendo a referência da indústria, com engates curtos e mecânicos que viciam.
+
+        ## Na Pista: GR Corolla
+        
+        O GR Corolla, por sua vez, é pura agressividade. O sistema GR-Four permite jogar até 70% da força para a traseira, transformando o carro numa máquina capaz de deslizar nas saídas de curva. O motor 1.6 de três cilindros é uma maravilha da engenharia, extraindo 304 cv com um ronco característico e torque abundante. É um carro que exige mais do piloto, mas recompensa com sorrisos a cada curva.
+
+        ## O Veredito
+        
+        Se você busca tempos de volta e precisão absoluta para track days, o Civic Type R ainda reina. Ele é mais plantado, mais previsível e mais rápido no cronômetro. Mas se o seu objetivo é diversão pura em qualquer condição climática, seja chuva ou sol, e uma experiência de condução mais visceral e "rebelde", o GR Corolla leva a taça. É a escolha do coração contra a escolha da mente.`,
+        date: 'Ontem',
+        category: 'Review',
+        image: 'https://images.unsplash.com/photo-1605515298946-d062f2e9da53?auto=format&fit=crop&q=80&w=800',
+        author: 'TP',
+        authorRole: 'Piloto de Testes',
+        readTime: '8 min de leitura'
+    },
+    {
+        id: 3,
+        title: 'Manutenção de Turbos: Guia completo',
+        slug: 'manutencao-de-turbos-guia-completo',
+        summary: 'Como prolongar a vida útil da sua turbina? Dicas essenciais sobre aquecimento, arrefecimento e escolha do óleo certo.',
+        content: `Os motores turbo são a norma na indústria automotiva atual, oferecendo eficiência energética e potência em pacotes compactos. No entanto, eles exigem cuidados específicos para garantir sua longevidade. A turbina opera em rotações que podem ultrapassar 150.000 rpm e temperaturas extremas, tornando a lubrificação e o arrefecimento fatores críticos.
+
+        ## 1. Aquecimento: Paciência é Virtude
+        
+        A regra de ouro é: **nunca exija carga máxima do motor enquanto o óleo não atingir a temperatura ideal de funcionamento**. E atenção: não estamos falando da temperatura da água (líquido de arrefecimento)! O óleo demora significativamente mais para aquecer. Acelerar forte com o óleo frio pode causar desgaste prematuro nos mancais da turbina devido à viscosidade inadequada.
+
+        ## 2. Arrefecimento (Cool Down)
+        
+        Ao desligar o carro, especialmente após uma condução esportiva ou longas viagens em rodovia, deixe o motor em marcha lenta por 30 a 60 segundos antes de girar a chave. Isso permite que o óleo continue circulando e resfrie o eixo da turbina. Desligar o motor imediatamente interrompe o fluxo de óleo, fazendo com que o lubrificante residual "cozinhe" (carbonize) dentro da turbina quente, criando borra que pode entupir as galerias.
+
+        ## 3. Qualidade do Óleo
+        
+        A escolha do óleo é vital. Use sempre a especificação exata recomendada pelo fabricante (viscosidade e normas API/ACEA). Motores turbo degradam o óleo mais rapidamente devido ao calor intenso. Considere reduzir os intervalos de troca se você faz uso severo do veículo (trânsito pesado constante ou track days). Um óleo limpo e de qualidade é o seguro de vida da sua turbina.`,
+        date: '15 Out',
+        category: 'Tech',
+        image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=800',
+        author: 'TP',
+        authorRole: 'Engenheiro Mecânico',
+        readTime: '4 min de leitura'
+    },
+    {
+        id: 4,
+        title: 'Preços de usados caem 5% no último trimestre',
+        slug: 'precos-de-usados-caem-5-no-ultimo-trimestre',
+        summary: 'Análise de mercado mostra tendência de queda nos preços de seminovos esportivos. É a hora certa de comprar?',
+        content: `Após dois anos de valorização atípica causada pela pandemia e pela escassez de semicondutores, o mercado de usados finalmente começa a mostrar sinais claros de arrefecimento. Dados da FIPE e de grandes portais de venda indicam uma queda média de 5% nos preços de veículos esportivos seminovos no último trimestre.
+        
+        ## Os Modelos Mais Afetados
+        
+        Modelos populares entre entusiastas, como o Renault Sandero RS, o Volkswagen Golf GTI mk7 e o Honda Civic Si (G10), apresentaram as maiores correções de preço. O aumento da oferta de veículos 0km nas concessionárias reduziu a pressão sobre o mercado de usados. Além disso, as taxas de juros ainda elevadas para financiamento de veículos usados diminuíram a demanda, forçando vendedores a baixarem os preços.
+
+        ## Estratégia de Compra
+        
+        Para quem tem dinheiro na mão ou uma boa carta de crédito, o momento é de oportunidade. A margem de negociação aumentou significativamente. Vendedores particulares, que antes mantinham preços firmes, agora estão mais dispostos a reduzir pedidas para garantir a liquidez.
+        
+        Especialistas preveem que essa tendência de estabilização e leve queda deve continuar pelos próximos seis meses, tornando o final deste ano um excelente momento para realizar o sonho de ter um esportivo na garagem. A recomendação é pesquisar muito e não ter medo de fazer ofertas agressivas.`,
+        date: '12 Out',
+        category: 'Mercado',
+        image: '/venda-de-veiculos.jpg',
+        author: 'TP',
+        authorRole: 'Analista de Mercado',
+        readTime: '3 min de leitura'
+    }
+];
+
+

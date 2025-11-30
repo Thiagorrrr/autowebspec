@@ -2,11 +2,11 @@ import { Car, CarSpecsData } from "@/components/Main/data";
 import { Participant } from "@/types/types";
 
 interface RankingItem extends Participant {
-  car: Car;
-  stats: CarSpecsData;
-  equipCount: number;
-  totalScore: number;
-  pricePerHp: number;
+    car: Car;
+    stats: CarSpecsData;
+    equipCount: number;
+    totalScore: number;
+    pricePerHp: number;
 }
 
 export const getBestValue = (items: { val: number }[], key: string, isLowerBetter = false): number => {
@@ -16,25 +16,25 @@ export const getBestValue = (items: { val: number }[], key: string, isLowerBette
 };
 
 // Função para calcular pontuação e ranking geral
-export const calculateOverallRanking = ({participants, cars}:{
+export const calculateOverallRanking = ({ participants, cars }: {
     participants: Participant[]
     cars: Car[]
-    }): RankingItem[] => {
+}): RankingItem[] => {
     return participants.map(p => {
         const car = cars.find(c => c.id === p.id)!;
         const stats = car.specs[p.stage];
         const equipCount = Object.values(car.equipment).filter(Boolean).length;
-        
+
         // Algoritmo de Pontuação Simplificado (0 a 100)
         // 1. Potência (peso 40%)
         // 2. Preço (peso 30% - menor é melhor)
         // 3. Equipamentos (peso 30%)
-        
+
         // Normalização grosseira para o exemplo
-        const scoreHp = stats.hp ? (stats.hp / 600) * 40 : 0 
+        const scoreHp = stats.hp ? (stats.hp / 600) * 40 : 0
         const scorePrice = (1 - (car.price / 500000)) * 30;
         const scoreEquip = (equipCount / 10) * 30;
-        
+
         const totalScore = scoreHp + scorePrice + scoreEquip;
 
         return {

@@ -28,6 +28,12 @@ export const Header = () => {
             </span>
           </Link>
 
+          <Link href="/noticias">
+            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/noticias")}`}>
+              NOTICIAS
+            </span>
+          </Link>
+
           <Link href="/marcas">
             <span className={`hover:text-[#6319F7] transition-colors ${isActive("/marcas")} ${pathname.includes("/marcas") ? "text-[#6319F7]" : ""} `}>
               MARCAS

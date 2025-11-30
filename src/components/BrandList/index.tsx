@@ -1,9 +1,10 @@
-import { CarIcon, ChevronRight, Factory } from "lucide-react";
+import { ChevronRight, Factory } from "lucide-react";
 import { Car } from "../Main/data";
 import { SectionTitle } from "../SectionTitle";
 import { Card } from "../Card";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 interface CarModel {
     model: string;
@@ -119,17 +120,16 @@ export const BrandsList: React.FC<{ carCatalog: CarBrand[] }> = ({ carCatalog })
             </SectionTitle>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {uniqueMakes.map(make => {
-                    const info = BRAND_INFO[make] || { logoColor: COLORS.gray400 };
                     return (
                         <Link href={`${pathname}/${make.toLowerCase().replace(/\s+/g, "-")}`} key={make}>
                             <Card
                                 key={make}
                                 className="text-center p-6 border-2 hover:border-[#6319F7]"
                             >
-                                <div style={{ backgroundColor: info.logoColor }} className="mx-auto w-12 h-12 flex items-center justify-center rounded-full mb-3">
-                                    <CarIcon size={24} className="text-white" />
+                                <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full mb-3">
+                                    <Image src={`/${make}-logo.png`} alt="image" width={50} height={50} />
                                 </div>
-                                <h3 className="font-black text-lg text-gray-800">{make}</h3>
+                                <h3 className="font-black text-lg text-gray-800"  >{make}</h3>
 
                                 <span className="text-xs text-[#6319F7] font-bold flex items-center justify-center mt-1">
 

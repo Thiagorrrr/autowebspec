@@ -20,7 +20,7 @@ const YearDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string
 
     return (
         <div className="space-y-6">
-            <BackButton onClick={() => router.back()} label={`voltar para ${modelData?.model}`} />
+            <BackButton onClick={() => router.back()} label={`Voltar para ${modelData?.model}`} />
 
             <SectionTitle className="text-xl">
                 <ListOrdered size={20} className="text-[#6319F7] capitalize" /> Versões do {model.replaceAll("-", " ")} <span className="text-[#6319F7]">({year})</span>

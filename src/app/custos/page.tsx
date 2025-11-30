@@ -6,9 +6,9 @@ const RAW_CARS = dataCars()
 
 const CARS: Car[] = RAW_CARS.map(c => ({ ...c, name: `${c.make} ${c.model} ${c.version}` }));
 
-const calcular = ()=> {
+const calcular = () => {
     return (
-        <CostCalculator data={CARS}/>
+        <CostCalculator cars={CARS} rawCars={RAW_CARS} />
     )
 }
 

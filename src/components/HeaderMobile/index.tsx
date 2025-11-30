@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Calendar, DollarSign, Info, Trophy, Car, Home } from "lucide-react";
+import { Calendar, DollarSign, Info, Trophy, Car, Home, Newspaper } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 interface NavBtnProps {
@@ -34,6 +34,7 @@ export const HeaderMobile = () => {
         <nav className="md:hidden fixed bottom-0 w-full bg-white border-t border-gray-200 px-6 py-3 flex justify-between z-50 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
             <NavBtn href="/" icon={<Home size={22} />} label="Home" />
             <NavBtn href="/marcas" icon={<Car size={22} />} label="Marcas" />
+            <NavBtn href="/noticias" icon={<Newspaper size={22} />} label="Noticias" />
             <NavBtn href="/ranking" icon={<Trophy size={22} />} label="Ranking" />
             <NavBtn href="/detalhes" icon={<Info size={22} />} label="Detalhes" />
             <NavBtn href="/custos" icon={<DollarSign size={22} />} label="Custos" />

@@ -3,7 +3,8 @@ import { BackButton } from "@/components/BackButton";
 import { BRAND_INFO, CarBrand } from "@/components/BrandList";
 import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
-import { CarIcon, ChevronRight, List } from "lucide-react";
+import { ChevronRight, List } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -21,8 +22,8 @@ const BrandDetail: React.FC<{ carCatalog: CarBrand[], make: string }> = ({ carCa
 
             {/* HEADER DA MARCA (Responsivo) */}
             <Card className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 bg-gray-100 border-l-4 border-[#6319F7]">
-                <div style={{ backgroundColor: info.logoColor }} className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full flex-shrink-0">
-                    <CarIcon size={32} className="text-white" />
+                <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full flex-shrink-0">
+                    <Image src={`/${make}-logo.png`} alt="image" width={50} height={50} />
                 </div>
                 <div>
                     <h1 className="text-3xl font-black text-gray-900 mb-2 capitalize">{make.replaceAll("-", " ")}</h1>
