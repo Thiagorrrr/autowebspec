@@ -25,14 +25,19 @@ export const TechnicalDetailsSelected = ({ data }: TechnicalDetailsProps) => {
         <SectionTitle><Camera size={16} className="text-[#6319F7]" /> Galeria de Fotos</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {car.photos.map((photo, idx) => (
-            <div key={idx} className={`rounded-lg overflow-hidden border border-gray-200 h-24 ${idx === 0 ? 'col-span-2 md:col-span-3 h-48' : ''}`}>
+            <div
+              key={idx}
+              className={`rounded-lg overflow-hidden border border-gray-200 sm:h-[400px] ${idx === 0 ? 'col-span-2 md:col-span-3 h-48' : ''}`}
+            >
               <Image
                 src={photo}
                 alt={`${car.make} ${idx}`}
+                width={300}
+                height={400}
                 className="w-full h-full object-cover"
-                onError={(e) => { e.currentTarget.src = `https://placehold.co/400x300/4F46E5/fff?text=Foto+${idx}`; }}
               />
             </div>
+
           ))}
         </div>
       </div>
