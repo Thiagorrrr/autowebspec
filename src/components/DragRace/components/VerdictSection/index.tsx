@@ -30,15 +30,15 @@ export const VerdictSection: React.FC<VerdictSectionProps> = ({ participants, ca
 
                         {/* Rank Badge */}
                         <div className={`w-8 h-8 flex items-center justify-center rounded-full font-black text-sm ${index === 0 ? 'bg-yellow-400 text-black' :
-                                index === 1 ? 'bg-gray-300 text-black' :
-                                    index === 2 ? 'bg-amber-700 text-white' : 'bg-gray-700 text-gray-400'
+                            index === 1 ? 'bg-gray-300 text-black' :
+                                index === 2 ? 'bg-amber-700 text-white' : 'bg-gray-700 text-gray-400'
                             }`}>
                             {index + 1}º
                         </div>
 
                         <div className="flex-1">
                             <div className="flex justify-between items-start">
-                                <h3 className={`font-bold text-sm md:text-base ${index === 0 ? 'text-yellow-400' : 'text-white'}`}>
+                                <h3 className={` truncate font-bold text-sm md:text-base ${index === 0 ? 'text-yellow-400' : 'text-white'}`}>
                                     {item.car.model} {item.car.make} {item.car.year} {item.car.version}
                                 </h3>
                                 {index === 0 && <span className="bg-[#6319F7] text-[10px] px-2 py-1 rounded font-bold flex items-center gap-1"><ThumbsUp size={10} /> MELHOR ESCOLHA</span>}
