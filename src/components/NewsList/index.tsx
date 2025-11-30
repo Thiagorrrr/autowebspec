@@ -1,3 +1,5 @@
+
+"use client"
 import { ChevronRight, Newspaper } from "lucide-react";
 import { Card } from "../Card";
 import { SectionTitle } from "../SectionTitle";

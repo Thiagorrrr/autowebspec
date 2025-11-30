@@ -1,3 +1,4 @@
+"use client"
 import { ChevronRight, MapPin } from "lucide-react";
 
 interface EventData {

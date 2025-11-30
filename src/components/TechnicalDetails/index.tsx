@@ -1,3 +1,4 @@
+"use client"
 import { useMemo } from "react";
 import { BackButton } from "../BackButton";
 import { SectionTitle } from "../SectionTitle";

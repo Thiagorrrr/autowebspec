@@ -1,3 +1,4 @@
+"use client"
 import { ChevronRight, Factory } from "lucide-react";
 
 export const Breadcrumbs = (navigation: { view: string; make: string; model: string; year: string; }) => {

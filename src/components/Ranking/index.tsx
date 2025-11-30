@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import { Car } from "../Main/data";
 import Image from "next/image";

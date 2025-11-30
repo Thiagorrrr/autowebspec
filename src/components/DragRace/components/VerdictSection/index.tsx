@@ -1,3 +1,4 @@
+"use client"
 import { Car } from "@/components/Main/data";
 import { Participant } from "@/types/types";
 import { calculateOverallRanking } from "@/utils";

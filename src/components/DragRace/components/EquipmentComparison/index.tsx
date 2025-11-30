@@ -1,10 +1,11 @@
+"use client"
 import { Car } from "@/components/Main/data";
 import { Participant } from "@/types/types";
 import { Check, Scale, Trophy, X } from "lucide-react";
 
 interface EquipmentComparisonProps {
-  participants: Participant[];
-  cars: Car[];
+    participants: Participant[];
+    cars: Car[];
 }
 
 export const EquipmentComparison: React.FC<EquipmentComparisonProps> = ({ cars, participants }) => {
@@ -18,7 +19,7 @@ export const EquipmentComparison: React.FC<EquipmentComparisonProps> = ({ cars, 
         const count = Object.values(car.equipment).filter(Boolean).length;
         return { ...p, count };
     });
-    
+
     const maxEquipCount = Math.max(...participantsWithCount.map(p => p.count));
 
     return (
@@ -46,7 +47,7 @@ export const EquipmentComparison: React.FC<EquipmentComparisonProps> = ({ cars, 
                         );
                     })}
                 </div>
-                
+
                 {allFeatures.map((feature) => (
                     <div key={feature} className="grid grid-cols-12 gap-2 items-center py-3 border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors rounded px-2">
                         <div className="col-span-4 text-sm font-medium text-gray-600 truncate" title={feature}>{feature}</div>

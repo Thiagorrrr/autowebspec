@@ -1,3 +1,4 @@
+"use client"
 import { ChevronRight, Factory } from "lucide-react";
 import { Car } from "../Main/data";
 import { SectionTitle } from "../SectionTitle";

@@ -1,3 +1,4 @@
+"use client"
 import { BackButton } from "@/components/BackButton";
 import { CarBrand } from "@/components/BrandList";
 import { Card } from "@/components/Card";

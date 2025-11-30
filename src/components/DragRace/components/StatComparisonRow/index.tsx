@@ -1,15 +1,16 @@
+"use client"
 import { Car, CarSpecsData } from "@/components/Main/data";
 import { Participant } from "@/types/types";
 import { getBestValue } from "@/utils";
 
 interface StatComparisonRowProps {
-  cars: Car[];
-  label: string;
-  participants: Participant[];
-  dataKey: keyof CarSpecsData;
-  unit: string;
-  isLowerBetter?: boolean;
-  icon: React.ElementType;
+    cars: Car[];
+    label: string;
+    participants: Participant[];
+    dataKey: keyof CarSpecsData;
+    unit: string;
+    isLowerBetter?: boolean;
+    icon: React.ElementType;
 }
 
 export const StatComparisonRow: React.FC<StatComparisonRowProps> = ({ cars, label, participants, dataKey, unit, isLowerBetter = false, icon: Icon }) => {
@@ -43,7 +44,7 @@ export const StatComparisonRow: React.FC<StatComparisonRowProps> = ({ cars, labe
                             <div className="w-8 text-[10px] font-bold text-gray-400 uppercase truncate">{car.make}</div>
                             <div className="flex-1">
                                 <div className="h-2 bg-gray-200 rounded-full overflow-hidden relative">
-                                    <div className={`h-full transition-all duration-500 ${isBest ? 'bg-[#6319F7]' : 'bg-gray-400'}`} style={{ width: `${barWidth}%` }}/>
+                                    <div className={`h-full transition-all duration-500 ${isBest ? 'bg-[#6319F7]' : 'bg-gray-400'}`} style={{ width: `${barWidth}%` }} />
                                 </div>
                             </div>
                             <div className={`w-16 text-right font-mono text-sm font-bold ${isBest ? 'text-[#6319F7]' : 'text-gray-600'}`}>

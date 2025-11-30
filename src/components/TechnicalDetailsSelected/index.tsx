@@ -1,3 +1,4 @@
+"use client"
 import { Activity, Camera, Check, Grid, X } from "lucide-react";
 import { useState } from "react";
 import { Car } from "../Main/data";

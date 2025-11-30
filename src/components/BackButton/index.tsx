@@ -1,3 +1,4 @@
+"use client"
 import { ArrowLeft } from "lucide-react";
 
 export const BackButton: React.FC<{ onClick: () => void; label?: string }> = ({ onClick, label = 'Voltar' }) => (

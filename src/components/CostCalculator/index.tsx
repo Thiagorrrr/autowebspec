@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "../Card";
 import { Label } from "../Label";
