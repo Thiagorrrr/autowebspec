@@ -2,6 +2,8 @@
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
+
+
 const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
   return (
