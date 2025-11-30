@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Car } from "../Main/data";
 import { Label } from "../Label";
 import { SectionTitle } from "../SectionTitle";
+import Image from "next/image";
 
 interface TechnicalDetailsProps {
   data: Car[]
@@ -17,7 +18,7 @@ export const TechnicalDetailsSelected = ({ data }: TechnicalDetailsProps) => {
         <h2 className="text-2xl font-bold text-gray-800 pb-1.5">Detalhes Tecnicos</h2>
         <label className="text-xs font-bold text-gray-400 uppercase mb-2 block">Selecione o Carro</label>
         <select value={selectedCar} onChange={(e) => setSelectedCar(e.target.value)} className="w-full bg-gray-50 text-gray-900 p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#6319F7] font-bold">
-          {data.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+          {data.map(c => <option key={c.id} value={c.id}>{c.make} {c.model} {c.year} {c.version}</option>)}
         </select>
       </div>
       <div className="space-y-2">
@@ -25,9 +26,9 @@ export const TechnicalDetailsSelected = ({ data }: TechnicalDetailsProps) => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {car.photos.map((photo, idx) => (
             <div key={idx} className={`rounded-lg overflow-hidden border border-gray-200 h-24 ${idx === 0 ? 'col-span-2 md:col-span-3 h-48' : ''}`}>
-              <img
+              <Image
                 src={photo}
-                alt={`${car.name} ${idx}`}
+                alt={`${car.make} ${idx}`}
                 className="w-full h-full object-cover"
                 onError={(e) => { e.currentTarget.src = `https://placehold.co/400x300/4F46E5/fff?text=Foto+${idx}`; }}
               />

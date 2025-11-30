@@ -29,7 +29,7 @@ const TechnicalDetails = ({ carId, cars }: { carId?: string, cars: Car[] }) => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {car.photos.map((photo, idx) => (
             <div key={idx} className={`rounded-lg overflow-hidden border border-gray-200 h-24 ${idx === 0 ? 'col-span-2 md:col-span-3 h-fit' : ''}`}>
-              <Image src={`/${photo}`} alt={`${car.name} ${idx}`} width={300} height={400} className="w-full h-full object-cover" />
+              <Image src={`/${photo}`} alt={`${car.make} ${car.version} ${idx}`} width={300} height={400} className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
