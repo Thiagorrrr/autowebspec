@@ -4,12 +4,12 @@ import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from 'next/image';
 interface DetailedCarSelectorProps {
-  rawCars: Car[];
-  cars: Car[];
-  participant: Participant;
-  onUpdate: (tempId: number, newData: Partial<Participant>) => void;
-  onRemove: (tempId: number) => void;
-  showRemove: boolean;
+    rawCars: Car[];
+    cars: Car[];
+    participant: Participant;
+    onUpdate: (tempId: number, newData: Partial<Participant>) => void;
+    onRemove: (tempId: number) => void;
+    showRemove: boolean;
 }
 
 export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCars, cars, participant, onUpdate, onRemove, showRemove }) => {
@@ -17,7 +17,7 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
     const [selectedMake, setSelectedMake] = useState(car.make);
     const [selectedModel, setSelectedModel] = useState(car.model);
     const [selectedYear, setSelectedYear] = useState(car.year);
-    
+
     const makes = [...new Set(rawCars.map(c => c.make))];
     const models = [...new Set(rawCars.filter(c => c.make === selectedMake).map(c => c.model))];
     const years = [...new Set(rawCars.filter(c => c.make === selectedMake && c.model === selectedModel).map(c => c.year))];
@@ -27,7 +27,7 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
         setSelectedMake(car.make);
         setSelectedModel(car.model);
         setSelectedYear(car.year);
-    }, [participant.id]);
+    }, [car.make, car.model, car.year, participant.id]);
 
     const handleMakeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newMake = e.target.value;
@@ -77,15 +77,15 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
             </div>
             <div className="grid grid-cols-3 gap-1 mb-3 w-full">
                 {(['stock', 'stage1', 'stage2'] as StageType[]).map(stg => (
-                <button key={stg} onClick={() => handleStageChange(stg)} className={`text-[9px] py-1 rounded uppercase font-bold transition-all ${participant.stage === stg ? 'bg-[#6319F7] text-white shadow-md' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
-                    {stg === 'stock' ? 'Stock' : stg.replace('stage', 'S')}
-                </button>
+                    <button key={stg} onClick={() => handleStageChange(stg)} className={`text-[9px] py-1 rounded uppercase font-bold transition-all ${participant.stage === stg ? 'bg-[#6319F7] text-white shadow-md' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
+                        {stg === 'stock' ? 'Stock' : stg.replace('stage', 'S')}
+                    </button>
                 ))}
             </div>
             <div className="flex-1 flex items-end w-full mt-2">
                 <div className="relative w-full h-40 rounded-lg overflow-hidden group-hover:shadow-md transition-all">
-                    <Image src={ `/${car.image}`} alt={car.image.replace("-"," ")}  fill  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                    <Image src={`/${car.image}`} alt={car.image.replace("-", " ")} fill className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent"></div>
                     <div className="absolute bottom-2 left-2 text-white font-bold text-[10px]">{car.specs[participant.stage].hp}cv</div>
                 </div>
             </div>
