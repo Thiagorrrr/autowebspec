@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Páginas principais -->
+  <url><loc>https://autowebspec.com.br/</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas</loc></url>
+  <url><loc>https://autowebspec.com.br/noticias</loc></url>
+  <url><loc>https://autowebspec.com.br/ranking</loc></url>
+  <url><loc>https://autowebspec.com.br/custos</loc></url>
+  <url><loc>https://autowebspec.com.br/detalhes</loc></url>
+  <url><loc>https://autowebspec.com.br/eventos</loc></url>
+
+  <!-- Marcas -->
+  <url><loc>https://autowebspec.com.br/marcas/chevrolet</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas/hyundai</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas/peugeot</loc></url>
+
+  <!-- Modelos -->
+  <url><loc>https://autowebspec.com.br/marcas/chevrolet/onix</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas/hyundai/hb20</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas/peugeot/208</loc></url>
+
+  <!-- Anos -->
+  <url><loc>https://autowebspec.com.br/marcas/chevrolet/onix/2025</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas/hyundai/hb20/2025</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas/peugeot/208/2025</loc></url>
+
+  <!-- Versões -->
+  <url><loc>https://autowebspec.com.br/marcas/chevrolet/onix/2025/1.0-turbo-at</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas/hyundai/hb20/2025/1.0-tgdi-at-platinum-safety</loc></url>
+  <url><loc>https://autowebspec.com.br/marcas/peugeot/208/2025/1.0-turbo-cvt-gt</loc></url>
+
+  <!-- Notícias -->
+  <url><loc>https://autowebspec.com.br/noticias/novo-golf-gti-2025-o-ultimo-a-combustao</loc></url>
+  <url><loc>https://autowebspec.com.br/noticias/civic-type-r-vs-gr-corolla-a-batalha-japonesa</loc></url>
+  <url><loc>https://autowebspec.com.br/noticias/manutencao-de-turbos-guia-completo</loc></url>
+  <url><loc>https://autowebspec.com.br/noticias/precos-de-usados-caem-5-no-ultimo-trimestre</loc></url>
+
+</urlset>
