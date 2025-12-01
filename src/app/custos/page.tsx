@@ -1,4 +1,3 @@
-"use client"
 import { CostCalculator } from "@/components/CostCalculator"
 import { Car, dataCars } from "@/components/Main/data";
 

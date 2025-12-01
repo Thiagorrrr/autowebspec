@@ -1,5 +1,4 @@
 
-"use client"
 import { Car, dataCars } from "@/components/Main/data";
 import { TechnicalDetailsSelected } from "@/components/TechnicalDetailsSelected";
 

@@ -1,5 +1,3 @@
-"use client"
-
 import { dataNews } from "@/components/Main/data";
 import { NewsList } from "@/components/NewsList";
 

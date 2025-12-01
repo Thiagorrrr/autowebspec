@@ -31,7 +31,7 @@ export const TechnicalDetailsSelected = ({ data }: TechnicalDetailsProps) => {
               className={`rounded-lg overflow-hidden border border-gray-200 sm:h-[400px] ${idx === 0 ? 'col-span-2 md:col-span-3 h-48' : ''}`}
             >
               <Image
-                src={photo}
+                src={`/${photo}`}
                 alt={`${car.make} ${idx}`}
                 width={300}
                 height={400}

@@ -29,37 +29,37 @@ export const Header = () => {
           </Link>
 
           <Link href="/noticias">
-            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/noticias")}`}>
+            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/noticias/")} ${pathname.includes("/noticias") ? "text-[#6319F7]" : ""} `}>
               NOTICIAS
             </span>
           </Link>
 
           <Link href="/marcas">
-            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/marcas")} ${pathname.includes("/marcas") ? "text-[#6319F7]" : ""} `}>
+            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/marcas/")} ${pathname.includes("/marcas") ? "text-[#6319F7]" : ""} `}>
               MARCAS
             </span>
           </Link>
 
           <Link href="/ranking">
-            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/ranking")}`}>
+            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/ranking/")}`}>
               RANKING
             </span>
           </Link>
 
           <Link href="/detalhes">
-            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/detalhes")}`}>
+            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/detalhes/")}`}>
               DETALHES
             </span>
           </Link>
 
           <Link href="/custos">
-            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/custos")}`}>
+            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/custos/")}`}>
               CUSTOS
             </span>
           </Link>
 
           <Link href="/eventos">
-            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/eventos")}`}>
+            <span className={`hover:text-[#6319F7] transition-colors ${isActive("/eventos/")}`}>
               EVENTOS
             </span>
           </Link>
