@@ -22,7 +22,7 @@ const BrandDetail: React.FC<{ carCatalog: CarBrand[], make: string }> = ({ carCa
 
             {/* HEADER DA MARCA (Responsivo) */}
             <Card className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 bg-gray-100 border-l-4 border-[#6319F7]">
-                <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full flex-shrink-0">
+                <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full shrink-0">
                     <Image src={`/${make.toLocaleLowerCase()}-logo.png`} alt="image" width={50} height={50} />
                 </div>
                 <div>

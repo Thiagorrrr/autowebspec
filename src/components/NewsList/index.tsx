@@ -6,6 +6,7 @@ import { SectionTitle } from "../SectionTitle";
 import { NewsArticle } from "../Main/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export const NewsList = ({ data }: { data: NewsArticle[] }) => {
     const pathname = usePathname();
@@ -23,7 +24,7 @@ export const NewsList = ({ data }: { data: NewsArticle[] }) => {
 
                         <Card key={news.id} >
                             <div className="relative h-64 md:h-80 w-full">
-                                <img src={news.image} alt={news.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                <Image src={news.image} alt={news.title} width={100} height={150} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
                                     <span className="bg-[#6319F7] text-white text-xs font-bold px-2 py-1 rounded w-fit mb-2">{news.category}</span>
                                     <h3 className="text-2xl md:text-3xl font-black text-white mb-2">{news.title}</h3>
@@ -47,7 +48,7 @@ export const NewsList = ({ data }: { data: NewsArticle[] }) => {
 
                         <Card key={news.id} >
                             <div className="h-48 w-full overflow-hidden relative">
-                                <img src={news.image} alt={news.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                                <Image src={news.image} alt={news.title} width={100} height={150} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                                 <span className="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded">{news.category}</span>
                             </div>
                             <div className="p-4 flex flex-col flex-1">

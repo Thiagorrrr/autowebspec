@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Key } from "react";
 import { dataNews } from "../Main/data";
 import Link from "next/link";
+import Image from "next/image";
 
 export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
     const NEWS_DATA = dataNews();
@@ -20,7 +21,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
             <BackButton onClick={() => router.back()} label="Voltar para Notícias" />
 
             <Card className="overflow-hidden p-0">
-                <img src={news.image} alt={news.title} className="w-full h-64 md:h-96 object-cover" />
+                <Image src={news.image} alt={news.title} width={100} height={150} className="w-full h-64 md:h-96 object-cover" />
                 <div className="p-6 md:p-10">
                     <div className="flex flex-wrap items-center gap-4 mb-4">
                         <span className="bg-[#6319F7]/10 text-[#6319F7] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">{news.category}</span>
@@ -82,8 +83,8 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
                         <Link className="group cursor-pointer" href={`/noticias/${related.slug}`} key={related.slug}>
 
                             <div key={related.id} >
-                                <div className="overflow-hidden rounded-lg mb-3">
-                                    <img src={related.image} alt={related.title} className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105" />
+                                <div className="overflow-hidden rounded-lg mb-3 h-52">
+                                    <Image src={related.image} alt={related.title} width={100} height={150} className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" />
                                 </div>
                                 <h4 className="font-bold text-gray-900 group-hover:text-[#6319F7] transition-colors line-clamp-2">{related.title}</h4>
                                 <p className="text-xs text-gray-500 mt-1">{related.date}</p>
