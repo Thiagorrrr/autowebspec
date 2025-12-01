@@ -29,7 +29,7 @@ export const Ranking = ({ data }: RankingProps) => {
 
             <div className="flex items-center justify-center  gap-4 w-full sm:w-auto pb-2">
               <div className="text-2xl font-black text-[#6319F7] w-8 text-center">#{index + 1}</div>
-              <Image src={car.image} alt={`${car.make}-${car.model}-${car.year}-${car.version}`} width={150} height={100} className="w-full  lg:w-48 ml-2  sm:max-w-52 h-36  object-cover rounded-lg shadow-sm" />
+              <Image src={`/${car.image}`} alt={`${car.make}-${car.model}-${car.year}-${car.version}`} width={150} height={100} className="w-full  lg:w-48 ml-2  sm:max-w-52 h-36  object-cover rounded-lg shadow-sm" />
             </div>
             <div className="flex-1 w-full text-center sm:text-left">
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">

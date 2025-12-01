@@ -128,7 +128,7 @@ export const BrandsList: React.FC<{ carCatalog: CarBrand[] }> = ({ carCatalog })
                                 className="text-center p-6 border-2 hover:border-[#6319F7]"
                             >
                                 <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full mb-3">
-                                    <Image src={`/${make}-logo.png`} alt="image" width={50} height={50} />
+                                    <Image src={`/${make.toLowerCase()}-logo.png`} alt="image" width={50} height={50} />
                                 </div>
                                 <h3 className="font-black text-lg text-gray-800"  >{make}</h3>
 

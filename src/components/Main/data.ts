@@ -960,7 +960,7 @@ export const dataCars = (): Car[] => [
         ]
     },
     {
-        "id": "peugeot-2008-turbo-2025",
+        "id": "peugeot-2008-2025",
         "make": "Peugeot",
         "model": "2008",
         "version": "1.0 Turbo 200 CVT Griffe",
