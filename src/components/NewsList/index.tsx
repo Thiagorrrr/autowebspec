@@ -44,7 +44,7 @@ export const NewsList = ({ data }: { data: NewsArticle[] }) => {
             {/* Lista */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {data.slice(1).map(news => (
-                    <Link className="p-0 overflow-hidden flex flex-col h-full cursor-pointer hover:shadow-lg transition-shadow" href={`${pathname}/${news.slug}`} key={news.id}>
+                    <Link className="p-0 overflow-hidden flex flex-col h-full cursor-pointer hover:shadow-lg transition-shadow" href={`${pathname}${news.slug}`} key={news.id}>
 
                         <Card key={news.id} >
                             <div className="h-48 w-full overflow-hidden relative">
