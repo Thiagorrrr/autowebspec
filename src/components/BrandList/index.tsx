@@ -122,7 +122,7 @@ export const BrandsList: React.FC<{ carCatalog: CarBrand[] }> = ({ carCatalog })
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {uniqueMakes.map(make => {
                     return (
-                        <Link href={`${pathname}/${make.toLowerCase().replace(/\s+/g, "-")}`} key={make}>
+                        <Link href={`${pathname}${make.toLowerCase().replace(/\s+/g, "-")}`} key={make}>
                             <Card
                                 key={make}
                                 className="text-center p-6 border-2 hover:border-[#6319F7]"
