@@ -37,7 +37,7 @@ const BrandDetail: React.FC<{ carCatalog: CarBrand[], make: string }> = ({ carCa
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {brandData.models.map(model => {
                     return (
-                        <Link href={`${pathname}/${model.model.toLowerCase().replace(/\s+/g, "-")}`} key={model.model}>
+                        <Link href={`${pathname}${model.model.toLowerCase().replace(/\s+/g, "-")}`} key={model.model}>
                             <Card key={model.model} className="overflow-hidden p-0">
                                 <div className="p-4">
                                     <h3 className="font-bold text-lg text-gray-800">{model.model}</h3>

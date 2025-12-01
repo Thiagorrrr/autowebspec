@@ -30,7 +30,7 @@ const YearDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string
             {/* LISTA DE VERSÕES (Responsivo) */}
             <div className="grid gap-4">
                 {yearData.versions.map(car => (
-                    <Link href={`${pathname}/${car.version.toLowerCase().replace(/\s+/g, "-")}`} key={car.id}>
+                    <Link href={`${pathname}${car.version.toLowerCase().replace(/\s+/g, "-")}`} key={car.id}>
                         <Card
                             className="flex flex-col sm:flex-row items-center gap-4 hover:shadow-lg"
                         >

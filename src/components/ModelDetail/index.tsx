@@ -36,7 +36,7 @@ const ModelDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: strin
             {/* LISTA DE ANOS (Responsivo) */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                 {modelData.years.map(({ year }) => (
-                    <Link href={`${pathname}/${year}`} key={year}>
+                    <Link href={`${pathname}${year}`} key={year}>
                         <Card
                             className="text-center p-4 border-2 hover:border-[#6319F7] bg-gray-100"
                         >
