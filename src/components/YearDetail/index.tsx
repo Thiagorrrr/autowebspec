@@ -6,6 +6,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { ChevronRight, ListOrdered } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { Breadcrumbs } from "../BreadCrumb";
 
 const YearDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string, year: number }> = ({ carCatalog, make, model, year }) => {
     const yearNum = Number(year);
@@ -21,8 +22,8 @@ const YearDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string
 
     return (
         <div className="space-y-6">
+            <Breadcrumbs make={make} model={model} year={String(year)} />
             <BackButton onClick={() => router.back()} label={`Voltar para ${modelData?.model}`} />
-
             <SectionTitle className="text-xl">
                 <ListOrdered size={20} className="text-[#6319F7] capitalize" /> Versões do {model.replaceAll("-", " ")} <span className="text-[#6319F7]">({year})</span>
             </SectionTitle>

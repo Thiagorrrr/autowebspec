@@ -7,6 +7,7 @@ import { Label } from "../Label";
 import { Car } from "../Main/data";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { Breadcrumbs } from "../BreadCrumb";
 
 const TechnicalDetails = ({ carId, cars }: { carId?: string, cars: Car[] }) => {
   const router = useRouter()
@@ -19,8 +20,8 @@ const TechnicalDetails = ({ carId, cars }: { carId?: string, cars: Car[] }) => {
 
   return (
     <div className="space-y-6">
+      <Breadcrumbs />
       {carId && <BackButton onClick={() => router.back()} label={`Voltar para ${car.year}`} />}
-
       <SectionTitle className="mb-6!">
         <CarIcon size={24} className="text-[#6319F7]" /> Ficha Completa: {car.version}
       </SectionTitle>

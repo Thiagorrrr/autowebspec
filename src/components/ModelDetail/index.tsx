@@ -7,6 +7,7 @@ import { Calendar, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
+import { Breadcrumbs } from "../BreadCrumb";
 
 
 const ModelDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string }> = ({ carCatalog, make, model }) => {
@@ -19,8 +20,8 @@ const ModelDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: strin
 
     return (
         <div className="space-y-6">
+            <Breadcrumbs make={make} model={model} />
             <BackButton onClick={() => router.back()} label={`Voltar para ${brandData?.make}`} />
-
             {/* HEADER DO MODELO (Responsivo) */}
             < Card className="p-0 overflow-hidden shadow-xl">
                 <div className="w-full h-60 relative">

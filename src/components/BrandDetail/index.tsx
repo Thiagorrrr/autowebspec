@@ -7,6 +7,7 @@ import { ChevronRight, List } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
+import { Breadcrumbs } from "../BreadCrumb";
 
 const BrandDetail: React.FC<{ carCatalog: CarBrand[], make: string }> = ({ carCatalog, make }) => {
     const brandData = carCatalog.find(b => b.make.toLowerCase().replace(/\s+/g, "-") === make);
@@ -18,7 +19,8 @@ const BrandDetail: React.FC<{ carCatalog: CarBrand[], make: string }> = ({ carCa
 
     return (
         <div className="space-y-6">
-            <BackButton onClick={() => router.back()} label={`Voltar para marcas`} />
+            <Breadcrumbs make={make} />
+            <BackButton onClick={() => router.back()} label={`Voltar`} />
 
             {/* HEADER DA MARCA (Responsivo) */}
             <Card className="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 bg-gray-100 border-l-4 border-[#6319F7]">
