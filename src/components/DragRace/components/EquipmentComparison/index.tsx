@@ -1,6 +1,5 @@
 "use client"
-import { Car } from "@/components/Main/data";
-import { Participant } from "@/types/types";
+import { Car, Participant } from "@/types/types";
 import { Check, Scale, Trophy, X } from "lucide-react";
 
 interface EquipmentComparisonProps {

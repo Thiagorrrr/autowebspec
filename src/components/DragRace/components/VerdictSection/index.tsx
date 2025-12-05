@@ -1,6 +1,5 @@
 "use client"
-import { Car } from "@/components/Main/data";
-import { Participant } from "@/types/types";
+import { Car, Participant } from "@/types/types";
 import { calculateOverallRanking } from "@/utils";
 import { Star, ThumbsUp } from "lucide-react";
 import { useMemo } from "react";

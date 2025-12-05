@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Breadcrumbs } from "../BreadCrumb";
 import { useCars } from "@/hooks/queries/useCars";
-import { Car } from "../Main/data";
+import { Car } from "@/types/types";
 
 const TechnicalDetails = ({ carId }: { carId?: string }) => {
   const router = useRouter()

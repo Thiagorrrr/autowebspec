@@ -1,5 +1,5 @@
 import { BRAND_INFO, CarBrand, COLORS, ViewType } from "@/components/BrandList";
-import { Car } from "@/components/Main/data";
+import { Car } from "@/types/types";
 
 export interface NavigationState {
     view: ViewType;
@@ -16,7 +16,6 @@ export const useCatalog = (cars: Car[]) => {
     CARS.forEach((car: Car) => {
         const { make, model, year } = car;
 
-        // 1. Nível Marca (Make)
         if (!catalog[make]) {
             catalog[make] = {
                 make,

@@ -1,6 +1,5 @@
 "use client"
-import { Car } from "@/components/Main/data";
-import { Participant, StageType } from "@/types/types";
+import { Car, Participant, StageType } from "@/types/types";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from 'next/image';

@@ -1,6 +1,5 @@
 "use client"
 import { ChevronRight, Factory } from "lucide-react";
-import { Car } from "../Main/data";
 import { SectionTitle } from "../SectionTitle";
 import { Card } from "../Card";
 import Link from "next/link";
@@ -8,6 +7,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useCars } from "@/hooks/queries/useCars";
 import { useCatalog } from "@/hooks/converter/useCatalog";
+import { Car } from "@/types/types";
 
 interface CarModel {
     model: string;
