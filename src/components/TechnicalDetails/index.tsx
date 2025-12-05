@@ -4,32 +4,44 @@ import { BackButton } from "../BackButton";
 import { SectionTitle } from "../SectionTitle";
 import { Activity, Camera, CarIcon, Check, Grid, X } from "lucide-react";
 import { Label } from "../Label";
-import { Car } from "../Main/data";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Breadcrumbs } from "../BreadCrumb";
+import { useCars } from "@/hooks/queries/useCars";
+import { Car } from "../Main/data";
 
-const TechnicalDetails = ({ carId, cars }: { carId?: string, cars: Car[] }) => {
+const TechnicalDetails = ({ carId }: { carId?: string }) => {
   const router = useRouter()
+  const { data, isLoading, error } = useCars();
   const car = useMemo(() => {
-    if (carId) return cars.find(c => c.id === carId);
-    return cars[0];
-  }, [carId, cars]);
+    if (!data) return undefined;
 
+    if (carId) {
+      return data.find((c: Car) => c.id === carId);
+    }
+
+
+    return data[0];
+  }, [carId, data]);
+
+
+
+  if (isLoading) return <p>Carregando...</p>;
+  if (error) return <p>Erro ao carregar</p>;
   if (!car) return <div>Carro não encontrado.</div>;
 
   return (
     <div className="space-y-6">
       <Breadcrumbs />
-      {carId && <BackButton onClick={() => router.back()} label={`Voltar para ${car.year}`} />}
+      {carId && <BackButton onClick={() => router.back()} label={`Voltar para ${car?.year}`} />}
       <SectionTitle className="mb-6!">
-        <CarIcon size={24} className="text-[#6319F7]" /> Ficha Completa: {car.version}
+        <CarIcon size={24} className="text-[#6319F7]" /> Ficha Completa: {car?.version}
       </SectionTitle>
 
       <div className="space-y-2">
         <SectionTitle><Camera size={16} className="text-[#6319F7]" /> Galeria de Fotos</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-          {car.photos.map((photo, idx) => (
+          {car?.photos?.map((photo, idx) => (
             <div key={idx} className={`rounded-lg overflow-hidden border border-gray-200 h-24 ${idx === 0 ? 'col-span-2 md:col-span-3 h-fit' : ''}`}>
               <Image src={`/${photo}`} alt={`${car.make} ${car.version} ${idx}`} width={300} height={400} className="w-full h-full object-cover" />
             </div>

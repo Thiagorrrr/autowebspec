@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
-import { dataNews } from "@/components/Main/data";
+import { fetchNews } from "@/lib/api";
 
-export function generateStaticParams() {
-    const NEWS_DATA = dataNews();
+export async function generateStaticParams() {
+    const NEWS_DATA = await fetchNews();
 
-    return NEWS_DATA.map(n => ({
+    return NEWS_DATA?.map(n => ({
         slug: String(n.slug)
     }));
 }

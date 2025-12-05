@@ -6,6 +6,8 @@ import { Card } from "../Card";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useCars } from "@/hooks/queries/useCars";
+import { useCatalog } from "@/hooks/converter/useCatalog";
 
 interface CarModel {
     model: string;
@@ -111,9 +113,18 @@ export const COLORS = {
     white: '#FFFFFF'
 };
 
-export const BrandsList: React.FC<{ carCatalog: CarBrand[] }> = ({ carCatalog }) => {
+export const BrandsList = () => {
+    const { data, isLoading, error } = useCars();
+
+
+    const { carCatalog } = useCatalog(data || [])
     const uniqueMakes = carCatalog.map(b => b.make);
     const pathname = usePathname();
+
+
+    if (isLoading) return <p>Carregando...</p>;
+    if (error) return <p>Erro ao carregar</p>;
+
     return (
         <div className="space-y-6">
             <SectionTitle>

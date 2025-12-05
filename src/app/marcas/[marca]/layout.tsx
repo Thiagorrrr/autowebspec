@@ -1,10 +1,8 @@
-import { dataCars } from "@/components/Main/data";
+import { fetchCars } from "@/lib/api";
 import { ReactNode } from "react";
 
-export function generateStaticParams() {
-    const cars = dataCars();
-
-    // pega apenas as marcas únicas
+export async function generateStaticParams() {
+    const cars = await fetchCars()
     const uniqueBrands = [...new Set(cars.map(c => c.make))];
 
     return uniqueBrands.map(make => ({

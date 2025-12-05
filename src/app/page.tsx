@@ -1,15 +1,10 @@
-"use client"
 import { DragRace } from "@/components/DragRace";
-import { Car, dataCars } from "@/components/Main/data";
 
-const RAW_CARS = dataCars()
-
-const CARS: Car[] = RAW_CARS.map(c => ({ ...c, name: `${c.make} ${c.model} ${c.version}` }));
 
 export default function Home() {
   return (
     <>
-      <DragRace rawCars={RAW_CARS} cars={CARS} />
+      <DragRace />
 
     </>
   )

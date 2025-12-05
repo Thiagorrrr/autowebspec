@@ -1,18 +1,18 @@
 "use client"
 import { useState } from "react";
-import { Car } from "../Main/data";
 import Image from "next/image";
 import Link from "next/link";
-interface RankingProps {
-  data: Car[]
-}
+import { useCars } from "@/hooks/queries/useCars";
 
-export const Ranking = ({ data }: RankingProps) => {
+export const Ranking = () => {
+  const { data, isLoading, error } = useCars();
   const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
-  const categories = ['Todas', ...new Set(data.map(c => c.category))];
-  const filteredCars = selectedCategory === 'Todas' ? data : data.filter(c => c.category === selectedCategory);
-  const sortedCars = [...filteredCars].sort((a, b) => a.price - b.price);
+  const categories = ['Todas', ...new Set(data?.map(c => c.category))];
+  const filteredCars = selectedCategory === 'Todas' ? data : data?.filter(c => c.category === selectedCategory);
+  const sortedCars = [...filteredCars || []].sort((a, b) => a.price - b.price);
 
+  if (isLoading) return <p>Carregando...</p>;
+  if (error) return <p>Erro ao carregar</p>;
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">

@@ -3,13 +3,19 @@
 import { ChevronRight, Newspaper } from "lucide-react";
 import { Card } from "../Card";
 import { SectionTitle } from "../SectionTitle";
-import { NewsArticle } from "../Main/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useNews } from "@/hooks/queries/useNews";
 
-export const NewsList = ({ data }: { data: NewsArticle[] }) => {
+export const NewsList = () => {
     const pathname = usePathname();
+
+    const { data, isLoading, error } = useNews();
+
+
+    if (isLoading) return <p>Carregando...</p>;
+    if (error) return <p>Erro ao carregar</p>;
 
     return (
         <div className="space-y-6">
@@ -19,7 +25,7 @@ export const NewsList = ({ data }: { data: NewsArticle[] }) => {
 
             {/* Destaque */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                {data.slice(0, 1).map(news => (
+                {data?.slice(0, 1).map(news => (
                     <Link className="col-span-1 md:col-span-2 p-0 overflow-hidden cursor-pointer group" href={`${pathname}${news.slug}`} key={news.id}>
 
                         <Card key={news.id} >
@@ -43,7 +49,7 @@ export const NewsList = ({ data }: { data: NewsArticle[] }) => {
 
             {/* Lista */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data.slice(1).map(news => (
+                {data?.slice(1).map(news => (
                     <Link className="p-0 overflow-hidden flex flex-col h-full cursor-pointer hover:shadow-lg transition-shadow" href={`${pathname}${news.slug}`} key={news.id}>
 
                         <Card key={news.id} >

@@ -1,6 +1,6 @@
 "use client"
 import { BackButton } from "@/components/BackButton";
-import { BRAND_INFO, CarBrand } from "@/components/BrandList";
+import { BRAND_INFO } from "@/components/BrandList";
 import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ChevronRight, List } from "lucide-react";
@@ -8,13 +8,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
 import { Breadcrumbs } from "../BreadCrumb";
+import { useCars } from "@/hooks/queries/useCars";
+import { useCatalog } from "@/hooks/converter/useCatalog";
 
-const BrandDetail: React.FC<{ carCatalog: CarBrand[], make: string }> = ({ carCatalog, make }) => {
+const BrandDetail: React.FC<{ make: string }> = ({ make }) => {
+    const { data, isLoading, error } = useCars();
+    const { carCatalog } = useCatalog(data || [])
+
     const brandData = carCatalog.find(b => b.make.toLowerCase().replace(/\s+/g, "-") === make);
     const info = BRAND_INFO[make] || {};
     const router = useRouter()
     const pathname = usePathname();
 
+
+    if (isLoading) return <p>Carregando...</p>;
+    if (error) return <p>Erro ao carregar</p>;
     if (!brandData) return <div className="text-red-500">Marca não encontrada.</div>;
 
     return (

@@ -1,8 +1,8 @@
-import { dataCars } from "@/components/Main/data";
+import { fetchCars } from "@/lib/api";
 import { ReactNode } from "react";
 
-export function generateStaticParams() {
-    const cars = dataCars();
+export async function generateStaticParams() {
+    const cars = await fetchCars()
 
     const uniquePairs = new Map();
 

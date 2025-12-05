@@ -1,20 +1,33 @@
-import { dataCars } from "@/components/Main/data";
+import { fetchCars } from "@/lib/api";
 import { ReactNode } from "react";
 
-export function generateStaticParams() {
-    const cars = dataCars();
+export async function generateStaticParams() {
+    const cars = await fetchCars();
 
-    return cars.map(car => ({
-        marca: car.make.toLowerCase().replace(/\s+/g, "-"),
-        modelo: car.model.toLowerCase().replace(/\s+/g, "-"),
-        ano: String(car.year)
-    }));
+    // Evita duplicados: marca + modelo + ano
+    const unique = new Map();
+
+    for (const car of cars) {
+        if (!car.make || !car.model || !car.year) continue;
+
+        const make = String(car.make);
+        const model = String(car.model);
+        const year = String(car.year);
+
+        const key = `${make}-${model}-${year}`;
+
+        if (!unique.has(key)) {
+            unique.set(key, {
+                marca: make.toLowerCase().replace(/\s+/g, "-"),
+                modelo: model.toLowerCase().replace(/\s+/g, "-"),
+                ano: year
+            });
+        }
+    }
+
+    return Array.from(unique.values());
 }
 
-
-
-export default function Layout({ children }: {
-    children: ReactNode;
-}) {
+export default function Layout({ children }: { children: ReactNode }) {
     return children;
 }

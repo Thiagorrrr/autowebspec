@@ -4,15 +4,19 @@ import { BackButton } from "../BackButton";
 import { Card } from "../Card";
 import { useRouter } from "next/navigation";
 import { Key } from "react";
-import { dataNews } from "../Main/data";
 import Link from "next/link";
 import Image from "next/image";
+import { useNews } from "@/hooks/queries/useNews";
 
 export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
-    const NEWS_DATA = dataNews();
-    const news = NEWS_DATA.find(n => n.slug === newsSlug);
+    const { data, isLoading, error } = useNews();
+
+    const NEWS_DATA = data
+    const news = NEWS_DATA?.find(n => n.slug === newsSlug);
     const router = useRouter()
 
+    if (isLoading) return <p>Carregando...</p>;
+    if (error) return <p>Erro ao carregar</p>;
     if (!news) {
         return <div className="text-red-500 p-4">Notícia não encontrada.</div>;
     }
@@ -78,7 +82,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
             <div className="mt-12">
                 <h3 className="text-xl font-bold text-gray-800 mb-6">Leia Também</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {NEWS_DATA.filter(n => n.id !== news.id).slice(0, 3).map(related => (
+                    {NEWS_DATA?.filter(n => n.id !== news.id).slice(0, 3).map(related => (
 
                         <Link className="group cursor-pointer" href={`/noticias/${related.slug}`} key={related.slug}>
 

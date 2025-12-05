@@ -1,14 +1,18 @@
 "use client"
 import { BackButton } from "@/components/BackButton";
-import { CarBrand } from "@/components/BrandList";
 import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ChevronRight, ListOrdered } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Breadcrumbs } from "../BreadCrumb";
+import { useCars } from "@/hooks/queries/useCars";
+import { useCatalog } from "@/hooks/converter/useCatalog";
 
-const YearDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string, year: number }> = ({ carCatalog, make, model, year }) => {
+const YearDetail: React.FC<{ make: string, model: string, year: number }> = ({ make, model, year }) => {
+    const { data, isLoading, error } = useCars();
+    const { carCatalog } = useCatalog(data || [])
+
     const yearNum = Number(year);
     const brandData = carCatalog.find(b => b.make.toLocaleLowerCase() === make.toLocaleLowerCase().replace("-", " "));
     const modelData = brandData?.models.find(m => m.model.toLowerCase().replace(/\s+/g, "-") === model.toLocaleLowerCase());
@@ -17,7 +21,8 @@ const YearDetail: React.FC<{ carCatalog: CarBrand[], make: string, model: string
     const router = useRouter()
     const pathname = usePathname();
 
-
+    if (isLoading) return <p>Carregando...</p>;
+    if (error) return <p>Erro ao carregar</p>;
     if (!yearData) return <div className="text-red-500">Dados não encontrados para este ano.</div>;
 
     return (

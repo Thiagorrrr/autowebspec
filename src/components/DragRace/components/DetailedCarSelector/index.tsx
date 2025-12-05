@@ -15,6 +15,7 @@ interface DetailedCarSelectorProps {
 
 export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCars, cars, participant, onUpdate, onRemove, showRemove }) => {
     const car = cars.find(c => c.id === participant.id)!;
+
     const [selectedMake, setSelectedMake] = useState(car.make);
     const [selectedModel, setSelectedModel] = useState(car.model);
     const [selectedYear, setSelectedYear] = useState(car.year);

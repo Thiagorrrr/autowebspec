@@ -1,32 +1,51 @@
 "use client"
 import { Participant, RaceResult } from "@/types/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DetailedCarSelector } from "./components/DetailedCarSelector";
 import { StatComparisonRow } from "./components/StatComparisonRow";
 import { EquipmentComparison } from "./components/EquipmentComparison";
 import { VerdictSection } from "./components/VerdictSection";
 import { Activity, Clock, Medal, Plus, Trophy, Zap } from "lucide-react";
-import { Car } from "../Main/data";
-interface DragRaceProps {
-    cars: Car[]
-    rawCars: Car[]
-}
+import { useCars } from "@/hooks/queries/useCars";
 
-export const DragRace = ({ rawCars, cars }: DragRaceProps) => {
-    const [participants, setParticipants] = useState<Participant[]>([
-        { tempId: 1, id: cars[0].id, stage: 'stock' },
-        { tempId: 2, id: cars[1].id, stage: 'stock' }
-    ]);
+
+export const DragRace = () => {
+    const { data, isLoading, error } = useCars();
+    const cars = data
+
+    const [participants, setParticipants] = useState<Participant[]>([]);
+
+    useEffect(() => {
+        if (cars && cars.length > 0 && participants.length === 0) {
+            setParticipants([
+                { tempId: 1, id: cars[0]?.id, stage: 'stock' },
+                { tempId: 2, id: cars[1]?.id, stage: 'stock' }
+            ]);
+        }
+    }, [cars, participants]);
+
+
 
     const [racing, setRacing] = useState<boolean>(false);
     const [raceResults, setRaceResults] = useState<RaceResult[] | null>(null);
 
     const addParticipant = () => {
-        if (participants.length < 4) {
-            const nextId = Math.max(...participants.map(p => p.tempId)) + 1;
-            setParticipants([...participants, { tempId: nextId, id: cars[2] ? cars[2].id : cars[0].id, stage: 'stock' }]);
+        if (participants.length < 4 && cars && cars.length > 0) {
+
+            const nextId =
+                participants.length === 0
+                    ? 1
+                    : Math.max(...participants.map(p => p.tempId)) + 1;
+
+            const fallbackCarId = cars[2]?.id ?? cars[0].id;
+
+            setParticipants(prev => [
+                ...prev,
+                { tempId: nextId, id: fallbackCarId, stage: 'stock' }
+            ]);
         }
     };
+
 
     const removeParticipant = (tempId: number) => {
         if (participants.length > 2) setParticipants(participants.filter(p => p.tempId !== tempId));
@@ -37,30 +56,38 @@ export const DragRace = ({ rawCars, cars }: DragRaceProps) => {
     };
 
     const handleRace = () => {
+        if (!cars || cars.length === 0) return;
+
         setRacing(true);
         setRaceResults(null);
 
-        const results: RaceResult[] = participants.map(p => {
-            const car = cars.find(c => c.id === p.id)!;
-            return {
-                ...p,
-                name: `${car.make} ${car.model}`,
-                version: car.version,
-                time: car.specs[p.stage].zeroToHundred,
-                speed: car.specs[p.stage].zeroToHundred // usando para animação
-            };
-        }).sort((a, b) => a?.time - b.time); // Ordena por tempo (menor primeiro)
+        const results: RaceResult[] = participants
+            .map(p => {
+                const car = cars.find(c => c.id === p.id)!;
+                return {
+                    ...p,
+                    name: `${car.make} ${car.model}`,
+                    version: car.version,
+                    time: car.specs[p.stage].zeroToHundred,
+                    speed: car.specs[p.stage].zeroToHundred // animação
+                };
+            })
+            .sort((a, b) => a.time - b.time);
 
         const maxTime = Math.max(...results.map(r => r.time));
 
         setTimeout(() => {
             setRaceResults(results);
             setRacing(false);
-        }, (maxTime * 400) + 1000);
+        }, maxTime * 400 + 1000);
     };
+
 
     const gridCols = participants.length === 2 ? 'grid-cols-2' : participants.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-4';
 
+    if (isLoading) return <p>Carregando...</p>;
+    if (error) return <p>Erro ao carregar</p>;
+    if (!data) return <div className="text-red-500">carro não encontrado.</div>;
     return (
         <div className="space-y-8">
             <div className="flex justify-between items-center">
@@ -72,7 +99,7 @@ export const DragRace = ({ rawCars, cars }: DragRaceProps) => {
 
             <div className={`grid ${gridCols} gap-4`}>
                 {participants.map((p) => (
-                    <DetailedCarSelector key={p.tempId} rawCars={rawCars} cars={cars} participant={p} onUpdate={updateParticipant} onRemove={removeParticipant} showRemove={participants.length > 2} />
+                    cars && <DetailedCarSelector key={p.tempId} rawCars={cars} cars={cars} participant={p} onUpdate={updateParticipant} onRemove={removeParticipant} showRemove={participants.length > 2} />
                 ))}
             </div>
 
@@ -90,29 +117,34 @@ export const DragRace = ({ rawCars, cars }: DragRaceProps) => {
                 <div className="space-y-4 relative">
                     <div className="absolute right-8 top-0 bottom-0 w-px border-r border-dashed border-gray-300 z-0"></div>
 
-                    {participants.map((p, idx) => {
+                    {!cars ? null : participants.map((p, idx) => {
                         const car = cars.find(c => c.id === p.id)!;
                         const time = car.specs[p.stage].zeroToHundred;
                         const laneColors = ['bg-gray-800', 'bg-[#6319F7]', 'bg-red-500', 'bg-emerald-500'];
                         const laneColor = laneColors[idx % laneColors.length];
 
-                        // Calcular se este carro venceu (após a corrida)
-                        const rank = raceResults ? raceResults.findIndex(r => r.tempId === p.tempId) + 1 : null;
+                        const rank = raceResults
+                            ? raceResults.findIndex(r => r.tempId === p.tempId) + 1
+                            : null;
 
                         return (
                             <div key={p.tempId} className="relative h-10 bg-gray-50 rounded-lg border border-gray-100 flex items-center px-2 z-10">
-                                <div className="absolute p-2 text-[9px] text-gray-400 font-bold w-12 truncate">{car.model}</div>
+                                <div className="absolute p-2 text-[9px] text-gray-400 font-bold w-12 truncate">
+                                    {car.model}
+                                </div>
+
                                 <div
                                     className={`absolute h-6 w-12 ${laneColor} rounded shadow-lg flex items-center justify-center z-10 text-white transition-all`}
                                     style={{
-                                        transition: racing ? `left ${time * 0.5}s cubic-bezier(0.25, 1, 0.5, 1)` : 'left 0.5s',
+                                        transition: racing
+                                            ? `left ${time * 0.5}s cubic-bezier(0.25, 1, 0.5, 1)`
+                                            : 'left 0.5s',
                                         left: racing ? 'calc(100% - 4rem)' : '3rem'
                                     }}
                                 >
                                     <span className="text-[8px] font-bold">P{idx + 1}</span>
                                 </div>
 
-                                {/* Exibir ranking na lane após corrida */}
                                 {rank && (
                                     <div className="absolute right-2 font-bold text-xs flex items-center gap-1">
                                         {rank === 1 && <Trophy size={12} className="text-yellow-500" />}
@@ -122,6 +154,7 @@ export const DragRace = ({ rawCars, cars }: DragRaceProps) => {
                             </div>
                         );
                     })}
+
                 </div>
 
                 {/* RESULTS PODIUM */}
@@ -162,14 +195,19 @@ export const DragRace = ({ rawCars, cars }: DragRaceProps) => {
                 </div>
 
                 <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-                    <StatComparisonRow label="Potência (CV)" cars={cars} participants={participants} dataKey="hp" unit="cv" icon={Zap} />
-                    <StatComparisonRow label="Torque (kgfm)" cars={cars} participants={participants} dataKey="torque" unit="kgfm" icon={Activity} />
-                    <StatComparisonRow label="0-100 km/h" cars={cars} participants={participants} dataKey="zeroToHundred" unit="s" isLowerBetter={true} icon={Clock} />
+                    {
+                        cars && (
+                            <><StatComparisonRow label="Potência (CV)" cars={cars} participants={participants} dataKey="hp" unit="cv" icon={Zap} />
+                                <StatComparisonRow label="Torque (kgfm)" cars={cars} participants={participants} dataKey="torque" unit="kgfm" icon={Activity} />
+                                <StatComparisonRow label="0-100 km/h" cars={cars} participants={participants} dataKey="zeroToHundred" unit="s" isLowerBetter={true} icon={Clock} />
+                            </>
+                        )
+                    }
                 </div>
 
-                <EquipmentComparison cars={cars} participants={participants} />
+                {cars && <EquipmentComparison cars={cars} participants={participants} />}
 
-                <VerdictSection cars={cars} participants={participants} />
+                {cars && <VerdictSection cars={cars} participants={participants} />}
             </div>
         </div>
     );
