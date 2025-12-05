@@ -11,12 +11,11 @@ phases:
       - npm ci
 
   build:
-  commands:
-    - echo "NEXT_PUBLIC_BASE_URL_CARS=$NEXT_PUBLIC_BASE_URL_CARS" >> .env
-    - echo "NEXT_PUBLIC_BASE_URL_NEWS=$NEXT_PUBLIC_BASE_URL_NEWS" >> .env
-    - echo "NEXT_PUBLIC_GOOGLE_TAG=$NEXT_PUBLIC_GOOGLE_TAG" >> .env
-    - npm run build
-
+    commands:
+      - echo "BASE_URL_CARS=$NEXT_PUBLIC_BASE_URL_CARS"
+      - echo "BASE_URL_NEWS=$NEXT_PUBLIC_BASE_URL_NEWS"
+      - npm run build
+      - npm run export
 
   post_build:
     commands:
