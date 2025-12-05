@@ -1,5 +1,4 @@
-import { Car, CarSpecsData } from "@/components/Main/data";
-import { Participant } from "@/types/types";
+import { Car, CarSpecsData, Participant } from "@/types/types";
 
 interface RankingItem extends Participant {
     car: Car;

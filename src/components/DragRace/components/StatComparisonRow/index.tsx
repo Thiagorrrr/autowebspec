@@ -1,6 +1,5 @@
 "use client"
-import { Car, CarSpecsData } from "@/components/Main/data";
-import { Participant } from "@/types/types";
+import { Car, CarSpecsData, Participant } from "@/types/types";
 import { getBestValue } from "@/utils";
 
 interface StatComparisonRowProps {
