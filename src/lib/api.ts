@@ -1,7 +1,7 @@
 import { Car, NewsArticle } from "@/types/types";
 
-const BASE_URL_CARS = process.env.BASE_URL_CARS;
-const BASE_URL_NEWS = process.env.BASE_URL_NEWS;
+const BASE_URL_CARS = process.env.NEXT_PUBLIC_BASE_URL_CARS;
+const BASE_URL_NEWS = process.env.NEXT_PUBLIC_BASE_URL_NEWS;
 
 export async function fetchCars(): Promise<Car[]> {
     const res = await fetch(`${BASE_URL_CARS}/cars`, {
