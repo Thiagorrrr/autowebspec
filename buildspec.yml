@@ -1,5 +1,10 @@
 version: 0.2
 
+env:
+  variables:
+    NEXT_PUBLIC_BASE_URL_CARS: "https://sq6vim0sm9.execute-api.us-east-1.amazonaws.com/dev"
+    NEXT_PUBLIC_BASE_URL_NEWS: "https://j7haei5ftd.execute-api.us-east-1.amazonaws.com/dev"
+
 phases:
   install:
     commands:
@@ -7,8 +12,8 @@ phases:
 
   build:
     commands:
-      - npm run build        # Gera .next
-      - npm run export       # Gera a pasta out/
+      - npm run build
+      - npm run export
 
   post_build:
     commands:
