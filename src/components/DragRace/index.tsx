@@ -143,7 +143,6 @@ export const DragRace = () => {
 
 
     const gridCols = participants.length === 2 ? 'grid-cols-2' : participants.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-4';
-    console.log(participants)
     if (isLoading) return <p>Carregando...</p>;
     if (error) return <p>Erro ao carregar</p>;
     if (!data) return <div className="text-red-500">carro não encontrado.</div>;
