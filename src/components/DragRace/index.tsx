@@ -7,23 +7,56 @@ import { EquipmentComparison } from "./components/EquipmentComparison";
 import { VerdictSection } from "./components/VerdictSection";
 import { Activity, Clock, Medal, Plus, Trophy, Zap } from "lucide-react";
 import { useCars } from "@/hooks/queries/useCars";
-
+import { Button } from "../Button";
+import { useSearchParams } from "next/navigation";
+import { Alert } from "../Alert";
+export type AlertMessage = {
+    type: "success" | "error" | "alert";
+    message: string;
+};
 
 export const DragRace = () => {
     const { data, isLoading, error } = useCars();
-    const cars = data
+    const [alertMessage, setAlertMessage] = useState<AlertMessage | null>(null);
+
+    const cars = data;
+    const searchParams = useSearchParams();
 
     const [participants, setParticipants] = useState<Participant[]>([]);
 
+    // ------------------------------------------------------
+    // 1. Pegar os carros da URL (carro1, carro2...)
+    // ------------------------------------------------------
     useEffect(() => {
-        if (cars && cars.length > 0 && participants.length === 0) {
-            setParticipants([
-                { tempId: 1, id: cars[0]?.id, stage: 'stock' },
-                { tempId: 2, id: cars[1]?.id, stage: 'stock' }
-            ]);
-        }
-    }, [cars, participants]);
+        const newCars: Participant[] = [];
 
+        for (let index = 1; ; index++) {
+            const param = searchParams.get(`carro${index}`);
+
+            if (param === null) break; // parar quando não tiver mais parametros
+
+            newCars.push({
+                tempId: index,
+                id: param,
+                stage: "stock"
+            });
+        }
+
+        if (newCars.length > 0) {
+            setParticipants(newCars);
+        }
+    }, [searchParams]);
+
+
+    useEffect(() => {
+        if (!cars || cars.length === 0) return;
+        if (participants.length > 0) return; // <-- evita sobrescrever
+
+        setParticipants([
+            { tempId: 1, id: cars[0].id, stage: "stock" },
+            { tempId: 2, id: cars[1].id, stage: "stock" }
+        ]);
+    }, [cars, participants.length]);
 
 
     const [racing, setRacing] = useState<boolean>(false);
@@ -82,9 +115,35 @@ export const DragRace = () => {
         }, maxTime * 400 + 1000);
     };
 
+    const atualizarUrl = (participants: Participant[]) => {
+        const params = participants
+            .map((item, index) => `carro${index + 1}=${encodeURIComponent(item.id)}`)
+            .join("&");
+
+        const novaUrl = `?${params}`;
+        history.replaceState(null, "", novaUrl);
+    };
+    const copiarLink = () => {
+        const urlAtual = window.location.href;
+
+        navigator.clipboard.writeText(urlAtual)
+            .then(() => {
+                setAlertMessage({
+                    type: "success",
+                    message: "Link copiado!"
+                });
+            })
+            .catch(() => {
+                setAlertMessage({
+                    type: "error",
+                    message: "Erro ao copiar link"
+                });
+            });
+    };
+
 
     const gridCols = participants.length === 2 ? 'grid-cols-2' : participants.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-4';
-
+    console.log(participants)
     if (isLoading) return <p>Carregando...</p>;
     if (error) return <p>Erro ao carregar</p>;
     if (!data) return <div className="text-red-500">carro não encontrado.</div>;
@@ -182,10 +241,24 @@ export const DragRace = () => {
                         </div>
                     </div>
                 )}
+                {alertMessage && (
+                    <Alert
+                        type={alertMessage.type}
+                        message={alertMessage.message}
+                        onClose={() => setAlertMessage(null)}
+                    />
+                )}
 
-                <button onClick={handleRace} disabled={racing} className="w-full mt-6 bg-[#6319F7] hover:bg-[#5014c9] text-white font-bold py-4 rounded-xl text-sm uppercase tracking-widest shadow-lg shadow-[#6319F7]/20 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
+                <Button className="mt-6" onClick={() => {
+                    handleRace()
+                    atualizarUrl(participants)
+                }} primary fullWidth disabled={racing} >
                     {racing ? 'ACELERANDO...' : `COMPARAR ${participants.length} CARROS`}
-                </button>
+                </Button>
+
+                {raceResults && <Button className="mt-6 uppercase text-sm py-4 font-bold" fullWidth
+                    onClick={copiarLink}
+                >COMPARTILHAR RESULTADOS</Button>}
             </div>
 
             <div>
