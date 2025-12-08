@@ -8,7 +8,6 @@ import { VerdictSection } from "./components/VerdictSection";
 import { Activity, Clock, Medal, Plus, Trophy, Zap } from "lucide-react";
 import { useCars } from "@/hooks/queries/useCars";
 import { Button } from "../Button";
-import { useSearchParams } from "next/navigation";
 import { Alert } from "../Alert";
 export type AlertMessage = {
     type: "success" | "error" | "alert";
@@ -20,7 +19,7 @@ export const DragRace = () => {
     const [alertMessage, setAlertMessage] = useState<AlertMessage | null>(null);
 
     const cars = data;
-    const searchParams = useSearchParams();
+
 
     const [participants, setParticipants] = useState<Participant[]>([]);
 
@@ -28,24 +27,25 @@ export const DragRace = () => {
     // 1. Pegar os carros da URL (carro1, carro2...)
     // ------------------------------------------------------
     useEffect(() => {
+        const url = new URL(window.location.href);
         const newCars: Participant[] = [];
 
         for (let index = 1; ; index++) {
-            const param = searchParams.get(`carro${index}`);
-
-            if (param === null) break; // parar quando não tiver mais parametros
+            const param = url.searchParams.get(`carro${index}`);
+            if (param === null) break;
 
             newCars.push({
                 tempId: index,
                 id: param,
-                stage: "stock"
+                stage: "stock",
             });
         }
 
         if (newCars.length > 0) {
             setParticipants(newCars);
         }
-    }, [searchParams]);
+    }, []);
+
 
 
     useEffect(() => {
