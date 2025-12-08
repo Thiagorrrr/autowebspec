@@ -24,12 +24,21 @@ export const DragRace = () => {
     const [participants, setParticipants] = useState<Participant[]>([]);
 
     useEffect(() => {
+        if (!cars || cars.length === 0) return; // cars = lista da base já carregada
+
         const url = new URL(window.location.href);
         const newCars: Participant[] = [];
 
-        for (let index = 1; ; index++) {
+        for (let index = 1; index <= 4; index++) {          // limita a 4 carros
             const param = url.searchParams.get(`carro${index}`);
-            if (param === null) break;
+            if (!param) break;
+
+            // verifica se existe na base
+            const carExists = cars.some((c) => c.id === param);
+            if (!carExists) continue;
+
+            // evita duplicados
+            if (newCars.some((c) => c.id === param)) continue;
 
             newCars.push({
                 tempId: index,
@@ -39,10 +48,10 @@ export const DragRace = () => {
         }
 
         if (newCars.length > 0) {
-            const limitedCars = newCars.slice(0, 4);
-            setParticipants(limitedCars);
+            setParticipants((prev) => [...prev, ...newCars]);
         }
-    }, []);
+    }, [cars]);
+
 
 
 
