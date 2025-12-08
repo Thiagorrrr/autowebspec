@@ -23,9 +23,6 @@ export const DragRace = () => {
 
     const [participants, setParticipants] = useState<Participant[]>([]);
 
-    // ------------------------------------------------------
-    // 1. Pegar os carros da URL (carro1, carro2...)
-    // ------------------------------------------------------
     useEffect(() => {
         const url = new URL(window.location.href);
         const newCars: Participant[] = [];
@@ -42,7 +39,8 @@ export const DragRace = () => {
         }
 
         if (newCars.length > 0) {
-            setParticipants(newCars);
+            const limitedCars = newCars.slice(0, 4);
+            setParticipants(limitedCars);
         }
     }, []);
 
