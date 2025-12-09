@@ -13,10 +13,20 @@ export interface RaceResult extends Participant {
   speed: number;
 }
 
+export type EquipmentItems = Record<string, boolean>;
 
-interface CarEquipment {
-  [key: string]: boolean;
-}
+export type EquipmentCategoryKey =
+  | "Tecnologia e Conectividade"
+  | "Assistentes de Condução (ADAS)"
+  | "Segurança"
+  | "Conforto"
+  | "Visibilidade"
+  | "Exterior"
+  | "Performance"
+  | "Itens Gerais";
+
+export type CarEquipment = Record<EquipmentCategoryKey, EquipmentItems>;
+
 
 export interface CarSpecsData {
   hp: number;
@@ -42,8 +52,8 @@ export interface NewsArticle {
   category: 'Lançamento' | 'Review' | 'Tech' | 'Mercado';
   image: string;
   author: string;
-  authorRole: string; // Novo campo
-  readTime: string;   // Novo campo
+  authorRole: string;
+  readTime: string;
 }
 
 

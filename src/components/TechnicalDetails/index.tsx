@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { BackButton } from "../BackButton";
 import { SectionTitle } from "../SectionTitle";
-import { Activity, Camera, CarIcon, Check, Grid, X } from "lucide-react";
+import { Activity, Camera, CarIcon, Check, CheckCircle, Grid, X } from "lucide-react";
 import { Label } from "../Label";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -14,16 +14,13 @@ const TechnicalDetails = ({ carId }: { carId?: string }) => {
   const router = useRouter()
   const { data, isLoading, error } = useCars();
   const car = useMemo(() => {
-    if (!data) return undefined;
 
+    if (!data) return undefined;
     if (carId) {
       return data.find((c: Car) => c.id === carId);
     }
-
-
     return data[0];
   }, [carId, data]);
-
 
 
   if (isLoading) return <p>Carregando...</p>;
@@ -67,14 +64,30 @@ const TechnicalDetails = ({ carId }: { carId?: string }) => {
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2"><Grid size={18} className="text-[#6319F7]" /><h3 className="font-bold text-gray-800">Lista de Equipamentos</h3></div>
-        <div>
-          {Object.entries(car.equipment).map(([item, hasItem]) => (
-            <div key={item} className="p-3 flex justify-between items-center border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors">
-              <span className={`text-sm font-medium ${hasItem ? 'text-gray-800' : 'text-gray-400 line-through'}`}>{item}</span>
-              {hasItem ? <Check size={16} className="text-[#6319F7]" /> : <X size={16} className="text-gray-300" />}
-            </div>
-          ))}
+        <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2">
+          <Grid size={18} className="text-[#6319F7]" />
+          <h3 className="font-bold text-gray-800">Lista de Equipamentos</h3>
+        </div>
+        <div className="p-2">
+          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden gap-1">
+            {
+              Object.entries(car.equipment).map(([category, items]) => (
+                <div key={category} className="mb-6">
+                  <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2">
+                    <CheckCircle size={18} className="text-[#6319F7]" />
+                    <h3 className="font-bold text-gray-800">{category}</h3>
+                  </div>
+                  <div className="rounded-lg overflow-hidden">
+                    {Object.entries(items).map(([item, hasItem]) => (
+                      <div key={item} className="p-3 flex justify-between items-center border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors">
+                        <span className={`text-sm font-medium ${hasItem ? 'text-gray-800' : 'text-gray-600'}`}>{item}</span>
+                        {hasItem ? <Check size={16} className="text-[#6319F7]" /> : <X size={16} className="text-gray-400" />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

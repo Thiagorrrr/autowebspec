@@ -1,5 +1,5 @@
 "use client"
-import { Activity, Camera, Check, Grid, X } from "lucide-react";
+import { Activity, Camera, Check, CheckCircle, Grid, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Label } from "../Label";
 import { SectionTitle } from "../SectionTitle";
@@ -10,6 +10,8 @@ import { Select } from "../Select";
 
 export const TechnicalDetailsSelected = () => {
   const { data, isLoading, error } = useCars();
+
+
   const cars = useMemo(() => data ?? [], [data]);
 
   const [selectedCarId, setSelectedCarId] = useState<string>();
@@ -214,14 +216,30 @@ export const TechnicalDetailsSelected = () => {
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2"><Grid size={18} className="text-[#6319F7]" /><h3 className="font-bold text-gray-800">Lista de Equipamentos</h3></div>
-        <div>
-          {Object.entries(car.equipment).map(([item, hasItem]) => (
-            <div key={item} className="p-3 flex justify-between items-center border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors">
-              <span className={`text-sm font-medium ${hasItem ? 'text-gray-800' : 'text-gray-400 line-through'}`}>{item}</span>
-              {hasItem ? <Check size={16} className="text-[#6319F7]" /> : <X size={16} className="text-gray-300" />}
-            </div>
-          ))}
+        <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2">
+          <Grid size={18} className="text-[#6319F7]" />
+          <h3 className="font-bold text-gray-800">Lista de Equipamentos</h3>
+        </div>
+        <div className="p-2">
+          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden gap-1">
+            {
+              Object.entries(car.equipment).map(([category, items]) => (
+                <div key={category} className="mb-6">
+                  <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2">
+                    <CheckCircle size={18} className="text-[#6319F7]" />
+                    <h3 className="font-bold text-gray-800">{category}</h3>
+                  </div>
+                  <div className="rounded-lg overflow-hidden">
+                    {Object.entries(items).map(([item, hasItem]) => (
+                      <div key={item} className="p-3 flex justify-between items-center border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors">
+                        <span className={`text-sm font-medium ${hasItem ? 'text-gray-800' : 'text-gray-600'}`}>{item}</span>
+                        {hasItem ? <Check size={16} className="text-[#6319F7]" /> : <X size={16} className="text-gray-400" />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>
