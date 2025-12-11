@@ -1,9 +1,8 @@
-import { fetchCars } from "@/lib/api";
+import { fetchCarsForBuild } from "@/lib/apis";
 import { ReactNode } from "react";
 
 export async function generateStaticParams() {
-    const cars = await fetchCars();
-    console.log(cars);
+    const cars = await fetchCarsForBuild();
     const unique = new Map();
 
     for (const car of cars) {
