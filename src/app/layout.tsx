@@ -37,6 +37,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
+      <head>
+        <meta
+          name="google-adsense-account"
+          content={`ca-pub-${process.env.NEXT_PUBLIC_GOOGLE_TAG_ADS!}`}
+        />
+      </head>
       <body className={inter.className}>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_TAG!} />
         <StyledComponentsRegistry>
