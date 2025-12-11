@@ -22,7 +22,11 @@ export const calculateOverallRanking = ({ participants, cars }: {
     return participants.map(p => {
         const car = cars.find(c => c.id === p.id)!;
         const stats = car.specs[p.stage];
-        const equipCount = Object.values(car.equipment).filter(Boolean).length;
+        const equipCount =
+            Object.values(car.equipment)
+                .flatMap(cat => Object.values(cat))
+                .filter(v => v)
+                .length;
 
         // Algoritmo de Pontuação Simplificado (0 a 100)
         // 1. Potência (peso 40%)
