@@ -1,4 +1,4 @@
-version: 0.3
+version: 0.2
 
 env:
   variables:
@@ -8,27 +8,18 @@ env:
 phases:
   install:
     commands:
-      - echo "Instalando dependências..."
       - npm ci
 
   build:
     commands:
-      - echo "Rodando build Next.js..."
       - npm run build
       - npm run export
 
   post_build:
     commands:
-      - echo "Sincronizando com S3..."
       - aws s3 sync out/ s3://autowebspec.com.br --delete
-      - echo "Criando invalidação no CloudFront..."
       - aws cloudfront create-invalidation --distribution-id E37VMDJJ880GJR --paths "/*"
 
 artifacts:
   files:
     - '**/*'
-
-cache:
-  paths:
-    - node_modules/**/*         # cache das dependências do Node
-    - .next/cache/**/*          # cache do build Next.js
