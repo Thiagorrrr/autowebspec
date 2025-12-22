@@ -1,4 +1,4 @@
-import { BRAND_INFO, CarBrand, COLORS, ViewType } from "@/components/BrandList";
+import { BRAND_INFO, CarBrand, ViewType } from "@/components/BrandList";
 import { Car } from "@/types/types";
 
 export interface NavigationState {
@@ -20,7 +20,6 @@ export const useCatalog = (cars: Car[]) => {
             catalog[make] = {
                 make,
                 description: BRAND_INFO[make]?.description || '',
-                logoColor: BRAND_INFO[make]?.logoColor || COLORS.gray400,
                 models: []
             };
         }

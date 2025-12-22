@@ -36,7 +36,7 @@ export const Ranking = () => {
                 <h3 className="font-bold text-gray-800 text-lg truncate">{`${car.make} ${car.model} ${car.year} ${car.version}`} </h3>
                 <span className="bg-gray-100 text-gray-500 text-[10px] px-2 py-1 rounded font-bold uppercase inline-block w-max mx-auto sm:mx-0">{car.category}</span>
               </div>
-              <p className="text-gray-500 text-sm">{car.year} • {car.specs.stock.hp}cv</p>
+              <p className="text-gray-500 text-sm">{car.year} • {car.specs.stock?.hp}cv</p>
             </div>
             <div className="text-center sm:text-right w-full sm:w-auto bg-gray-50 sm:bg-transparent p-2 rounded-lg">
               <div className="text-[#6319F7] font-bold text-xl">{car.fipe}</div>

@@ -46,10 +46,19 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
     const handleStageChange = (stage: StageType) => { onUpdate(participant.tempId, { stage }); };
 
     return (
-        <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col h-full relative group">
+        <div className="bg-white p-4  rounded-xl border border-gray-200 shadow-sm flex flex-col h-full relative group">
             {showRemove && (
                 <button onClick={() => onRemove(participant.tempId)} className="absolute -top-2 -right-2 bg-red-100 text-red-500 rounded-full p-1 shadow-sm hover:bg-red-500 hover:text-white transition-colors z-10"><X size={14} /></button>
             )}
+            <div className="flex-1 flex items-end w-full mt-2">
+                <div className="relative w-full h-20 lg:h-40 rounded-lg ">
+                    <div className="absolute w-full h-50 lg:h-80 -top-30 lg:-top-40">
+                        <Image src={`/marcas/${car.make.toLowerCase()}/${car.model.toLowerCase()}/${car.model.toLowerCase()}.webp`} alt={car.image.replace("-", " ")} fill className="w-full h-full object-contain" />
+                        <div className="absolute  bottom-2 left-0 text-black font-bold text-[10px]">{car.specs[participant.stage].hp}cv</div>
+                    </div>
+
+                </div>
+            </div>
             <div className="grid grid-cols-2 gap-2 mb-3">
                 <div className="col-span-2">
                     <label className="text-[10px] font-bold text-gray-400 uppercase">Fabricante</label>
@@ -82,13 +91,6 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                         {stg === 'stock' ? 'Stock' : stg.replace('stage', 'S')}
                     </button>
                 ))}
-            </div>
-            <div className="flex-1 flex items-end w-full mt-2">
-                <div className="relative w-full h-40 rounded-lg overflow-hidden group-hover:shadow-md transition-all">
-                    <Image src={`/${car.image}`} alt={car.image.replace("-", " ")} fill className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent"></div>
-                    <div className="absolute bottom-2 left-2 text-white font-bold text-[10px]">{car.specs[participant.stage].hp}cv</div>
-                </div>
             </div>
         </div>
     );

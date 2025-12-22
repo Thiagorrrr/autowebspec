@@ -67,6 +67,7 @@ export const EquipmentComparison: React.FC<EquipmentComparisonProps> = ({ cars, 
                     const firstCar = cars.find(c => c.id === participants[0].id)! as Car;
                     const items = Object.keys(firstCar.equipment[categoryKey]);
 
+
                     return (
                         <div key={category} className="mb-4 rounded-lg overflow-hidden border border-gray-100">
                             {/* Cabeçalho da Categoria */}

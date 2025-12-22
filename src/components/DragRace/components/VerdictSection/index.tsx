@@ -38,10 +38,10 @@ export const VerdictSection: React.FC<VerdictSectionProps> = ({ participants, ca
 
                         <div className="flex-1">
                             <div className="flex justify-between items-start">
-                                <h3 className={` truncate font-bold text-sm md:text-base ${index === 0 ? 'text-yellow-400' : 'text-white'}`}>
+                                <h3 className={` w-m truncate font-bold text-sm md:text-base ${index === 0 ? 'text-yellow-400' : 'text-white'}`}>
                                     {item.car.model} {item.car.make} {item.car.year} {item.car.version}
                                 </h3>
-                                {index === 0 && <span className="bg-[#6319F7] text-[10px] px-2 py-1 rounded font-bold flex items-center gap-1"><ThumbsUp size={10} /> MELHOR ESCOLHA</span>}
+                                {index === 0 && <span className="bg-[#6319F7] text-[10px] px-2 py-1 rounded font-bold flex items-center gap-1 absolute -top-5 right-0"><ThumbsUp size={10} /> MELHOR ESCOLHA</span>}
                             </div>
                             <div className="flex gap-4 text-[10px] text-gray-400 mt-1">
                                 <span>R$ {item.car.price.toLocaleString('pt-BR', { notation: "compact" })}</span>

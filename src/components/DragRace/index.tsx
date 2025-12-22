@@ -162,7 +162,7 @@ export const DragRace = () => {
                 )}
             </div>
 
-            <div className={`grid ${gridCols} gap-4`}>
+            <div className={`grid ${gridCols} ${participants?.length > 2 ? 'gap-16' : 'gap-4'} mt-20 lg:gap-4  lg:mt-40`}>
                 {participants.map((p) => (
                     cars && <DetailedCarSelector key={p.tempId} rawCars={cars} cars={cars} participant={p} onUpdate={updateParticipant} onRemove={removeParticipant} showRemove={participants.length > 2} />
                 ))}
