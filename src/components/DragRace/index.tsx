@@ -24,45 +24,36 @@ export const DragRace = () => {
     const [participants, setParticipants] = useState<Participant[]>([]);
 
     useEffect(() => {
-        if (!cars || cars.length === 0) return; // cars = lista da base já carregada
+        if (!cars || cars.length === 0 || participants.length > 0) return;
 
         const url = new URL(window.location.href);
-        const newCars: Participant[] = [];
+        const urlCars: Participant[] = [];
 
-        for (let index = 1; index <= 4; index++) {          // limita a 4 carros
+        for (let index = 1; index <= 4; index++) {
             const param = url.searchParams.get(`carro${index}`);
-            if (!param) break;
+            if (!param) continue;
 
-            // verifica se existe na base
-            const carExists = cars.some((c) => c.id === param);
-            if (!carExists) continue;
+            const carExists = cars.find((c) => c.id === param);
+            const isDuplicate = urlCars.some((c) => c.id === param);
 
-            // evita duplicados
-            if (newCars.some((c) => c.id === param)) continue;
-
-            newCars.push({
-                tempId: index,
-                id: param,
-                stage: "stock",
-            });
+            if (carExists && !isDuplicate) {
+                urlCars.push({
+                    tempId: urlCars.length + 1, // tempId sequencial baseado nos válidos encontrados
+                    id: param,
+                    stage: "stock",
+                });
+            }
         }
 
-        if (newCars.length > 0) {
-            setParticipants((prev) => [...prev, ...newCars]);
+        if (urlCars.length > 0) {
+            setParticipants(urlCars);
+        } else if (cars.length >= 2) {
+            setParticipants([
+                { tempId: 1, id: cars[0].id, stage: "stock" },
+                { tempId: 2, id: cars[1].id, stage: "stock" }
+            ]);
         }
-    }, [cars]);
 
-
-
-
-    useEffect(() => {
-        if (!cars || cars.length === 0) return;
-        if (participants.length > 0) return; // <-- evita sobrescrever
-
-        setParticipants([
-            { tempId: 1, id: cars[0].id, stage: "stock" },
-            { tempId: 2, id: cars[1].id, stage: "stock" }
-        ]);
     }, [cars, participants.length]);
 
 
@@ -154,7 +145,7 @@ export const DragRace = () => {
     if (error) return <p>Erro ao carregar</p>;
     if (!data) return <div className="text-red-500">carro não encontrado.</div>;
     return (
-        <div className="space-y-8">
+        <div className="space-y-6 mt-8">
             <div className="flex justify-between items-center">
                 <h2 className="text-xl font-bold text-gray-700">Grid de Largada</h2>
                 {participants.length < 4 && (

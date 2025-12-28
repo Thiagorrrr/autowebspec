@@ -98,7 +98,7 @@ export const BrandsList = () => {
     if (error) return <p>Erro ao carregar</p>;
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 mt-8">
             <SectionTitle>
                 <Factory size={20} className="text-[#6319F7]" /> Marcas Disponíveis
             </SectionTitle>

@@ -28,7 +28,7 @@ const TechnicalDetails = ({ carId }: { carId?: string }) => {
   if (!car) return <div>Carro não encontrado.</div>;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mt-8">
       <Breadcrumbs />
       {carId && <BackButton onClick={() => router.back()} label={`Voltar para ${car?.year}`} />}
       <SectionTitle className="mb-6!">

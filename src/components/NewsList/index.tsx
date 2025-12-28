@@ -18,7 +18,7 @@ export const NewsList = () => {
     if (error) return <p>Erro ao carregar</p>;
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 mt-8">
             <SectionTitle>
                 <Newspaper size={20} className="text-[#6319F7]" /> Últimas Notícias
             </SectionTitle>

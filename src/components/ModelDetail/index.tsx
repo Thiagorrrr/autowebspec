@@ -25,7 +25,7 @@ const ModelDetail: React.FC<{ make: string, model: string }> = ({ make, model })
     if (!modelData) return <div className="text-red-500">Modelo não encontrado.</div>;
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 mt-8">
             <Breadcrumbs make={make} model={model} />
             <BackButton onClick={() => router.back()} label={`Voltar para ${brandData?.make}`} />
             {/* HEADER DO MODELO (Responsivo) */}

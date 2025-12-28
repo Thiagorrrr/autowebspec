@@ -122,7 +122,7 @@ export const TechnicalDetailsSelected = () => {
   if (!car) return <div>Carro não encontrado.</div>;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mt-8">
       <div className="flex  flex-col bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
         <h2 className="text-2xl font-bold text-gray-800 pb-6">Detalhes Tecnicos</h2>
         <Label>Selecione o Carro</Label>

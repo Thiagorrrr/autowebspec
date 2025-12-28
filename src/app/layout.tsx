@@ -7,6 +7,7 @@ import { Providers } from './providers'
 import { Header } from '@/components/Header'
 import { HeaderMobile } from '@/components/HeaderMobile'
 import Main from '@/components/Main'
+import { Footer } from '@/components/Footer'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -53,6 +54,7 @@ export default function RootLayout({
               <Main>
                 {children}
               </Main>
+              <Footer />
             </div>
           </Providers>
         </StyledComponentsRegistry>

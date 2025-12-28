@@ -26,7 +26,7 @@ const YearDetail: React.FC<{ make: string, model: string, year: number }> = ({ m
     if (!yearData) return <div className="text-red-500">Dados não encontrados para este ano.</div>;
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 mt-8">
             <Breadcrumbs make={make} model={model} year={String(year)} />
             <BackButton onClick={() => router.back()} label={`Voltar para ${modelData?.model}`} />
             <SectionTitle className="text-xl">

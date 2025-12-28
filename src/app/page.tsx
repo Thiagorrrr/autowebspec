@@ -1,11 +1,9 @@
-import { DragRace } from "@/components/DragRace";
-
+import { HomePage } from "@/components/HomePage";
 
 export default function Home() {
   return (
     <>
-      <DragRace />
-
+      <HomePage />
     </>
   )
 }

@@ -26,7 +26,7 @@ const BrandDetail: React.FC<{ make: string }> = ({ make }) => {
     if (!brandData) return <div className="text-red-500">Marca não encontrada.</div>;
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 mt-8">
             <Breadcrumbs make={make} />
             <BackButton onClick={() => router.back()} label={`Voltar`} />
 

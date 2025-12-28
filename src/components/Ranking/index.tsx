@@ -14,7 +14,7 @@ export const Ranking = () => {
   if (isLoading) return <p>Carregando...</p>;
   if (error) return <p>Erro ao carregar</p>;
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mt-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <h2 className="text-2xl font-bold text-gray-800">Ranking por Preço</h2>
         <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">

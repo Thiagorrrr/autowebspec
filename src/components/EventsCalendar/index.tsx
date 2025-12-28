@@ -6,17 +6,85 @@ interface EventData {
   name: string;
   date: string;
   location: string;
-  type: 'Racing' | 'Meet' | 'Drag';
+  type: 'Racing' | 'Meet' | 'Drag' | 'Exhibition' | 'Drift';
 }
 
-const EVENTS: EventData[] = [
-  { id: 1, name: 'Track Day Interlagos', date: '15 Out', location: 'São Paulo, SP', type: 'Racing' },
-  { id: 2, name: 'Encontro JDM Brasil', date: '22 Out', location: 'Curitiba, PR', type: 'Meet' },
-  { id: 3, name: 'Arrancada Noturna', date: '05 Nov', location: 'Velopark, RS', type: 'Drag' },
+export const EVENTS: EventData[] = [
+  {
+    id: 1,
+    name: "Track Day Interlagos 2026",
+    date: "14 Mar 2026",
+    location: "São Paulo, SP",
+    type: "Racing",
+  },
+  {
+    id: 2,
+    name: "Encontro JDM Brasil 2026",
+    date: "28 Mar 2026",
+    location: "Curitiba, PR",
+    type: "Meet",
+  },
+  {
+    id: 3,
+    name: "Arrancada Nacional",
+    date: "18 Abr 2026",
+    location: "Velopark, RS",
+    type: "Drag",
+  },
+  {
+    id: 4,
+    name: "Festival Brasileiro de Carros Antigos",
+    date: "23 Mai 2026",
+    location: "Águas de Lindóia, SP",
+    type: "Exhibition",
+  },
+  {
+    id: 5,
+    name: "Drift Brasil Series",
+    date: "06 Jun 2026",
+    location: "Piracicaba, SP",
+    type: "Drift",
+  },
+  {
+    id: 6,
+    name: "Track Day Velocitta",
+    date: "20 Jun 2026",
+    location: "Mogi Guaçu, SP",
+    type: "Racing",
+  },
+  {
+    id: 7,
+    name: "Euro Cars Experience",
+    date: "11 Jul 2026",
+    location: "Belo Horizonte, MG",
+    type: "Meet",
+  },
+  {
+    id: 8,
+    name: "Arrancada Internacional 2026",
+    date: "08 Ago 2026",
+    location: "Canelinha, SC",
+    type: "Drag",
+  },
+  {
+    id: 9,
+    name: "Salão de Performance Automotiva",
+    date: "19 Set 2026",
+    location: "São Paulo, SP",
+    type: "Exhibition",
+  },
+  {
+    id: 10,
+    name: "Encontro Nacional de Superesportivos",
+    date: "24 Out 2026",
+    location: "Rio de Janeiro, RJ",
+    type: "Meet",
+  },
 ];
 
+
 export const EventsCalendar: React.FC = () => (
-  <div className="space-y-4">
+  <div className="space-y-4 mt-8">
     <h2 className="text-2xl font-bold text-gray-800 mb-4">Próximos Eventos</h2>
     {EVENTS.map(evt => (
       <div key={evt.id} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4 items-center hover:shadow-md transition-all cursor-pointer group">

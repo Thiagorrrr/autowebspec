@@ -21,7 +21,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
         return <div className="text-red-500 p-4">Notícia não encontrada.</div>;
     }
     return (
-        <div className="space-y-6 animate-fadeIn">
+        <div className="space-y-6 animate-fadeIn mt-8">
             <BackButton onClick={() => router.back()} label="Voltar para Notícias" />
 
             <Card className="overflow-hidden p-0">
