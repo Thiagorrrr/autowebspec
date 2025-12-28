@@ -10,7 +10,7 @@ interface NavBtnProps {
     label: string;
 }
 
-const NavBtn: React.FC<NavBtnProps> = ({ href, icon }) => {
+const NavBtn: React.FC<NavBtnProps> = ({ href, icon, label }) => {
     const pathname = usePathname();
     const isActive =
         pathname === href ||
@@ -21,6 +21,7 @@ const NavBtn: React.FC<NavBtnProps> = ({ href, icon }) => {
             <button
                 className={`flex flex-col items-center gap-1 p-1 rounded-lg transition-all 
           ${isActive ? 'text-[#6319F7] transform -translate-y-1' : 'text-gray-400 hover:text-gray-600'}`}
+                aria-label={`btn-${label}`}
             >
                 {icon}
                 {isActive && (

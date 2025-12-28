@@ -60,7 +60,7 @@ export const NewsList = () => {
                             <div className="p-4 flex flex-col flex-1">
                                 <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2">{news.title}</h3>
                                 <p className="text-sm text-gray-500 line-clamp-3 mb-4 flex-1">{news.summary}</p>
-                                <div className="flex justify-between items-center text-xs text-gray-400 border-t border-gray-100 pt-3 mt-auto">
+                                <div className="flex justify-between items-center text-sm text-gray-600 border-t border-gray-100 pt-3 mt-auto">
                                     <span>{news.date}</span>
                                     <span className="text-[#6319F7] font-bold flex items-center gap-1">Ler mais <ChevronRight size={12} /></span>
                                 </div>

@@ -69,16 +69,36 @@ export const HomePage = () => {
 
                             <Card key={news.id} >
                                 <div className="flex items-center justify-center  w-full  h-48  relative">
-                                    <div className="flex items-center max-h-56 justify-between">
-                                        <Image src={news.image.car1} alt={news.title} width={100} height={100} className=" object-contain  " />
-                                        <span className="text-[#6319F7] font-bold mt-8">VS</span>
-                                        <Image src={news.image.car2} alt={news.title} width={100} height={100} className=" object-contain  " />
+                                    <div className="flex items-center justify-between gap-4">
+                                        <div className="relative w-32 aspect-square">
+                                            <Image
+                                                src={news.image.car1}
+                                                alt={news.title}
+                                                fill
+                                                className="object-contain"
+                                                sizes="128px"
+                                            />
+                                        </div>
+
+                                        <span className="text-[#6319F7] font-bold text-lg">VS</span>
+
+                                        <div className="relative w-32 aspect-square">
+                                            <Image
+                                                src={news.image.car2}
+                                                alt={news.title}
+                                                fill
+                                                className="object-contain"
+                                                sizes="128px"
+                                            />
+                                        </div>
                                     </div>
+
+
                                 </div>
                                 <div className="p-4 flex flex-col flex-1">
                                     <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2">{news.title}</h3>
                                     <p className="text-sm text-gray-500 line-clamp-3 mb-4 flex-1">{news.subtitle}</p>
-                                    <div className="flex justify-between items-center text-xs text-gray-400 border-t border-gray-100 pt-3 mt-auto">
+                                    <div className="flex justify-between items-center text-sm text-gray-600 border-t border-gray-100 pt-3 mt-auto">
                                         <Button fullWidth primary>Comparar</Button>
                                     </div>
                                 </div>
@@ -129,15 +149,16 @@ export const HomePage = () => {
                                 </div>
 
                                 {/* Imagem */}
-                                <div className="flex items-center justify-center h-44 bg-gray-50">
+                                <div className="relative flex items-center justify-center h-44 bg-gray-50">
                                     <Image
                                         src={item.image}
                                         alt={item.title}
-                                        width={140}
-                                        height={140}
+                                        fill
+                                        sizes="140px"
                                         className="object-contain transition-transform group-hover:scale-105"
                                     />
                                 </div>
+
 
                                 {/* Conteúdo */}
                                 <div className="p-4 flex flex-col flex-1">
@@ -180,7 +201,7 @@ export const HomePage = () => {
                                 <div className="p-4 flex flex-col flex-1">
                                     <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2">{news.title}</h3>
                                     <p className="text-sm text-gray-500 line-clamp-3 mb-4 flex-1">{news.summary}</p>
-                                    <div className="flex justify-between items-center text-xs text-gray-400 border-t border-gray-100 pt-3 mt-auto">
+                                    <div className="flex justify-between items-center text-sm text-gray-600 border-t border-gray-100 pt-3 mt-auto">
                                         <span>{news.date}</span>
                                         <span className="text-[#6319F7] font-bold flex items-center gap-1">Ler mais <ChevronRight size={12} /></span>
                                     </div>
