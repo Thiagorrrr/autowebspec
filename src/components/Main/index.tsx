@@ -1,18 +1,20 @@
-"use client"
-import { usePathname } from "next/navigation";
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import React from "react";
 import { Button } from "../Button";
-import { useRouter } from "next/navigation";
 
 const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
   const router = useRouter();
 
+  const isHome = pathname === "/";
+
   return (
     <>
-      {pathname === "/" &&
-        <section className="relative w-full h-[260px] md:h-[380px] ">
+      {isHome && (
+        <section className="relative w-full h-[260px] md:h-[400px] overflow-hidden">
           <Image
             src="/hero.webp"
             alt="AutoWebSpec"
@@ -21,35 +23,41 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             className="object-cover object-[50%_60%]"
           />
 
-          {/* Overlay branco suave */}
-          <div className="absolute inset-0 bg-linear-to-b from-gray-50/80 via-gray-50/30 to-gray-50" />
+          {/* Overlay refinado */}
+          <div className="absolute inset-0 bg-linear-to-b from-white/85 via-white/40 to-white/95" />
 
+          {/* Conteúdo */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center max-w-2xl px-4">
+              <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900">
+                Compare. Escolha.
+              </h1>
 
-          {/* Conteúdo sobreposto */}
-          {pathname === "/" && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center max-w-2xl px-4">
-                <h1 className="text-3xl md:text-4xl font-semibold text-black">
-                  Compare. Escolha.
-                </h1>
+              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+                Compare carros, analise especificações técnicas e tome a melhor
+                decisão antes de comprar.
+              </p>
 
-                <p className="mt-3 text-base md:text-lg text-black">
-                  Compare carros, veja detalhes técnicos e tome a melhor decisão.
-                </p>
-
-                <div className="mt-6 flex justify-center">
-                  <Button primary onClick={() => router.push("/comparar")}
-                  >Comparar carros
-                  </Button>
-                </div>
+              <div className="mt-8 flex justify-center">
+                <Button
+                  primary
+                  onClick={() => router.push("/comparar")}
+                >
+                  Comparar carros
+                </Button>
               </div>
             </div>
-          )}
+          </div>
         </section>
-      }
+      )}
 
       {/* CONTEÚDO */}
-      <main className="max-w-7xl mx-auto px-4 md:mt-12">
+      <main
+        className={`
+          max-w-7xl mx-auto px-4
+          ${isHome ? "mt-10 md:mt-14" : "mt-6 md:mt-10"}
+        `}
+      >
         {children}
       </main>
     </>
