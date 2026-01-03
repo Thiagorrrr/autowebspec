@@ -59,8 +59,8 @@ export const data: Product[] = [
         slug: "cadeirinha-infantil-reclinavel-legacy-cinza-e-preto-mescla-voyage",
         title: "Cadeirinha Infantil Reclinável Legacy Cinza e Preto Mescla Voyage",
         image: "https://http2.mlstatic.com/D_NQ_NP_2X_856035-MLA99488954664_112025-F.webp",
-        price: 989.90,
-        oldPrice: 616.82,
+        price: 616.82,
+        oldPrice: 989.90,
         category: "Passeio do Bebê",
         summary:
             "A Cadeirinha Legacy da Voyage vai transportar seu filho em todas as fases do crescimento.",
