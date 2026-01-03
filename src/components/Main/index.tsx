@@ -38,7 +38,7 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 </p>
 
                 <div className="mt-6 flex justify-center">
-                  <Button primary fullWidth onClick={() => router.push("/comparar")}
+                  <Button primary onClick={() => router.push("/comparar")}
                   >Comparar carros
                   </Button>
                 </div>

@@ -70,25 +70,25 @@ export const HomePage = () => {
                             <Card key={news.id} >
                                 <div className="flex items-center justify-center  w-full  h-48  relative">
                                     <div className="flex items-center justify-between gap-4">
-                                        <div className="relative w-32 aspect-square">
+                                        <div className="relative w-50 aspect-square">
                                             <Image
                                                 src={news.image.car1}
                                                 alt={news.title}
                                                 fill
                                                 className="object-contain"
-                                                sizes="128px"
+                                                sizes="140px"
                                             />
                                         </div>
 
                                         <span className="text-[#6319F7] font-bold text-lg">VS</span>
 
-                                        <div className="relative w-32 aspect-square">
+                                        <div className="relative w-50 aspect-square">
                                             <Image
                                                 src={news.image.car2}
                                                 alt={news.title}
                                                 fill
                                                 className="object-contain"
-                                                sizes="128px"
+                                                sizes="140px"
                                             />
                                         </div>
                                     </div>
