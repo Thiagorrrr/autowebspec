@@ -20,7 +20,7 @@ export const Footer = () => {
                                 <h2 className="text-lg font-black tracking-tighter text-gray-900">
                                     AUTO<span className="text-[#6319F7]">WEBSPEC</span>
                                 </h2>
-                                <p className="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold">
+                                <p className="text-[10px] uppercase tracking-[0.2em] font-bold">
                                     Comparador Pro
                                 </p>
                             </div>
@@ -41,6 +41,7 @@ export const Footer = () => {
                         <ul className="space-y-2 text-sm text-gray-500 font-medium">
                             <li><Link href="/" className="hover:text-[#6319F7]">Home</Link></li>
                             <li><Link href="/comparar" className="hover:text-[#6319F7]">Comparar</Link></li>
+                            <li><Link href="/produtos" className="hover:text-[#6319F7]">Produtos</Link></li>
                             <li><Link href="/ranking" className="hover:text-[#6319F7]">Ranking</Link></li>
                             <li><Link href="/noticias" className="hover:text-[#6319F7]">Notícias</Link></li>
                             <li><Link href="/marcas" className="hover:text-[#6319F7]">Marcas</Link></li>

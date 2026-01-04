@@ -68,15 +68,15 @@ export const Header = () => {
           className="md:hidden relative w-12 h-12 flex items-center justify-center z-60"
         >
           <span
-            className={`absolute w-8 h-[3px] bg-gray-900 rounded transition-all duration-300 ${open ? "rotate-45" : "-translate-y-2.5"
+            className={`absolute w-11 h-[3.5px] bg-gray-900 rounded transition-all duration-300 ${open ? "rotate-45" : "-translate-y-3"
               }`}
           />
           <span
-            className={`absolute w-8 h-[3px] bg-gray-900 rounded transition-all duration-300 ${open ? "opacity-0" : ""
+            className={`absolute w-11 h-[3.5px] bg-gray-900 rounded transition-all duration-300 ${open ? "opacity-0" : ""
               }`}
           />
           <span
-            className={`absolute w-8 h-[3px] bg-gray-900 rounded transition-all duration-300 ${open ? "-rotate-45" : "translate-y-2.5"
+            className={`absolute w-11 h-[3.5px] bg-gray-900 rounded transition-all duration-300 ${open ? "-rotate-45" : "translate-y-3"
               }`}
           />
         </button>
