@@ -5,7 +5,6 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import StyledComponentsRegistry from '@/lib/registry'
 import { Providers } from './providers'
 import { Header } from '@/components/Header'
-import { HeaderMobile } from '@/components/HeaderMobile'
 import Main from '@/components/Main'
 import { Footer } from '@/components/Footer'
 
@@ -50,7 +49,6 @@ export default function RootLayout({
           <Providers>
             <div className="min-h-screen bg-gray-50 text-gray-800 font-sans pb-24 md:pb-0">
               <Header />
-              <HeaderMobile />
               <Main>
                 {children}
               </Main>
