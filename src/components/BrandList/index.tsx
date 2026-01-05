@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useCars } from "@/hooks/queries/useCars";
 import { useCatalog } from "@/hooks/converter/useCatalog";
 import { Car } from "@/types/types";
+import { Loading } from "./loading";
 
 interface CarModel {
     model: string;
@@ -94,7 +95,7 @@ export const BrandsList = () => {
     const pathname = usePathname();
 
 
-    if (isLoading) return <p>Carregando...</p>;
+    if (isLoading) return <Loading />
     if (error) return <p>Erro ao carregar</p>;
 
     return (

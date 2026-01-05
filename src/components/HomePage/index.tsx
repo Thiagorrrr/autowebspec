@@ -9,6 +9,7 @@ import { Card } from "../Card";
 import { SectionTitle } from "../SectionTitle";
 import { Button } from "../Button";
 import { useNews } from "@/hooks/queries/useNews";
+import { Loading } from "./loading";
 
 export const HomePage = () => {
     const pathname = usePathname();
@@ -53,7 +54,7 @@ export const HomePage = () => {
         { id: 3, position: 3, title: "HB20", image: "/marcas/hyundai/hb20/hb20.webp", url: "ranking" },
     ];
 
-    if (isLoading) return <p>Carregando...</p>;
+    if (isLoading) return <Loading />
     if (error) return <p>Erro ao carregar</p>;
 
     return (

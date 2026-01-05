@@ -9,6 +9,7 @@ import { Activity, Clock, Medal, Plus, Trophy, Zap } from "lucide-react";
 import { useCars } from "@/hooks/queries/useCars";
 import { Button } from "../Button";
 import { Alert } from "../Alert";
+import { Loading } from "./loading";
 export type AlertMessage = {
     type: "success" | "error" | "alert";
     message: string;
@@ -141,7 +142,7 @@ export const DragRace = () => {
 
 
     const gridCols = participants.length === 2 ? 'grid-cols-2' : participants.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-4';
-    if (isLoading) return <p>Carregando...</p>;
+    if (isLoading) return <Loading />
     if (error) return <p>Erro ao carregar</p>;
     if (!data) return <div className="text-red-500">carro não encontrado.</div>;
     return (

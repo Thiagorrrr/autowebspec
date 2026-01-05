@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCars } from "@/hooks/queries/useCars";
+import { Loading } from "./loading";
 
 export const Ranking = () => {
   const { data, isLoading, error } = useCars();
@@ -11,7 +12,7 @@ export const Ranking = () => {
   const filteredCars = selectedCategory === 'Todas' ? data : data?.filter(c => c.category === selectedCategory);
   const sortedCars = [...filteredCars || []].sort((a, b) => a.price - b.price);
 
-  if (isLoading) return <p>Carregando...</p>;
+  if (isLoading) return <Loading />
   if (error) return <p>Erro ao carregar</p>;
   return (
     <div className="space-y-6 mt-8">

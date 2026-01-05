@@ -6,6 +6,7 @@ import { SectionTitle } from "../SectionTitle";
 import Image from "next/image";
 import { useCars } from "@/hooks/queries/useCars";
 import { Select } from "../Select";
+import { Loading } from "./loading";
 
 
 export const TechnicalDetailsSelected = () => {
@@ -117,7 +118,7 @@ export const TechnicalDetailsSelected = () => {
     setSelectedCarId(e.target.value);
   };
 
-  if (isLoading) return <p>Carregando...</p>;
+  if (isLoading) return <Loading />
   if (error) return <p>Erro ao carregar</p>;
   if (!car) return <div>Carro não encontrado.</div>;
 

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useNews } from "@/hooks/queries/useNews";
+import { Loading } from "./loading";
 
 export const NewsList = () => {
     const pathname = usePathname();
@@ -14,7 +15,7 @@ export const NewsList = () => {
     const { data, isLoading, error } = useNews();
 
 
-    if (isLoading) return <p>Carregando...</p>;
+    if (isLoading) return <Loading />
     if (error) return <p>Erro ao carregar</p>;
 
     return (

@@ -5,6 +5,7 @@ import { Card } from "../Card";
 import { Label } from "../Label";
 import { Select } from "../Select";
 import { useCars } from "@/hooks/queries/useCars";
+import { Loading } from "./loading";
 
 export const CostCalculator = () => {
   const { data, isLoading, error } = useCars();
@@ -115,7 +116,7 @@ export const CostCalculator = () => {
   };
 
 
-  if (isLoading) return <p>Carregando...</p>;
+  if (isLoading) return <Loading />
   if (error) return <p>Erro ao carregar carros.</p>;
   if (!car) return <p>Nenhum carro encontrado.</p>;
 
