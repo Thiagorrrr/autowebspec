@@ -8,9 +8,9 @@ export const Loading = () => (
                 <Skeleton type="text" lines={2} width={200} />
                 <Skeleton type="text" lines={2} width={100} />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                <Skeleton type="block" height={350} fullWidth />
-                <Skeleton type="block" height={350} fullWidth />
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                <Skeleton type="block" height={250} fullWidth />
+                <Skeleton type="block" height={250} fullWidth />
             </div>
         </section>
 
