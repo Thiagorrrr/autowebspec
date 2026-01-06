@@ -1,5 +1,5 @@
 "use client"
-import { Activity, Camera, Check, CheckCircle, Fuel, Grid, Ruler, Text, Timer, X } from "lucide-react";
+import { Activity, Camera, Check, CheckCircle, Fuel, Grid, Ruler, Text, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Label } from "../Label";
 import { SectionTitle } from "../SectionTitle";
