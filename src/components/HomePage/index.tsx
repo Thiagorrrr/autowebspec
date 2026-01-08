@@ -34,7 +34,7 @@ export const HomePage = () => {
                 car1: "/marcas/volkswagen/polo/polo.webp",
                 car2: "/marcas/peugeot/208/208.webp",
             },
-            url: "comparar/?carro1=volkswagen-polo-2025&carro2=peugeot-208-2025",
+            url: "comparar/?carro1=volkswagen-polo-2025-highline-170-tsi-at&carro2=peugeot-208-2025-gt-turbo-at",
         },
         {
             id: "3",
@@ -44,7 +44,7 @@ export const HomePage = () => {
                 car1: "/marcas/hyundai/hb20/hb20.webp",
                 car2: "/marcas/peugeot/208/208.webp",
             },
-            url: "comparar/?carro1=hyundai-hb20-2025&carro2=peugeot-208-2025",
+            url: "comparar/?carro1=hyundai-hb20-2025&carro2=peugeot-208-2025-gt-turbo-at",
         },
     ];
 
