@@ -112,7 +112,7 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
 
     return (
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm mt-6 overflow-x-auto">
-            <h3 className="text-gray-800 font-bold mb-6 flex items-center gap-2">
+            <h3 className="text-gray-800 text-[11px] font-bold mb-6 flex items-center gap-2">
                 <Info size={18} className="text-[#6319F7]" />
                 Comparativo Técnico
             </h3>
@@ -125,8 +125,8 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
                         const car = carsMap.get(p.id)!;
                         return (
                             <div key={p.tempId} className="col-span-2 text-center flex flex-col items-center">
-                                <span className="text-[10px] font-black text-gray-300 uppercase leading-none mb-1">{car.make}</span>
-                                <span className="text-xs font-bold text-gray-800 line-clamp-1">{car.version}</span>
+                                <span className="text-[10px] font-black text-gray-600 uppercase mb-1">{car.make}</span>
+                                <span className="text-xs font-bold text-gray-500 line-clamp-1">{car.version}</span>
                                 <span className={`text-[9px] font-bold px-1.5 rounded mt-1 uppercase ${p.stage === 'stock' ? 'bg-gray-100 text-gray-500' : 'bg-orange-100 text-orange-600'}`}>
                                     {p.stage}
                                 </span>
@@ -144,7 +144,7 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
                     <div key={sIdx} className="mb-8 last:mb-0">
                         <div className="flex items-center gap-2 mb-3 px-1">
                             {section.icon}
-                            <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">{section.title}</h4>
+                            <h4 className="text-[11px] font-bold text-gray-600 uppercase tracking-widest">{section.title}</h4>
                         </div>
 
                         <div className="border border-gray-100 rounded-xl overflow-hidden shadow-sm">

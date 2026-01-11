@@ -9,7 +9,7 @@ import { useCars } from "@/hooks/queries/useCars";
 import { Button } from "../Button";
 import { Alert } from "../Alert";
 import { Loading } from "./loading";
-import { TechnicalComparison } from "../TechnicalComparison";
+import { TechnicalComparison } from "./components/TechnicalComparison";
 export type AlertMessage = {
     type: "success" | "error" | "alert";
     message: string;
