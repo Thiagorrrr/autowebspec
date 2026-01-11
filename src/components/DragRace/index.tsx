@@ -2,14 +2,14 @@
 import { Participant, RaceResult } from "@/types/types";
 import { useEffect, useState } from "react";
 import { DetailedCarSelector } from "./components/DetailedCarSelector";
-import { StatComparisonRow } from "./components/StatComparisonRow";
 import { EquipmentComparison } from "./components/EquipmentComparison";
 import { VerdictSection } from "./components/VerdictSection";
-import { Activity, Clock, Medal, Plus, Trophy, Zap } from "lucide-react";
+import { Medal, Plus, Trophy } from "lucide-react";
 import { useCars } from "@/hooks/queries/useCars";
 import { Button } from "../Button";
 import { Alert } from "../Alert";
 import { Loading } from "./loading";
+import { TechnicalComparison } from "../TechnicalComparison";
 export type AlertMessage = {
     type: "success" | "error" | "alert";
     message: string;
@@ -162,7 +162,7 @@ export const DragRace = () => {
 
             <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden">
                 <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Simulação 0-100 km/h</h3>
+                    <h3 className="text-sm text-gray-800 font-bold uppercase tracking-widest">Simulação 0-100 km/h</h3>
                     {/* Ranking simplificado durante a corrida */}
                     {raceResults && !racing && (
                         <div className="flex gap-2">
@@ -260,21 +260,8 @@ export const DragRace = () => {
             </div>
 
             <div>
-                <div className="flex items-center gap-3 mb-4">
-                    <div className="w-1 h-6 bg-[#6319F7] rounded-full"></div>
-                    <h2 className="text-xl font-bold text-gray-800">Raio-X Técnico</h2>
-                </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-                    {
-                        cars && (
-                            <><StatComparisonRow label="Potência (CV)" cars={cars} participants={participants} dataKey="hp" unit="cv" icon={Zap} />
-                                <StatComparisonRow label="Torque (kgfm)" cars={cars} participants={participants} dataKey="torque" unit="kgfm" icon={Activity} />
-                                <StatComparisonRow label="0-100 km/h" cars={cars} participants={participants} dataKey="zeroToHundred" unit="s" isLowerBetter={true} icon={Clock} />
-                            </>
-                        )
-                    }
-                </div>
+                {cars && <TechnicalComparison cars={cars} participants={participants} />}
 
                 {cars && <EquipmentComparison cars={cars} participants={participants} />}
 
