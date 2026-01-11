@@ -264,11 +264,11 @@ export const CostCalculator = () => {
           <TextInput label="Preço do carro" value={price} onChange={setPrice} max={1000000} />
           <TextInput label="Km mensal" value={kmMonthly} onChange={setKmMonthly} max={50000} />
           <TextInput label="Consumo (km/l)" value={consumption} onChange={setConsumption} max={100} />
-          <TextInput label="Preço do combustível (R$)" value={fuelPrice} onChange={setFuelPrice} max={20} />
+          <TextInput label="Preço do combustível" value={fuelPrice} onChange={setFuelPrice} max={20} />
           <TextInput label="IPVA (%)" value={ipvaRate * 100} onChange={(v) => setIpvaRate(v / 100)} max={20} />
-          <TextInput label="Seguro anual (R$)" value={insuranceAnnual} onChange={setInsuranceAnnual} max={500000} />
+          <TextInput label="Seguro anual" value={insuranceAnnual} onChange={setInsuranceAnnual} max={500000} />
           <TextInput label="Manutenção mensal" value={maintenanceMonthly} onChange={setMaintenanceMonthly} max={5000} />
-          <TextInput label="Financiamento mensal (R$)" value={financingMonthly} onChange={setFinancingMonthly} max={100000} />
+          <TextInput label="Financiamento mensal" value={financingMonthly} onChange={setFinancingMonthly} max={100000} />
         </div>
       )}
 
