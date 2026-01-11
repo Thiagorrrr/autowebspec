@@ -24,7 +24,7 @@ export const HomePage = () => {
                 car1: "/marcas/toyota/corolla/corolla.webp",
                 car2: "/marcas/nissan/sentra/sentra.webp",
             },
-            url: "comparar/?carro1=toyota-corolla-2025&carro2=nissan-sentra-2025",
+            url: "comparar/?carro1=toyota-corolla-2025-gli-2.0&carro2=nissan-sentra-2026-exclusive-2.0-cvt-interior-premium",
         },
         {
             id: "2",
