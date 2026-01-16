@@ -8,12 +8,17 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useNews } from "@/hooks/queries/useNews";
 import { Loading } from "./loading";
+import { useMemo } from "react";
 
 export const NewsList = () => {
     const pathname = usePathname();
 
     const { data, isLoading, error } = useNews();
 
+    const sortedData = useMemo(() => {
+        if (!data) return [];
+        return [...data].sort((a, b) => a.id - b.id);
+    }, [data]);
 
     if (isLoading) return <Loading />
     if (error) return <p>Erro ao carregar</p>;
@@ -26,9 +31,8 @@ export const NewsList = () => {
 
             {/* Destaque */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                {data?.slice(0, 1).map(news => (
+                {sortedData?.slice(0, 1).map(news => (
                     <Link className="col-span-1 md:col-span-2 p-0 overflow-hidden cursor-pointer group" href={`${pathname}${news.slug}`} key={news.id}>
-
                         <Card key={news.id} >
                             <div className="relative h-64 md:h-80 w-full">
                                 <Image src={news.image} alt={news.title} width={100} height={150} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -50,7 +54,7 @@ export const NewsList = () => {
 
             {/* Lista */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data?.slice(1).map(news => (
+                {sortedData?.slice(1).map(news => (
                     <Link className="p-0 overflow-hidden flex flex-col h-full cursor-pointer hover:shadow-lg transition-shadow" href={`${pathname}${news.slug}`} key={news.id}>
 
                         <Card key={news.id} >
