@@ -1,5 +1,6 @@
 "use client"
 import { ChevronRight, MapPin } from "lucide-react";
+import { SectionTitle } from "../SectionTitle";
 
 interface EventData {
   id: number;
@@ -85,7 +86,8 @@ export const EVENTS: EventData[] = [
 
 export const EventsCalendar: React.FC = () => (
   <div className="space-y-4 mt-8">
-    <h2 className="text-2xl font-bold text-gray-800 mb-4">Próximos Eventos</h2>
+    <SectionTitle>Próximos Eventos</SectionTitle>
+
     {EVENTS.map(evt => (
       <div key={evt.id} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4 items-center hover:shadow-md transition-all cursor-pointer group">
         <div className="bg-gray-50 group-hover:bg-[#6319F7] group-hover:text-white transition-colors w-16 h-16 rounded-xl flex flex-col items-center justify-center border border-gray-100 group-hover:border-[#6319F7]">

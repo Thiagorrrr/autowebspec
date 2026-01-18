@@ -1,6 +1,6 @@
 
 "use client"
-import { ChevronRight, Newspaper } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Card } from "../Card";
 import { SectionTitle } from "../SectionTitle";
 import Link from "next/link";
@@ -26,7 +26,7 @@ export const NewsList = () => {
     return (
         <div className="space-y-6 mt-8">
             <SectionTitle>
-                <Newspaper size={20} className="text-[#6319F7]" /> Últimas Notícias
+                Últimas Notícias
             </SectionTitle>
 
             {/* Destaque */}

@@ -5,6 +5,7 @@ import { useCars } from "@/hooks/queries/useCars";
 import { Select } from "../Select";
 import { Loading } from "./loading";
 import { CarDetails } from "../CarDetails";
+import { SectionTitle } from "../SectionTitle";
 
 
 export const TechnicalDetailsSelected = () => {
@@ -122,7 +123,7 @@ export const TechnicalDetailsSelected = () => {
   return (
     <div className="space-y-6 mt-8">
       <div className="flex  flex-col bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-        <h2 className="text-2xl font-bold text-gray-800 pb-6">Detalhes Tecnicos</h2>
+        <SectionTitle>Detalhes Tecnicos</SectionTitle>
         <Label>Selecione o Carro</Label>
         <div className="grid grid-cols-2 gap-2 mb-6 pt-4">
           <div className=" col-span-2 ">

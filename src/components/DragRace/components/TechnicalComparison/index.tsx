@@ -112,7 +112,7 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
 
     return (
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm mt-6 overflow-x-auto">
-            <h3 className="text-gray-800 text-[11px] font-bold mb-6 flex items-center gap-2">
+            <h3 className="text-gray-800 text-[11px] font-bold mb-6 uppercase flex items-center gap-2">
                 <Info size={18} className="text-[#6319F7]" />
                 Comparativo Técnico
             </h3>
@@ -155,7 +155,7 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
                                 return (
                                     <div key={fIdx} className="grid grid-cols-12 gap-2 py-3.5 border-b last:border-0 border-gray-50 hover:bg-gray-50 transition-colors">
                                         <div className="col-span-4 flex items-center pl-4">
-                                            <span className="text-sm font-semibold text-gray-600">{field.label}</span>
+                                            <span className="text-md font-semibold text-gray-600">{field.label}</span>
                                         </div>
 
                                         {participants.map((p) => {
@@ -165,15 +165,15 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
 
                                             return (
                                                 <div key={p.tempId} className="col-span-2 flex flex-col items-center justify-center relative">
-                                                    <div className={`text-sm font-bold flex items-baseline gap-0.5 ${isBest ? "text-green-600" : "text-gray-800"}`}>
+                                                    <div className={`text-md font-bold flex items-baseline gap-0.5 ${isBest ? "text-green-700" : "text-gray-800"}`}>
                                                         {typeof val === 'number' ? val.toLocaleString('pt-BR') : val}
-                                                        <span className={`text-[9px] font-medium uppercase ${isBest ? "text-green-500/70" : "text-gray-400"}`}>
+                                                        <span className={`text-[9px] font-medium uppercase ${isBest ? "text-green-700" : "text-gray-400"}`}>
                                                             {field.unit}
                                                         </span>
                                                     </div>
                                                     {isBest && (
                                                         <div className="absolute right-1">
-                                                            <CheckCircle2 size={12} className="text-green-500 opacity-60" />
+                                                            <CheckCircle2 size={12} className="text-green-700" />
                                                         </div>
                                                     )}
                                                 </div>

@@ -29,11 +29,11 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           {/* Conteúdo */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center max-w-2xl px-4">
-              <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900">
+              <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
                 Compare. Escolha.
               </h1>
 
-              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="mt-4 text-md md:text-lg text-gray-700 leading-relaxed">
                 Compare carros, analise especificações técnicas e tome a melhor
                 decisão antes de comprar.
               </p>

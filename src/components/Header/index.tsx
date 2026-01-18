@@ -46,7 +46,7 @@ export const Header = () => {
         </div>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden md:flex gap-8 text-sm font-bold text-gray-400">
+        <nav className="hidden md:flex gap-8 text-sm font-bold">
           {menuItems.map(({ label, href }) => (
             <Link
               key={href}
@@ -94,23 +94,23 @@ export const Header = () => {
       {/* MOBILE MENU */}
       <aside
         className={`
-          fixed top-20 right-0 h-full w-72 bg-white z-50 shadow-xl
+          fixed top-20 right-0 h-full w-7/12 bg-white z-50 shadow-xl
           transform transition-transform duration-300
           ${open ? "translate-x-0" : "translate-x-full"}
         `}
       >
 
-        <nav className="flex flex-col text-sm font-bold uppercase">
+        <nav className="flex flex-col text-md font-bold uppercase ">
           {menuItems.map(({ label, href }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setOpen(false)}
               className={`
-                px-6 py-4 border-l-4 transition-all
+                px-6 py-6 border-l-4 transition-all  last:border-b-transparent
                 ${isActive(href)
                   ? "border-[#6319F7] text-[#6319F7] bg-[#6319F7]/5"
-                  : "border-transparent text-gray-700 hover:bg-gray-50"
+                  : "border-l-transparent border-b  border-b-gray-100 text-gray-700 hover:bg-gray-50"
                 }
               `}
             >

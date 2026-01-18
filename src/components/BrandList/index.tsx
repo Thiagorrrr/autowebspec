@@ -1,5 +1,5 @@
 "use client"
-import { ChevronRight, Factory } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { SectionTitle } from "../SectionTitle";
 import { Card } from "../Card";
 import Link from "next/link";
@@ -101,7 +101,7 @@ export const BrandsList = () => {
     return (
         <div className="space-y-6 mt-8">
             <SectionTitle>
-                <Factory size={20} className="text-[#6319F7]" /> Marcas Disponíveis
+                Marcas Disponíveis
             </SectionTitle>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {uniqueMakes.map(make => {

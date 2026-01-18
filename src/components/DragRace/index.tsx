@@ -10,6 +10,7 @@ import { Button } from "../Button";
 import { Alert } from "../Alert";
 import { Loading } from "./loading";
 import { TechnicalComparison } from "./components/TechnicalComparison";
+import { SectionTitle } from "../SectionTitle";
 export type AlertMessage = {
     type: "success" | "error" | "alert";
     message: string;
@@ -148,7 +149,7 @@ export const DragRace = () => {
     return (
         <div className="space-y-6 mt-8">
             <div className="flex justify-between items-center">
-                <h2 className="text-xl font-bold text-gray-700">Grid de Largada</h2>
+                <SectionTitle>Grid de largada</SectionTitle>
                 {participants.length < 4 && (
                     <button onClick={addParticipant} className="flex items-center gap-1 text-sm font-bold text-[#6319F7] bg-[#6319F7]/10 px-3 py-2 rounded-lg hover:bg-[#6319F7] hover:text-white transition-all"><Plus size={14} /> Adicionar Carro</button>
                 )}
@@ -186,20 +187,18 @@ export const DragRace = () => {
 
                         return (
                             <div key={p.tempId} className="relative h-10 bg-gray-50 rounded-lg border border-gray-100 flex items-center px-2 z-10">
-                                <div className="absolute p-2 text-[9px] text-gray-400 font-bold w-12 truncate">
-                                    {car.model}
-                                </div>
+
 
                                 <div
-                                    className={`absolute h-6 w-12 ${laneColor} rounded shadow-lg flex items-center justify-center z-10 text-white transition-all`}
+                                    className={`absolute h-6 w-20 ${laneColor} rounded shadow-lg flex items-center justify-center z-10 text-white transition-all`}
                                     style={{
                                         transition: racing
                                             ? `left ${time * 0.5}s cubic-bezier(0.25, 1, 0.5, 1)`
                                             : 'left 0.5s',
-                                        left: racing ? 'calc(100% - 4rem)' : '3rem'
+                                        left: racing ? 'calc(100% - 5rem)' : '0rem'
                                     }}
                                 >
-                                    <span className="text-[8px] font-bold">P{idx + 1}</span>
+                                    <span className="text-[8px] font-bold truncate">{car.model}</span>
                                 </div>
 
                                 {rank && (

@@ -56,8 +56,8 @@ export const EquipmentComparison: React.FC<EquipmentComparisonProps> = ({
 
     return (
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm mt-6 overflow-x-auto">
-            <h3 className="text-gray-800 font-bold mb-4 flex items-center gap-2">
-                <Scale size={18} className="text-[#6319F7]" />
+            <h3 className="text-gray-800 font-bold mb-4 flex items-center uppercase gap-2">
+                <Scale size={18} className="text-[#6319F7] " />
                 Comparativo de Equipamentos
             </h3>
 
@@ -82,10 +82,10 @@ export const EquipmentComparison: React.FC<EquipmentComparisonProps> = ({
                                     </div>
                                 )}
 
-                                <span className="truncate w-full" title={car.model}>
+                                <span className="text-sm text-black truncate w-full" title={car.model}>
                                     {car.make}
                                 </span>
-                                <span className="text-[9px] text-gray-300 block truncate w-full">
+                                <span className="ext-xs font-bold text-gray-500 block truncate w-full">
                                     {car.version}
                                 </span>
 
@@ -139,7 +139,7 @@ export const EquipmentComparison: React.FC<EquipmentComparisonProps> = ({
                                         className="grid grid-cols-12 gap-2 items-center py-3 border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors px-2"
                                     >
                                         <div
-                                            className="col-span-4 text-sm font-medium text-gray-600 truncate"
+                                            className="col-span-4 text-md font-medium text-gray-600 truncate"
                                             title={item}
                                         >
                                             {item}

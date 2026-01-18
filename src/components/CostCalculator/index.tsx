@@ -6,6 +6,7 @@ import { Label } from "../Label";
 import { Select } from "../Select";
 import { useCars } from "@/hooks/queries/useCars";
 import { Loading } from "./loading";
+import { SectionTitle } from "../SectionTitle";
 
 export const CostCalculator = () => {
   const { data, isLoading, error } = useCars();
@@ -177,12 +178,9 @@ export const CostCalculator = () => {
     maintenanceMonthly +
     financingMonthly;
 
-  //
-  // UI
-  //
   return (
     <Card className="p-6 mt-8">
-      <h2 className="text-2xl font-bold mb-6">Simulador Mensal</h2>
+      <SectionTitle>Simulador Mensal</SectionTitle>
 
       {/* SELECTS */}
       <div className="grid grid-cols-2 gap-2 mb-6">

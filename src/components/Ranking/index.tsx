@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCars } from "@/hooks/queries/useCars";
 import { Loading } from "./loading";
+import { SectionTitle } from "../SectionTitle";
 
 const PRICE_OPTIONS = [
   { label: 'Todos os preços', min: 0, max: Infinity },
@@ -45,7 +46,7 @@ export const Ranking = () => {
       {/* Header e Filtros */}
       <div className="bg-white p-5 md:p-6 rounded-3xl border border-gray-100 shadow-sm space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <h2 className="text-2xl font-black text-gray-900 italic uppercase tracking-tighter">Ranking de Preços</h2>
+          <SectionTitle>Ranking de Preços</SectionTitle>
 
           <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-xl">
             <button
