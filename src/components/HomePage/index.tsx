@@ -70,45 +70,35 @@ export const HomePage = () => {
                             href={`${pathname}${news.url}`}
                             className="group"
                         >
-                            <Card className="h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                                <div className="relative flex items-center justify-center h-48 bg-gray-50">
-                                    <div className="flex items-center gap-4">
-                                        <div className="relative w-36 aspect-square">
-                                            <Image
-                                                src={news.image.car1}
-                                                alt={news.title}
-                                                fill
-                                                className="object-contain"
-                                            />
+                            <Card className="h-full flex flex-col overflow-hidden border-gray-100  transition-all duration-300 hover:shadow-2xl">
+                                <div className="relative flex items-center justify-center h-52 bg-radial from-white to-gray-50 p-4">
+                                    {/* Badge central VS */}
+                                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                                        <div className="bg-white shadow-md border border-gray-100 w-10 h-10 rounded-full flex items-center justify-center transition-transform">
+                                            <span className="text-[#6319F7] font-black text-xs">VS</span>
                                         </div>
+                                    </div>
 
-                                        <span className="text-[#6319F7] font-extrabold text-xl">
-                                            VS
-                                        </span>
-
-                                        <div className="relative w-36 aspect-square">
-                                            <Image
-                                                src={news.image.car2}
-                                                alt={news.title}
-                                                fill
-                                                className="object-contain"
-                                            />
+                                    <div className="flex items-center justify-between w-full">
+                                        <div className="relative w-[42%] aspect-square  transition-transform">
+                                            <Image src={news.image.car1} alt={news.title} fill className="object-contain" />
+                                        </div>
+                                        <div className="relative w-[42%] aspect-square  transition-transform">
+                                            <Image src={news.image.car2} alt={news.title} fill className="object-contain" />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="p-4 flex flex-col flex-1">
-                                    <h3 className="font-bold text-lg text-gray-900 mb-1">
+                                <div className="p-5 flex flex-col flex-1 bg-white">
+                                    <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#6319F7] transition-colors">
                                         {news.title}
                                     </h3>
-
-                                    <p className="text-sm text-gray-500 flex-1">
+                                    <p className="text-sm text-gray-500 mt-2 line-clamp-2">
                                         {news.subtitle}
                                     </p>
-
-                                    <div className="mt-4">
-                                        <Button fullWidth primary>
-                                            Comparar
+                                    <div className="mt-6">
+                                        <Button fullWidth className="font-bold tracking-wide">
+                                            Comparar Detalhes
                                         </Button>
                                     </div>
                                 </div>
@@ -119,63 +109,49 @@ export const HomePage = () => {
             </section>
 
             {/* ================= RANKING ================= */}
-            <section className="space-y-6">
-                <SectionTitle>Ranking por preço</SectionTitle>
+            <section className="bg-gray-50 -mx-4 px-4 py-16 rounded-4xl">
+                <SectionTitle className="mb-10 text-center">Melhores do Ano por Preço</SectionTitle>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {dataRanking.map((item) => (
-                        <Link key={item.id} href={`${pathname}${item.url}`} className="group">
-                            <Card className="relative flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                                {/* Badge posição */}
-                                <div className="absolute top-3 left-3 z-10">
-                                    <span
-                                        className={`
-                      flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold shadow-sm
-                      ${item.position === 1
-                                                ? "bg-linear-to-r from-yellow-400 to-yellow-300 text-black"
-                                                : item.position === 2
-                                                    ? "bg-linear-to-r from-gray-300 to-gray-200 text-gray-900"
-                                                    : "bg-linear-to-r from-orange-300 to-orange-200 text-gray-900"}
-                    `}
-                                    >
-                                        {item.position === 1 && "🏆"}
-                                        {item.position === 2 && "🥈"}
-                                        {item.position === 3 && "🥉"}
-                                        {item.position}º lugar
-                                    </span>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6  mx-auto">
+                    {dataRanking.map((item, index) => (
+                        <Link
+                            key={item.id}
+                            href={`${pathname}${item.url}`}
+                            className={`group ${index === 0 ? 'lg:col-span-6' : 'lg:col-span-3'}`}
+                        >
+                            <Card className="h-full relative overflow-hidden bg-white border-none shadow-sm hover:shadow-xl transition-all">
+                                {/* Position Badge */}
+                                <div className="absolute top-4 left-4 z-20">
+                                    <div className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm flex items-center gap-2 transition-colors duration-300
+      ${item.position === 1
+                                            ? 'bg-yellow-400 text-yellow-950'
+                                            : item.position === 2
+                                                ? 'bg-gray-300 text-gray-800'
+                                                : item.position === 3
+                                                    ? 'bg-[#CD7F32] text-white'
+                                                    : 'bg-gray-100 text-gray-600'
+                                        }`}>
+                                        {item.position}º Posição
+                                    </div>
                                 </div>
 
-                                {/* Categoria */}
-                                <div className="absolute top-3 right-3 z-10">
-                                    <span className="text-xs font-medium text-white bg-[#5014c9] px-2 py-1 rounded">
-                                        Hatch
-                                    </span>
-                                </div>
-
-                                {/* Imagem */}
-                                <div className="relative flex items-center justify-center h-44 bg-gray-50">
+                                <div className={`relative flex items-center justify-center bg-gray-50/50 ${index === 0 ? 'h-72' : 'h-60'}`}>
                                     <Image
                                         src={item.image}
                                         alt={item.title}
                                         fill
-                                        className="object-contain transition-transform duration-300 group-hover:scale-105"
+                                        className="object-contain p-8 group-hover:scale-110 transition-transform duration-500"
                                     />
                                 </div>
 
-                                {/* Conteúdo */}
-                                <div className="p-4 flex flex-col flex-1">
-                                    <h3 className="font-semibold text-base text-gray-900">
+                                <div className="p-6">
+                                    <span className="text-[10px] font-bold text-[#6319F7] uppercase tracking-widest">Categoria Hatch</span>
+                                    <h3 className={`font-bold text-gray-900 ${index === 0 ? 'text-2xl' : 'text-lg'}`}>
                                         {item.title}
                                     </h3>
-
-                                    <p className="mt-1 text-sm text-gray-500">
-                                        Ranking de preço
-                                    </p>
-
-                                    <div className="mt-auto pt-4">
-                                        <Button fullWidth primary>
-                                            Ver detalhes
-                                        </Button>
+                                    {index === 0 && <p className="text-gray-500 text-sm mt-2">O campeão de vendas e custo-benefício desta semana.</p>}
+                                    <div className="mt-4 flex items-center text-[#6319F7] font-bold text-sm">
+                                        Ver Detalhes <ChevronRight size={16} />
                                     </div>
                                 </div>
                             </Card>
@@ -233,3 +209,5 @@ export const HomePage = () => {
         </div>
     );
 };
+
+

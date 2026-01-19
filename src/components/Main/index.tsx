@@ -14,36 +14,52 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       {isHome && (
-        <section className="relative w-full h-[260px] md:h-[400px] overflow-hidden">
-          <Image
-            src="/hero.webp"
-            alt="Carro andando em uma rodovia"
-            fill
-            priority
-            className="object-cover object-[50%_60%]"
-          />
+        <section className="relative w-full h-[250px] md:h-[500px] flex items-center overflow-hidden bg-white">
+          {/* Imagem posicionada à direita para não brigar com o texto */}
+          <div className="absolute inset-0 left-0 ">
+            <Image
+              src="/hero.webp"
+              alt="Carro andando em uma rodovia"
+              fill
+              priority
+              className="object-cover object-[left_center] md:object-center" />
+          </div>
 
-          {/* Overlay refinado */}
-          <div className="absolute inset-0 bg-linear-to-b from-white/85 via-white/40 to-white/95" />
+          {/* Máscara Branca: 
+              Faz a transição suave do fundo branco do site para a imagem.
+              No mobile ela cobre mais, no desktop ela abre para mostrar o carro.
+          */}
+          <div className="absolute inset-0 bg-linear-to-r from-white via-white/90 to-transparent md:via-white/40" />
+
+          {/* Degradê na base para sumir com a borda inferior da foto */}
+          <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-white to-transparent" />
 
           {/* Conteúdo */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center max-w-2xl px-4">
-              <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
-                Compare. Escolha.
+          <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-10 h-0.5 bg-[#6319F7]"></span>
+                <span className="text-[#6319F7] text-xs font-black uppercase tracking-widest">
+                  Especialistas em Carros
+                </span>
+              </div>
+
+              <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-[1.1]">
+                Compare. <br />
+                Escolha o <span className="text-[#6319F7]">melhor.</span>
               </h1>
 
-              <p className="mt-4 text-md md:text-lg text-gray-700 leading-relaxed">
-                Compare carros, analise especificações técnicas e tome a melhor
-                decisão antes de comprar.
+              <p className="mt-6 text-base md:text-lg text-gray-600 font-medium leading-relaxed max-w-md">
+                Encontre a ficha técnica completa e compare o desempenho dos modelos que você deseja.
               </p>
 
-              <div className="mt-8 flex justify-center">
+              <div className="mt-10 flex flex-wrap gap-4">
                 <Button
                   primary
+                  className="h-14 px-8 shadow-xl shadow-[#6319F7]/20 hover:-translate-y-1 transition-all"
                   onClick={() => router.push("/comparar")}
                 >
-                  Comparar carros
+                  Começar Comparação
                 </Button>
               </div>
             </div>
@@ -54,8 +70,8 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {/* CONTEÚDO */}
       <main
         className={`
-          max-w-7xl mx-auto px-4
-          ${isHome ? "mt-10 md:mt-14" : "mt-6 md:mt-10"}
+          max-w-7xl mx-auto px-4 pb-20
+          ${isHome ? "mt-12 md:mt-16" : "mt-8"}
         `}
       >
         {children}
