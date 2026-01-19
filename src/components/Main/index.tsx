@@ -17,7 +17,7 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <section className="relative w-full h-[260px] md:h-[400px] overflow-hidden">
           <Image
             src="/hero.webp"
-            alt="AutoWebSpec"
+            alt="Carro andando em uma rodovia"
             fill
             priority
             className="object-cover object-[50%_60%]"
