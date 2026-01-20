@@ -3,6 +3,7 @@ import { Car, Participant, StageType } from "@/types/types";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from 'next/image';
+
 interface DetailedCarSelectorProps {
     rawCars: Car[];
     cars: Car[];
@@ -12,13 +13,15 @@ interface DetailedCarSelectorProps {
     showRemove: boolean;
 }
 
-export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCars, cars, participant, onUpdate, onRemove, showRemove }) => {
-    const car = cars.find(c => c.id === participant.id)!;
+export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCars, cars, participant, onRemove, onUpdate, showRemove }) => {
+    // O carro "atual" selecionado para este participante
+    const car = cars.find(c => c.id === participant.id) || rawCars[0];
 
     const [selectedMake, setSelectedMake] = useState(car.make);
     const [selectedModel, setSelectedModel] = useState(car.model);
     const [selectedYear, setSelectedYear] = useState(car.year);
 
+    // Listas para os selects
     const makes = [...new Set(rawCars.map(c => c.make))];
     const models = [...new Set(rawCars.filter(c => c.make === selectedMake).map(c => c.model))];
     const years = [...new Set(rawCars.filter(c => c.make === selectedMake && c.model === selectedModel).map(c => c.year))];
@@ -36,29 +39,46 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
         const firstCar = rawCars.find(c => c.make === newMake);
         if (firstCar) onUpdate(participant.tempId, { id: firstCar.id });
     };
+
     const handleModelChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newModel = e.target.value;
         setSelectedModel(newModel);
         const firstCar = rawCars.find(c => c.make === selectedMake && c.model === newModel);
         if (firstCar) onUpdate(participant.tempId, { id: firstCar.id });
     };
-    const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => { onUpdate(participant.tempId, { id: e.target.value }); };
-    const handleStageChange = (stage: StageType) => { onUpdate(participant.tempId, { stage }); };
+
+    const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        onUpdate(participant.tempId, { id: e.target.value });
+    };
+
+    const handleStageChange = (stage: string) => {
+        onUpdate(participant.tempId, { stage: stage as StageType });
+    };
 
     return (
-        <div className="bg-white p-4  rounded-xl border border-gray-200 shadow-sm flex flex-col h-full relative group">
+        <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col h-full relative group">
             {showRemove && (
-                <button onClick={() => onRemove(participant.tempId)} className="absolute -top-2 -right-2 bg-red-100 text-red-500 rounded-full p-1 shadow-sm hover:bg-red-500 hover:text-white transition-colors z-10"><X size={14} /></button>
+                <button onClick={() => onRemove(participant.tempId)} className="absolute -top-2 -right-2 bg-red-100 text-red-500 rounded-full p-1 shadow-sm hover:bg-red-500 hover:text-white transition-colors z-10">
+                    <X size={14} />
+                </button>
             )}
-            <div className="flex-1 flex items-end w-full mt-2">
-                <div className="relative w-full h-20 lg:h-40 rounded-lg ">
-                    <div className="absolute w-full h-50 lg:h-80 -top-30 lg:-top-40">
-                        <Image src={`/marcas/${car.make.toLowerCase()}/${car.model.toLowerCase()}/${car.model.toLowerCase()}.webp`} alt={car.image.replace("-", " ")} fill className="w-full h-full object-contain" />
-                        <div className="absolute  bottom-2 left-0 text-black font-bold text-[10px]">{car.specs[participant.stage].hp}cv</div>
-                    </div>
 
+            <div className="flex-1 flex items-end w-full mt-2">
+                <div className="relative w-full h-20 lg:h-40 rounded-lg">
+                    <div className="absolute w-full h-50 lg:h-80 -top-30 lg:-top-40">
+                        <Image
+                            src={`/marcas/${car.make.toLowerCase()}/${car.model.toLowerCase()}/${car.model.toLowerCase()}.webp`}
+                            alt={car.model}
+                            fill
+                            className="w-full h-full object-contain"
+                        />
+                        <div className="absolute bottom-2 left-0 text-black font-bold text-[10px]">
+                            {car.specs[participant.stage]?.hp || 0}cv
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div className="grid grid-cols-2 gap-2 mb-3">
                 <div className="col-span-2">
                     <label className="text-[10px] font-bold text-gray-400 uppercase">Fabricante</label>
@@ -85,12 +105,28 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                     </select>
                 </div>
             </div>
+
             <div className="grid grid-cols-3 gap-1 mb-3 w-full">
-                {(['stock', 'stage1', 'stage2'] as StageType[]).map(stg => (
-                    <button key={stg} onClick={() => handleStageChange(stg)} className={`text-[9px] py-1 rounded uppercase font-bold transition-all ${participant.stage === stg ? 'bg-[#6319F7] text-white shadow-md' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
-                        {stg === 'stock' ? 'Stock' : stg.replace('stage', 'S')}
-                    </button>
-                ))}
+                {car.specs && Object.keys(car.specs).filter(stg => stg !== 'stage3')
+                    .sort((a, b) => {
+                        if (a === 'stock') return -1;
+                        if (b === 'stock') return 1;
+                        return a.localeCompare(b);
+                    })
+                    .map((stg) => (
+                        <button
+                            key={stg}
+                            onClick={() => handleStageChange(stg)}
+                            className={`text-[9px] py-1 rounded uppercase font-bold transition-all 
+                    ${participant.stage === stg
+                                    ? 'bg-[#6319F7] text-white shadow-md'
+                                    : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                                }`}
+                        >
+                            {stg === 'stock' ? 'Stock' : stg.replace('stage', 'S')}
+                        </button>
+                    ))
+                }
             </div>
         </div>
     );
