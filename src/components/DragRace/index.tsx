@@ -149,7 +149,7 @@ export const DragRace = () => {
     return (
         <div className="space-y-6 mt-8">
             <div className="flex justify-between items-center">
-                <SectionTitle>Grid de largada</SectionTitle>
+                <SectionTitle>Comparar carros</SectionTitle>
                 {participants.length < 4 && (
                     <button onClick={addParticipant} className="flex items-center gap-1 text-sm font-bold text-[#6319F7] bg-[#6319F7]/10 px-3 py-2 rounded-lg hover:bg-[#6319F7] hover:text-white transition-all"><Plus size={14} /> Adicionar Carro</button>
                 )}

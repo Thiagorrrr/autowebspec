@@ -8,12 +8,14 @@ import { Header } from '@/components/Header'
 import Main from '@/components/Main'
 import { Footer } from '@/components/Footer'
 
-
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Auto web spec',
-  description: 'Seu site de comparativos de carros',
+  title: {
+    default: "Auto Web Spec | Comparativos de Carros",
+    template: "%s | Auto Web Spec" // O %s será trocado pelo título da página específica
+  },
+  description: "Compare especificações técnicas, desempenho e preços para escolher o melhor carro.",
   icons: {
     icon: [
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },

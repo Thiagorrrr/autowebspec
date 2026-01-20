@@ -1,5 +1,11 @@
 import { Ranking } from "@/components/Ranking"
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Ranking de Preços e Economia",
+    description: "Compare os valores de mercado e encontre os melhores preços. Rankings atualizados dos itens mais baratos, melhores ofertas e custo-benefício automotivo."
+};
 const ranking = () => {
     return (
         <Ranking />

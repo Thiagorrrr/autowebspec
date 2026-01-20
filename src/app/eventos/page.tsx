@@ -1,9 +1,13 @@
 import { EventsCalendar } from "@/components/EventsCalendar"
+import { Metadata } from "next";
 
-
-const eventos = ()=> {
+export const metadata: Metadata = {
+    title: "Eventos e Encontros Automotivos",
+    description: "Calendário completo de feiras de acessórios, exposições de carros modificados e eventos do setor automotivo em todo o Brasil."
+};
+const eventos = () => {
     return (
-        <EventsCalendar/>
+        <EventsCalendar />
     )
 }
 

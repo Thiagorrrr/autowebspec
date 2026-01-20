@@ -1,5 +1,14 @@
 import { fetchCarsForBuild } from "@/lib/apis";
+import { Metadata } from "next";
 import { ReactNode } from "react";
+
+type Props = {
+    params: {
+        marca: string;
+        modelo: string;
+        ano: string
+    };
+};
 
 export async function generateStaticParams() {
     const cars = await fetchCarsForBuild();
@@ -26,6 +35,18 @@ export async function generateStaticParams() {
     }
 
     return Array.from(unique.values());
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    // Transforma "toyota-corolla" em "Toyota Corolla"
+    const marca = params.marca.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+    const modelo = params.modelo.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+    const ano = params.ano;
+
+    return {
+        title: `Mais detalhes sobre as versões de ${marca} ${modelo} ${ano} - Versões e Ficha Técnica`,
+        description: `Todas as versões e especificações técnicas para o ${marca} ${modelo} ${ano}. Compare motorização, equipamentos e detalhes de cada variante.`
+    };
 }
 
 export default function Layout({ children }: { children: ReactNode }) {
