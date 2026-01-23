@@ -56,7 +56,7 @@ export const EquipmentComparison: React.FC<EquipmentComparisonProps> = ({
 
     return (
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm mt-6 overflow-x-auto">
-            <h3 className="text-gray-800 font-bold mb-4 flex items-center uppercase gap-2">
+            <h3 className="text-black font-bold mb-4 flex items-center uppercase gap-2">
                 <Scale size={18} className="text-[#6319F7] " />
                 Comparativo de Equipamentos
             </h3>

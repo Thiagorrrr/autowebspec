@@ -54,9 +54,15 @@ export const DragRace = () => {
                 { tempId: 1, id: cars[0].id, stage: "stock" },
                 { tempId: 2, id: cars[1].id, stage: "stock" }
             ]);
+
         }
 
     }, [cars, participants.length]);
+
+    useEffect(() => {
+        atualizarUrl(participants)
+
+    }, [participants])
 
 
     const [racing, setRacing] = useState<boolean>(false);
