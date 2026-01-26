@@ -2,6 +2,7 @@
 
 import { Car, Participant } from "@/types/types";
 import { Gauge, Zap, Fuel, Settings2, Info, CheckCircle2, Trophy, AlertCircle, Ruler, CircleDot, Leaf } from "lucide-react";
+import Link from "next/link";
 import React, { useMemo } from "react";
 
 interface TechnicalField {
@@ -293,6 +294,18 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
                     }
                 }
             ],
+        },
+        {
+            title: "Problemas crônicos",
+            icon: <AlertCircle size={18} className="text-red-600" />,
+            fields: [
+                {
+                    label: "Quantidade",
+                    getValue: (c) => c?.chronic.length,
+                    unit: "",
+                    better: "low"
+                },
+            ],
         }
 
 
@@ -396,6 +409,15 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
                                                             <AlertCircle size={12} className="text-amber-500" />
                                                         </div>
                                                     )}
+                                                    {
+                                                        section.title === "Problemas crônicos" && (
+                                                            <>
+                                                                <Link href={`/detalhes`} className="underline hover:no-underline"> Detalhes
+                                                                </Link>
+
+                                                            </>
+                                                        )
+                                                    }
                                                 </div>
                                             );
                                         })}

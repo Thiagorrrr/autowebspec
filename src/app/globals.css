@@ -1,1 +1,55 @@
 @import "tailwindcss";
+
+@tailwind utilities;
+
+@layer components {
+    .swiper {
+        --swiper-theme-color: #6319F7;
+    }
+
+    /* Setas de navegação - Mantendo seus 30px */
+    .swiper-button-next,
+    .swiper-button-prev {
+        @apply bg-white rounded-full shadow-xl transition-all duration-300 opacity-0 scale-90 flex items-center justify-center;
+        color: #6319F7 !important;
+        width: 25px !important;
+        height: 25px !important;
+        padding: 5px;
+    }
+
+    .swiper-button-prev {
+        left: 20px !important;
+        /* Aumente este número para afastar mais da esquerda */
+    }
+
+    .swiper-button-next {
+        right: 20px !important;
+        /* Aumente este número para afastar mais da direita */
+    }
+
+    /* Mostrar setas ao passar o mouse */
+    .swiper:hover .swiper-button-next,
+    .swiper:hover .swiper-button-prev {
+        @apply opacity-100 scale-100;
+    }
+
+    /* ALTERAÇÃO APENAS NA GROSSURA DA SETA */
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        /* Aumentamos o peso e aplicamos um contorno para parecer mais gorda */
+        @apply text-[12px] font-[900];
+        font-weight: 900 !important;
+        -webkit-text-stroke: 1.2px #6319F7;
+        /* Engorda o traço da seta */
+    }
+
+    /* Paginação (Bolinhas) */
+    .swiper-pagination-bullet {
+        @apply bg-white opacity-60 w-2 h-2 transition-all duration-300;
+    }
+
+    .swiper-pagination-bullet-active {
+        @apply w-7 rounded-full opacity-100;
+        background-color: white !important;
+    }
+}

@@ -1,36 +1,88 @@
 "use client"
 
-import { Activity, Camera, Check, CheckCircle, Fuel, Grid, Ruler, Text, X } from "lucide-react"
+import { Activity, AlertCircle, Camera, Check, CheckCircle, Fuel, Grid, Ruler, Text, X } from "lucide-react"
 import { SectionTitle } from "../SectionTitle"
 import { Label } from "../Label"
 import Image from "next/image";
 import { Car } from "@/types/types";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/effect-fade';
+
+import { Navigation, Pagination, EffectFade, Scrollbar } from 'swiper/modules';
 
 export const CarDetails = (car: Car) => {
-
+    <style>{`
+        :root {
+            --swiper-theme-color: #3b82f6; /* SUBSTITUA PELA COR DO SEU SITE */
+            --swiper-navigation-size: 24px;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 50%;
+            color: var(--swiper-theme-color) !important;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--swiper-theme-color) !important;
+        }
+    `}</style>
     return (
         <>
             <div className="space-y-2">
                 <SectionTitle>
                     <Camera size={16} className="text-[#6319F7]" /> Galeria de Fotos</SectionTitle>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                    {car.photos.map((photo, idx) => (
-                        <div
-                            key={idx}
-                            className={`rounded-lg overflow-hidden border border-gray-200 sm:h-[500px] ${idx === 0 ? 'col-span-2 md:col-span-3 h-64' : ''}`}
+                <div className="relative group">
+                    {car.photos.length > 1 ? (
+                        <Swiper
+                            modules={[Navigation, Pagination, Scrollbar, EffectFade]}
+                            spaceBetween={20}
+                            autoplay
+                            effect={'fade'}
+                            grabCursor={true}
+                            slidesPerView={1}
+                            navigation
+                            loop={true}
+                            pagination={{ clickable: true }}
+                            className="rounded-lg overflow-hidden"
                         >
-                            <Image
-                                src={`/${photo}`}
-                                alt={`${car.make} ${idx}`}
-                                width={300}
-                                height={500}
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-
-                    ))}
+                            {car.photos.map((photo, idx) => (
+                                <SwiperSlide key={idx}>
+                                    <div className="relative h-[200px] sm:h-[450px] w-full border border-gray-200">
+                                        <Image
+                                            src={`/marcas/${car.make.toLowerCase()}/${car.model}/${car.version.replaceAll(" ", "").toLowerCase()}/${photo}`}
+                                            alt={`${car.make} ${car.model} - ${idx}`}
+                                            fill
+                                            priority={idx === 0}
+                                            className="object-contain md:object-cover"
+                                        />
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    ) : (
+                        /* Layout para quando há apenas 1 foto */
+                        car.photos.map((photo, idx) => (
+                            <div
+                                key={idx}
+                                className="relative rounded-lg overflow-hidden border border-gray-200 h-[300px] sm:h-[500px]"
+                            >
+                                <Image
+                                    src={`/${photo}`}
+                                    alt={`${car.make} ${idx}`}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
+
 
             {
                 car.description && (
@@ -47,7 +99,7 @@ export const CarDetails = (car: Car) => {
                     </div>
                 )
             }
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            < div className="bg-white rounded-xl border border-gray-200 overflow-hidden" >
                 <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2">
                     <Activity size={18} className="text-[#6319F7]" />
                     <h3 className="font-bold text-gray-800">Ficha Técnica</h3>
@@ -62,7 +114,7 @@ export const CarDetails = (car: Car) => {
                     <div><Label>Lugares</Label><div className="text-md  lg:text-lg font-bold">{car?.seats}</div></div>
                     <div><Label>Origem</Label><div className="text-md  lg:text-lg font-bold">{car?.origin}</div></div>
                 </div>
-            </div>
+            </div >
             {
                 car.performance && (
                     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -187,6 +239,32 @@ export const CarDetails = (car: Car) => {
                     </div>
                 )
             }
+            {
+                car.chronic && (
+                    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                        <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2">
+                            <AlertCircle size={18} className="text-[#6319F7]" />
+                            <h3 className="font-bold">Problemas crônicos</h3>
+                        </div>
+                        <div className="p-4 grid grid-cols-1  gap-4">
+                            <Label>Items:</Label>
+                            {
+                                car.chronic.map((item, index) => {
+                                    return (
+                                        <ul key={index}>
+                                            <li className="text-md lg:text-lg font-bold ">{item}
+                                            </li>
+                                        </ul>
+                                    )
+                                })
+                            }
+
+
+
+                        </div>
+                    </div>
+                )
+            }
 
             <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
                 <div className="bg-gray-50 p-3 border-b border-gray-100 flex items-center gap-2">
@@ -205,7 +283,7 @@ export const CarDetails = (car: Car) => {
                                     <div className="rounded-lg overflow-hidden">
                                         {Object.entries(items).map(([item, hasItem]) => (
                                             <div key={item} className="p-3 flex justify-between items-center border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors">
-                                                <span className={`text-sm font-medium ${hasItem ? 'text-gray-800' : 'text-gray-600'}`}>{item}</span>
+                                                <span className={`text-md font-medium ${hasItem ? 'text-gray-800' : 'text-gray-600'}`}>{item}</span>
                                                 {hasItem ? <Check size={16} className="text-[#6319F7]" /> : <X size={16} className="text-gray-400" />}
                                             </div>
                                         ))}
