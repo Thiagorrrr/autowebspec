@@ -372,6 +372,7 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
                         <div className="border border-gray-100 rounded-xl overflow-hidden shadow-sm">
                             {section.fields.map((field, fIdx) => {
                                 const rowData = participants.map(p => ({
+                                    car: p.id,
                                     tempId: p.tempId,
                                     display: field.getValue(carsMap.get(p.id)!, p),
                                     normalized: getNormalizedValue(field, carsMap.get(p.id)!, p)
@@ -412,7 +413,7 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
                                                     {
                                                         section.title === "Problemas crônicos" && (
                                                             <>
-                                                                <Link href={`/detalhes`} className="underline hover:no-underline"> Detalhes
+                                                                <Link href={`/detalhes/?carro=${res.car}`} className="underline hover:no-underline"> Detalhes
                                                                 </Link>
 
                                                             </>

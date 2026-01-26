@@ -15,22 +15,7 @@ import 'swiper/css/effect-fade';
 import { Navigation, Pagination, EffectFade, Scrollbar } from 'swiper/modules';
 
 export const CarDetails = (car: Car) => {
-    <style>{`
-        :root {
-            --swiper-theme-color: #3b82f6; /* SUBSTITUA PELA COR DO SEU SITE */
-            --swiper-navigation-size: 24px;
-        }
-        .swiper-button-next, .swiper-button-prev {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 25px;
-            border-radius: 50%;
-            color: var(--swiper-theme-color) !important;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
-        .swiper-pagination-bullet-active {
-            background: var(--swiper-theme-color) !important;
-        }
-    `}</style>
+
     return (
         <>
             <div className="space-y-2">
