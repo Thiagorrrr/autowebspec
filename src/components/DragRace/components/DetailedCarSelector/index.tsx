@@ -1,7 +1,7 @@
 "use client"
 import { Car, Participant, StageType } from "@/types/types";
 import { X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from 'next/image';
 
 interface DetailedCarSelectorProps {
@@ -33,27 +33,73 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
         setSelectedYear(car.year);
     }, [car.make, car.model, car.year, participant.id]);
 
-    const handleMakeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newMake = e.target.value;
-        setSelectedMake(newMake);
-        const firstCar = rawCars.find(c => c.make === newMake);
-        if (firstCar) onUpdate(participant.tempId, { id: firstCar.id });
-    };
 
-    const handleModelChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newModel = e.target.value;
-        setSelectedModel(newModel);
-        const firstCar = rawCars.find(c => c.make === selectedMake && c.model === newModel);
-        if (firstCar) onUpdate(participant.tempId, { id: firstCar.id });
-    };
+    const updateFirstMatch = useCallback(
+        (predicate: (c: Car) => boolean) => {
+            const firstCar = rawCars.find(predicate);
+            if (firstCar) {
+                onUpdate(participant.tempId, { id: firstCar.id });
+            }
+        },
+        [rawCars, onUpdate, participant.tempId]
+    );
 
-    const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        onUpdate(participant.tempId, { id: e.target.value });
-    };
 
-    const handleStageChange = (stage: string) => {
-        onUpdate(participant.tempId, { stage: stage as StageType });
-    };
+    const handleMakeChange = useCallback(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            const newMake = e.target.value;
+            setSelectedMake(newMake);
+            updateFirstMatch(c => c.make === newMake);
+        },
+        [updateFirstMatch]
+    );
+
+
+    const handleModelChange = useCallback(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            const newModel = e.target.value;
+            setSelectedModel(newModel);
+            updateFirstMatch(
+                c => c.make === selectedMake && c.model === newModel
+            );
+        },
+        [selectedMake, updateFirstMatch]
+    );
+
+
+    const handleYearChange = useCallback(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            const newYear = Number(e.target.value);
+            setSelectedYear(newYear);
+            updateFirstMatch(
+                c =>
+                    c.make === selectedMake &&
+                    c.model === selectedModel &&
+                    c.year === newYear
+            );
+        },
+        [selectedMake, selectedModel, updateFirstMatch]
+    );
+
+    const handleVersionChange = useCallback(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            onUpdate(participant.tempId, { id: e.target.value });
+        },
+        [onUpdate, participant.tempId]
+    );
+
+
+    const handleStageChange = useCallback(
+        (stage: string) => {
+            onUpdate(participant.tempId, { stage: stage as StageType });
+        },
+        [onUpdate, participant.tempId]
+    );
+
+
+    const yearSortByDesc = useCallback((years: number[]) => {
+        return [...years].sort((a, b) => b - a);
+    }, []);
 
     return (
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col h-full relative group">
@@ -67,7 +113,7 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                 <div className="relative w-full h-20 lg:h-40 rounded-lg">
                     <div className="absolute w-full h-50 lg:h-80 -top-30 lg:-top-40">
                         <Image
-                            src={`/marcas/${car.make.toLowerCase()}/${car.model.toLowerCase()}/${car.model.toLowerCase()}.webp`}
+                            src={`/marcas/${car.make.toLowerCase()}/${car.model.toLowerCase()}/${car.model.toLowerCase()}${car.year <= 2019 ? "-2" : ""}.webp`}
                             alt={car.model}
                             fill
                             className="w-full h-full object-contain"
@@ -94,8 +140,8 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                 </div>
                 <div>
                     <label className="text-[10px] font-bold text-gray-400 uppercase">Ano</label>
-                    <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))} className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 focus:border-[#6319F7] outline-none">
-                        {years.map(y => <option key={y} value={y}>{y}</option>)}
+                    <select value={selectedYear} onChange={handleYearChange} className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 focus:border-[#6319F7] outline-none">
+                        {yearSortByDesc(years).map(y => <option key={y} value={y}>{y}</option>)}
                     </select>
                 </div>
                 <div className="col-span-2">

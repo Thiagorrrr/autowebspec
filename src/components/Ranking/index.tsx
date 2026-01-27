@@ -143,7 +143,7 @@ export const Ranking = () => {
                       <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest hidden sm:block">{car.make}</p>
                     </div>
                     <h3 className="font-bold text-gray-900 text-lg md:text-xl truncate leading-tight">
-                      <span className="sm:hidden">{car.make} </span>{car.model}
+                      <span className="sm:hidden">{car.make} </span>{car.model}  {car.version}
                     </h3>
                     <p className="text-gray-400 text-[11px] md:text-sm truncate font-medium mt-0.5">
                       {car.year} • {car.specs.stock?.hp}cv
