@@ -1,6 +1,6 @@
 "use client"
 import { Participant, RaceResult } from "@/types/types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DetailedCarSelector } from "./components/DetailedCarSelector";
 import { EquipmentComparison } from "./components/EquipmentComparison";
 import { VerdictSection } from "./components/VerdictSection";
@@ -24,9 +24,12 @@ export const DragRace = () => {
 
 
     const [participants, setParticipants] = useState<Participant[]>([]);
+    // Ref para saber se já inicializamos os dados da URL e evitar loops
+    const initialized = useRef(false);
 
     useEffect(() => {
-        if (!cars || cars.length === 0 || participants.length > 0) return;
+        // 1. Evita rodar se não houver carros ou se já tivermos inicializado
+        if (!cars || cars.length === 0 || initialized.current) return;
 
         const url = new URL(window.location.href);
         const urlCars: Participant[] = [];
@@ -40,7 +43,7 @@ export const DragRace = () => {
 
             if (carExists && !isDuplicate) {
                 urlCars.push({
-                    tempId: urlCars.length + 1, // tempId sequencial baseado nos válidos encontrados
+                    tempId: urlCars.length + 1,
                     id: param,
                     stage: "stock",
                 });
@@ -54,15 +57,22 @@ export const DragRace = () => {
                 { tempId: 1, id: cars[0].id, stage: "stock" },
                 { tempId: 2, id: cars[1].id, stage: "stock" }
             ]);
-
+            // Atualiza a URL apenas no caso do default (opcional)
+            atualizarUrl([
+                { tempId: 1, id: cars[0].id, stage: "stock" },
+                { tempId: 2, id: cars[1].id, stage: "stock" }
+            ]);
         }
 
-    }, [cars, participants.length]);
+        initialized.current = true;
+    }, [cars]);
+
 
     useEffect(() => {
-        atualizarUrl(participants)
-
-    }, [participants])
+        if (initialized.current && participants.length > 0) {
+            atualizarUrl(participants);
+        }
+    }, [participants]);
 
 
     const [racing, setRacing] = useState<boolean>(false);
