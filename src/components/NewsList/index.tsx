@@ -25,8 +25,11 @@ export const NewsList = () => {
 
     return (
         <div className="space-y-6 mt-8">
-            <SectionTitle>
-                Últimas Notícias
+            <SectionTitle
+                subtitle="Autowebspec News"
+                description="Fique por dentro dos últimos lançamentos, flagras exclusivos e as tendências que estão moldando o futuro do mercado automotivo."
+            >
+                Notícias e <br /> Lançamentos
             </SectionTitle>
 
             {/* Destaque */}

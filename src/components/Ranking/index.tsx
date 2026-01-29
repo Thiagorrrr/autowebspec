@@ -63,10 +63,15 @@ export const Ranking = () => {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 mt-8 px-4 pb-20">
+      <SectionTitle
+        subtitle="Market Intelligence"
+        description="Compare os valores de mercado e descubra quais modelos oferecem o melhor conjunto técnico pelo menor preço atualizado."
+      >
+        Ranking de <br /> Preços
+      </SectionTitle>
       {/* Header e Filtros */}
       <div className="bg-white p-5 md:p-6 rounded-3xl border border-gray-100 shadow-sm space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <SectionTitle>Ranking de Preços</SectionTitle>
 
           <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-xl">
             <button

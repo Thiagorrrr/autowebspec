@@ -2,7 +2,7 @@
 import { BackButton } from "@/components/BackButton";
 import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
-import { Calendar, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -38,7 +38,7 @@ const ModelDetail: React.FC<{ make: string, model: string }> = ({ make, model })
                 </div>
             </Card>
 
-            <SectionTitle><Calendar size={20} className="text-[#6319F7]" /> Anos Disponíveis</SectionTitle>
+            <SectionTitle>Anos Disponíveis</SectionTitle>
 
             {/* LISTA DE ANOS (Responsivo) */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">

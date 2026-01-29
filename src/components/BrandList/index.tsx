@@ -100,8 +100,11 @@ export const BrandsList = () => {
 
     return (
         <div className="space-y-6 mt-8">
-            <SectionTitle>
-                Marcas Disponíveis
+            <SectionTitle
+                subtitle="Database Autowebspec"
+                description="Explore o catálogo completo das maiores montadoras do mundo. Acesse fichas técnicas, modelos e especificações exclusivas por fabricante."
+            >
+                Marcas e <br /> Fabricantes
             </SectionTitle>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {uniqueMakes.map(make => {

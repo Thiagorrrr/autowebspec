@@ -3,7 +3,7 @@ import { BackButton } from "@/components/BackButton";
 import { BRAND_INFO } from "@/components/BrandList";
 import { Card } from "@/components/Card";
 import { SectionTitle } from "@/components/SectionTitle";
-import { ChevronRight, List } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
@@ -41,7 +41,7 @@ const BrandDetail: React.FC<{ make: string }> = ({ make }) => {
                 </div>
             </Card>
 
-            <SectionTitle><List size={20} className="text-[#6319F7]" /> Modelos de {make}</SectionTitle>
+            <SectionTitle> Modelos de {make}</SectionTitle>
 
             {/* GRID DE MODELOS (Responsivo) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

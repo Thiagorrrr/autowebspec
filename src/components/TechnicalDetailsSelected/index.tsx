@@ -126,8 +126,24 @@ export const TechnicalDetailsSelected = () => {
 
   return (
     <div className="space-y-6 mt-8">
+      <SectionTitle
+        subtitle="Engenharia e Dados"
+        description="Exploração profunda de cada componente mecânico, sistemas eletrônicos e medições oficiais para uma compreensão total da máquina."
+      >
+        Detalhes <br /> Técnicos
+      </SectionTitle>
       <div className="flex flex-col bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-        <SectionTitle>Detalhes Técnicos</SectionTitle>
+        <div className="flex items-center gap-2 mb-6">
+          <div className="w-1.5 h-5 bg-[#6319F7] rounded-full"></div>
+          <div>
+            <h3 className="font-black uppercase text-sm tracking-tight text-gray-900">
+              Especificações de Fábrica
+            </h3>
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+              Acesse a ficha técnica detalhada e dados de engenharia
+            </p>
+          </div>
+        </div>
         <div className="grid grid-cols-2 gap-2 mb-6 pt-4">
           <div className="col-span-2">
             <Label>Fabricante</Label>

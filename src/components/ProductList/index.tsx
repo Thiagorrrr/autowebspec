@@ -73,8 +73,12 @@ export const ProductList = () => {
 
     return (
         <div className="space-y-12 mt-8">
-            <SectionTitle>Produtos</SectionTitle>
-
+            <SectionTitle
+                subtitle="Upgrade & Performance"
+                description="Explore nossa seleção de peças e acessórios desenvolvidos para extrair o máximo de performance e exclusividade do seu veículo."
+            >
+                Produtos e <br /> Acessórios
+            </SectionTitle>
             {/* 🔥 DESTAQUE */}
             <div className="bg-linear-to-r from-[#6319F7]/10 to-transparent rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-center">
                 <div className="relative w-full md:w-1/2 h-64 rounded-xl overflow-hidden">

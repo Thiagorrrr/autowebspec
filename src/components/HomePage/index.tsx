@@ -110,7 +110,7 @@ export const HomePage = () => {
 
             {/* ================= RANKING ================= */}
             <section className="bg-gray-50 -mx-4 px-4 py-16 rounded-4xl">
-                <SectionTitle className="mb-10 text-center">Melhores do Ano por Preço</SectionTitle>
+                <SectionTitle >Melhores do Ano por Preço</SectionTitle>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6  mx-auto">
                     {dataRanking.map((item, index) => (

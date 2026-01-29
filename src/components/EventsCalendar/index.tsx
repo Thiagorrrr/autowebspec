@@ -86,7 +86,12 @@ export const EVENTS: EventData[] = [
 
 export const EventsCalendar: React.FC = () => (
   <div className="space-y-4 mt-8">
-    <SectionTitle>Próximos Eventos</SectionTitle>
+    <SectionTitle
+      subtitle="Calendário Automotivo"
+      description="Fique por dentro das datas mais importantes do setor: de encontros de clássicos a competições de arrancada e track days oficiais."
+    >
+      Próximos <br /> Eventos
+    </SectionTitle>
 
     {EVENTS.map(evt => (
       <div key={evt.id} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4 items-center hover:shadow-md transition-all cursor-pointer group">

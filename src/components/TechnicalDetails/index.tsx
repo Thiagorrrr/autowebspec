@@ -2,7 +2,6 @@
 import { useMemo } from "react";
 import { BackButton } from "../BackButton";
 import { SectionTitle } from "../SectionTitle";
-import { CarIcon, } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Breadcrumbs } from "../BreadCrumb";
 import { useCars } from "@/hooks/queries/useCars";
@@ -30,8 +29,8 @@ const TechnicalDetails = ({ carId }: { carId?: string }) => {
     <div className="space-y-6 mt-8">
       <Breadcrumbs />
       {carId && <BackButton onClick={() => router.back()} label={`Voltar para ${car?.year}`} />}
-      <SectionTitle className="mb-6!">
-        <CarIcon size={24} className="text-[#6319F7]" /> Ficha Completa: {car?.version}
+      <SectionTitle>
+        Ficha Completa: {car?.version}
       </SectionTitle>
       <CarDetails {...car} />
     </div>

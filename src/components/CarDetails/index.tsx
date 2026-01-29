@@ -1,7 +1,6 @@
 "use client"
 
-import { Activity, AlertCircle, Camera, Check, CheckCircle, Fuel, Grid, Ruler, Text, X } from "lucide-react"
-import { SectionTitle } from "../SectionTitle"
+import { Activity, AlertCircle, Check, CheckCircle, Fuel, Grid, Ruler, Text, X } from "lucide-react"
 import { Label } from "../Label"
 import Image from "next/image";
 import { Car } from "@/types/types";
@@ -19,8 +18,6 @@ export const CarDetails = (car: Car) => {
     return (
         <>
             <div className="space-y-2">
-                <SectionTitle>
-                    <Camera size={16} className="text-[#6319F7]" /> Galeria de Fotos</SectionTitle>
                 <div className="relative group">
                     {car.photos.length > 1 ? (
                         <Swiper
