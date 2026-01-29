@@ -136,7 +136,7 @@ export const DragRace = () => {
                 </SectionTitle>
 
                 {participants.length < 4 && (
-                    <div className="mt-8 lg:pb-12 lg:mt-0">
+                    <div className="lg:pb-12">
                         <button
                             onClick={() => {
                                 setShowComparison(false);
@@ -151,8 +151,8 @@ export const DragRace = () => {
                 )}
             </div>
 
-            <div className={`grid gap-20 lg:gap-4 mt-20 lg:mt-40 ${participants.length === 2 ? 'grid-cols-2' :
-                participants.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-4'
+            <div className={`grid gap-6 lg:gap-4 mt-20 lg:mt-40 ${participants.length === 2 ? 'grid-cols-2' :
+                participants.length === 3 ? 'grid-cols-1 gap-20 md:grid-cols-3' : 'grid-cols-1 gap-20 md:grid-cols-4'
                 }`}>
                 {participants.map((p) => (
                     <DetailedCarSelector
