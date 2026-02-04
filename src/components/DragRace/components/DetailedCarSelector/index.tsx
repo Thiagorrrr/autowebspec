@@ -1,76 +1,84 @@
 "use client"
 import { Car, Participant, StageType } from "@/types/types";
-import { X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { X, Loader2 } from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
 import Image from 'next/image';
+import { useCarsById } from "@/hooks/queries/useCarsById";
 
 interface DetailedCarSelectorProps {
-    rawCars: Car[];
-    cars: Car[];
+    rawCars: Car[]; // Lista leve do Summary
     participant: Participant;
     onUpdate: (tempId: number, newData: Partial<Participant>) => void;
     onRemove: (tempId: number) => void;
     showRemove: boolean;
 }
 
-export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCars, cars, participant, onRemove, onUpdate, showRemove }) => {
-    const car = cars.find(c => c.id === participant.id);
+export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCars, participant, onRemove, onUpdate, showRemove }) => {
+    // Busca dados completos apenas se houver participant.id
+    const { data: car, isLoading } = useCarsById(participant.id);
 
-    const [selectedMake, setSelectedMake] = useState(car?.make || "");
-    const [selectedModel, setSelectedModel] = useState(car?.model || "");
-    const [selectedYear, setSelectedYear] = useState(car?.year || 0);
+    // Estados locais para os selects funcionarem em cascata
+    const [selectedMake, setSelectedMake] = useState("");
+    const [selectedModel, setSelectedModel] = useState("");
+    const [selectedYear, setSelectedYear] = useState<number | "">("");
 
+    // Sincroniza os selects locais quando um carro é carregado (ex: via URL ou após selecionar Versão)
     useEffect(() => {
         if (car) {
             setSelectedMake(car.make);
             setSelectedModel(car.model);
-            setSelectedYear(car.year);
-        } else if (participant.id === "") {
-            setSelectedMake("");
-            setSelectedModel("");
-            setSelectedYear(0);
+            setSelectedYear(Number(car.year));
         }
-    }, [car, participant.id]);
+    }, [car]);
 
-    const makes = [...new Set(rawCars.map(c => c.make))];
-    const models = selectedMake ? [...new Set(rawCars.filter(c => c.make === selectedMake).map(c => c.model))] : [];
-    const years = selectedModel ? [...new Set(rawCars.filter(c => c.make === selectedMake && c.model === selectedModel).map(c => c.year))] : [];
-    const versions = selectedYear ? rawCars.filter(c => c.make === selectedMake && c.model === selectedModel && c.year == selectedYear) : [];
+    // --- LÓGICA DE FILTRAGEM ---
 
-    // Removida a lógica de auto-preenchimento (updateFirstMatch)
+    // 1. Fabricantes Únicos (A Lambda já envia ordenado e limpo)
+    const makes = useMemo(() => {
+        return [...new Set(rawCars.map(c => c.make))];
+    }, [rawCars]);
 
-    const handleMakeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newMake = e.target.value;
-        setSelectedMake(newMake);
-        setSelectedModel("");
-        setSelectedYear(0);
-        onUpdate(participant.tempId, { id: "" }); // Limpa o ID no componente pai
-    };
+    // 2. Modelos filtrados pela Marca selecionada
+    const models = useMemo(() => {
+        if (!selectedMake) return [];
+        return [...new Set(rawCars
+            .filter(c => c.make === selectedMake)
+            .map(c => c.model)
+        )];
+    }, [rawCars, selectedMake]);
 
-    const handleModelChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newModel = e.target.value;
-        setSelectedModel(newModel);
-        setSelectedYear(0);
-        onUpdate(participant.tempId, { id: "" }); // Mantém ID vazio até o fim
-    };
+    // 3. Anos filtrados por Marca e Modelo
+    const years = useMemo(() => {
+        if (!selectedModel) return [];
+        return [...new Set(rawCars
+            .filter(c => c.make === selectedMake && c.model === selectedModel)
+            .map(c => c.year)
+        )];
+    }, [rawCars, selectedMake, selectedModel]);
 
-    const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newYear = Number(e.target.value);
-        setSelectedYear(newYear);
-        onUpdate(participant.tempId, { id: "" }); // Mantém ID vazio até a versão
-    };
-
-    const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newId = e.target.value;
-        onUpdate(participant.tempId, { id: newId }); // Agora sim define o ID final
-    };
+    // 4. Versões para encontrar o ID final
+    const versions = useMemo(() => {
+        if (!selectedYear) return [];
+        return rawCars.filter(c =>
+            c.make === selectedMake &&
+            c.model === selectedModel &&
+            Number(c.year) === Number(selectedYear)
+        );
+    }, [rawCars, selectedMake, selectedModel, selectedYear]);
 
     return (
-        <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col h-full relative group">
+        <div className={`bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col h-full relative transition-all ${isLoading ? 'opacity-70' : 'opacity-100'}`}>
             {showRemove && (
                 <button onClick={() => onRemove(participant.tempId)} className="absolute -top-2 -right-2 bg-red-100 text-red-500 rounded-full p-1 shadow-sm hover:bg-red-500 hover:text-white transition-colors z-10">
                     <X size={14} />
                 </button>
+            )}
+
+            {/* Overlay de Loading */}
+            {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-white/50 z-20 rounded-xl">
+                    <Loader2 className="animate-spin text-[#6319F7]" size={24} />
+                </div>
             )}
 
             <div className="flex-1 flex items-end w-full mt-2">
@@ -79,8 +87,7 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                         <Image
                             src={
                                 car
-                                    ? `/marcas/${car.make.toLowerCase()}/${car.model.toLowerCase()}/${car.model.toLowerCase()}${car.year <= 2019 ? "-2" : ""
-                                    }.webp`
+                                    ? `/marcas/${car.make.toLowerCase()}/${car.model.toLowerCase()}/${car.model.toLowerCase()}${Number(car.year) <= 2019 ? "-2" : ""}.webp`
                                     : "/marcas/default/default.webp"
                             }
                             alt={car?.model || "default"}
@@ -89,8 +96,8 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                         />
 
                         {car && (
-                            <div className="absolute bottom-2 left-0 text-black font-bold text-[10px]">
-                                {car.specs?.[participant.stage]?.hp || 0}cv
+                            <div className="absolute bottom-2 left-0 text-black font-bold text-[10px] bg-white/80 px-1 rounded shadow-sm">
+                                {car.specs?.[participant.stage]?.hp || car.specs?.stock?.hp || 0}cv
                             </div>
                         )}
                     </div>
@@ -100,29 +107,61 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
             <div className="grid grid-cols-2 gap-2 mb-3">
                 <div className="col-span-2">
                     <label className="text-[10px] font-bold text-gray-400 uppercase">Fabricante</label>
-                    <select value={selectedMake} onChange={handleMakeChange} className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 focus:border-[#6319F7] outline-none">
+                    <select
+                        value={selectedMake}
+                        onChange={(e) => {
+                            setSelectedMake(e.target.value);
+                            setSelectedModel("");
+                            setSelectedYear("");
+                            onUpdate(participant.tempId, { id: "" });
+                        }}
+                        className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 focus:border-[#6319F7] outline-none"
+                    >
                         <option value="">Selecione...</option>
                         {makes.map(m => <option key={m} value={m}>{m}</option>)}
                     </select>
                 </div>
+
                 <div>
                     <label className="text-[10px] font-bold text-gray-400 uppercase">Modelo</label>
-                    <select disabled={!selectedMake} value={selectedModel} onChange={handleModelChange} className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 focus:border-[#6319F7] outline-none">
+                    <select
+                        disabled={!selectedMake}
+                        value={selectedModel}
+                        onChange={(e) => {
+                            setSelectedModel(e.target.value);
+                            setSelectedYear("");
+                            onUpdate(participant.tempId, { id: "" });
+                        }}
+                        className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 outline-none disabled:opacity-50"
+                    >
                         <option value="">-</option>
                         {models.map(m => <option key={m} value={m}>{m}</option>)}
                     </select>
                 </div>
                 <div>
                     <label className="text-[10px] font-bold text-gray-400 uppercase">Ano</label>
-                    <select disabled={!selectedModel} value={selectedYear || ""} onChange={handleYearChange} className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 focus:border-[#6319F7] outline-none">
+                    <select
+                        disabled={!selectedModel}
+                        value={selectedYear}
+                        onChange={(e) => {
+                            setSelectedYear(Number(e.target.value));
+                            onUpdate(participant.tempId, { id: "" });
+                        }}
+                        className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 outline-none disabled:opacity-50"
+                    >
                         <option value="">-</option>
-                        {[...new Set(years)].sort((a, b) => b - a).map(y => <option key={y} value={y}>{y}</option>)}
+                        {years.map(y => <option key={y} value={y}>{y}</option>)}
                     </select>
                 </div>
                 <div className="col-span-2">
                     <label className="text-[10px] font-bold text-gray-400 uppercase">Versão</label>
-                    <select disabled={!selectedYear} value={car?.id || ""} onChange={handleVersionChange} className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 focus:border-[#6319F7] outline-none text-ellipsis">
-                        <option value="">-</option>
+                    <select
+                        disabled={!selectedYear}
+                        value={participant.id || ""}
+                        onChange={(e) => onUpdate(participant.tempId, { id: e.target.value })}
+                        className="w-full bg-gray-50 text-sm font-bold p-2 rounded border border-gray-200 outline-none disabled:opacity-50"
+                    >
+                        <option value="">Selecione a versão...</option>
                         {versions.map(v => <option key={v.id} value={v.id}>{v.version}</option>)}
                     </select>
                 </div>
@@ -130,20 +169,13 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
 
             <div className="grid grid-cols-3 gap-1 mb-3 w-full">
                 {car?.specs && Object.keys(car.specs).filter(stg => stg !== 'stage3')
-                    .sort((a, b) => {
-                        if (a === 'stock') return -1;
-                        if (b === 'stock') return 1;
-                        return a.localeCompare(b);
-                    })
+                    .sort((a) => (a === 'stock' ? -1 : 1))
                     .map((stg) => (
                         <button
                             key={stg}
                             onClick={() => onUpdate(participant.tempId, { stage: stg as StageType })}
                             className={`text-[9px] py-1 rounded uppercase font-bold transition-all 
-                    ${participant.stage === stg
-                                    ? 'bg-[#6319F7] text-white shadow-md'
-                                    : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                                }`}
+                                ${participant.stage === stg ? 'bg-[#6319F7] text-white' : 'bg-gray-100 text-gray-500'}`}
                         >
                             {stg === 'stock' ? 'Stock' : stg.replace('stage', 'S')}
                         </button>

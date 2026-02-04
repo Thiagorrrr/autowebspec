@@ -249,10 +249,14 @@ const Row = ({ label, value }: { label: string; value: number }) => (
 
 const TextInput = ({ label, value, onChange, max }: { label: string; value: number; onChange: (v: number) => void; max: number }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(",", ".");
-    if (/^\d*\.?\d*$/.test(raw)) {
+    const raw = e.target.value.replace(',', '.');
+    const regex = /^\d*(\.\d{0,2})?$/;
+
+    if (regex.test(raw)) {
       const numeric = raw === "" ? 0 : Number(raw);
-      onChange(Math.min(Math.max(0, numeric), max));
+      if (numeric <= max) {
+        onChange(raw as never);
+      }
     }
   };
 

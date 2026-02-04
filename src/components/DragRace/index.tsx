@@ -1,11 +1,12 @@
 "use client"
-import { Participant, RaceResult } from "@/types/types";
+import { Participant, RaceResult, Car } from "@/types/types";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { DetailedCarSelector } from "./components/DetailedCarSelector";
 import { EquipmentComparison } from "./components/EquipmentComparison";
 import { VerdictSection } from "./components/VerdictSection";
 import { Medal, Plus, Trophy, RotateCcw, Share2 } from "lucide-react";
-import { useCars } from "@/hooks/queries/useCars";
+import { useCarsSummary } from "@/hooks/queries/useCarsSummary";
+import { useApi } from "@/hooks/useApi"
 import { Button } from "../Button";
 import { Alert } from "../Alert";
 import { Loading } from "./loading";
@@ -18,11 +19,14 @@ export type AlertMessage = {
 };
 
 export const DragRace = () => {
-    const { data: cars, isLoading, error } = useCars();
+    const { data: carsSummary, isLoading, error } = useCarsSummary();
+    const { getCarById } = useApi();
+
     const [alertMessage, setAlertMessage] = useState<AlertMessage | null>(null);
     const [participants, setParticipants] = useState<Participant[]>([]);
     const [racing, setRacing] = useState<boolean>(false);
     const [raceResults, setRaceResults] = useState<RaceResult[] | null>(null);
+    const [detailedCars, setDetailedCars] = useState<Car[]>([]);
     const [showComparison, setShowComparison] = useState(false);
     const initialized = useRef(false);
 
@@ -36,22 +40,35 @@ export const DragRace = () => {
         window.history.replaceState(null, "", novaUrl);
     }, []);
 
+    const buscarDetalhesIniciais = useCallback(async (parts: Participant[]) => {
+        try {
+            const ids = parts.map(p => p.id).filter(id => id !== "");
+            if (ids.length === 0) return;
+
+            const data = await Promise.all(ids.map(id => getCarById(id)));
+            setDetailedCars(data);
+            setShowComparison(true);
+        } catch (err) {
+            console.error("Erro ao carregar carros da URL", err);
+        }
+    }, [getCarById]);
+
     useEffect(() => {
-        if (!cars || cars.length === 0 || initialized.current) return;
+        if (!carsSummary || carsSummary.length === 0 || initialized.current) return;
 
         const url = new URL(window.location.href);
         const urlCars: Participant[] = [];
 
         for (let i = 1; i <= 4; i++) {
             const id = url.searchParams.get(`carro${i}`);
-            if (id && cars.find(c => c.id === id)) {
+            if (id && carsSummary.find(c => c.id === id)) {
                 urlCars.push({ tempId: i, id, stage: "stock" });
             }
         }
 
         if (urlCars.length > 0) {
             setParticipants(urlCars);
-            setShowComparison(true);
+            buscarDetalhesIniciais(urlCars);
         } else {
             setParticipants([
                 { tempId: 1, id: "", stage: "stock" },
@@ -59,7 +76,7 @@ export const DragRace = () => {
             ]);
         }
         initialized.current = true;
-    }, [cars]);
+    }, [carsSummary, buscarDetalhesIniciais]);
 
     useEffect(() => {
         if (initialized.current) {
@@ -70,43 +87,66 @@ export const DragRace = () => {
     const updateParticipant = (tempId: number, newData: Partial<Participant>) => {
         setShowComparison(false);
         setRaceResults(null);
-        setParticipants(prev => prev.map(p => p.tempId === tempId ? { ...p, ...newData } : p));
+
+        setParticipants(prev => {
+            const updated = prev.map(p => p.tempId === tempId ? { ...p, ...newData } : p);
+
+            // Se o ID mudou, removemos o carro antigo do estado de detalhados
+            if (newData.id !== undefined) {
+                setDetailedCars(current => current.filter(c =>
+                    updated.some(p => p.id === c.id)
+                ));
+            }
+            return updated;
+        });
     };
 
-    const handleRace = () => {
+    const handleRace = async () => {
         const validOnes = participants.filter(p => p.id !== "");
 
-        // Lógica corrigida: verifica se todos os slots abertos estão preenchidos
         if (validOnes.length < participants.length) {
-            setAlertMessage({ type: "alert", message: `Selecione pelo menos ${participants.length} carros para comparar.` });
+            setAlertMessage({ type: "alert", message: `Selecione todos os veículos para iniciar a comparação.` });
             return;
         }
 
         setRacing(true);
         setRaceResults(null);
 
-        const results = validOnes.map(p => {
-            const car = cars!.find(c => c.id === p.id)!;
-            return {
-                ...p,
-                name: `${car.make} ${car.model}`,
-                version: car.version,
-                time: car.specs[p.stage].zeroToHundred,
-                speed: car.specs[p.stage].zeroToHundred
-            };
-        }).sort((a, b) => a.time - b.time);
+        try {
+            const carPromises = validOnes.map(p => getCarById(p.id));
+            const fullCarsData = await Promise.all(carPromises);
+            setDetailedCars(fullCarsData);
 
-        const maxTime = Math.max(...results.map(r => r.time));
-        setTimeout(() => {
-            setRaceResults(results);
+            const results = validOnes.map(p => {
+                const car = fullCarsData.find(c => c.id === p.id)!;
+                const specs = car.specs[p.stage] || car.specs.stock;
+                return {
+                    ...p,
+                    name: `${car.make} ${car.model}`,
+                    version: car.version,
+                    time: specs.zeroToHundred,
+                    speed: specs.zeroToHundred
+                };
+            }).sort((a, b) => a.time - b.time);
+
+            // Tempo de animação baseado no desempenho (mínimo 1.5s para efeito visual)
+            setTimeout(() => {
+                setRaceResults(results);
+                setRacing(false);
+                setShowComparison(true);
+            }, 2000);
+
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (err) {
+            setAlertMessage({ type: "error", message: "Falha ao obter dados técnicos. Verifique sua conexão." });
             setRacing(false);
-            setShowComparison(true);
-        }, maxTime * 400 + 1000);
+        }
     };
 
     const handleReset = () => {
         setRaceResults(null);
         setShowComparison(false);
+        setDetailedCars([]);
         setParticipants([
             { tempId: 1, id: "", stage: "stock" },
             { tempId: 2, id: "", stage: "stock" }
@@ -116,12 +156,12 @@ export const DragRace = () => {
 
     const copiarLink = () => {
         navigator.clipboard.writeText(window.location.href)
-            .then(() => setAlertMessage({ type: "success", message: "Link copiado!" }))
+            .then(() => setAlertMessage({ type: "success", message: "Link da comparação copiado!" }))
             .catch(() => setAlertMessage({ type: "error", message: "Erro ao copiar link" }));
     };
 
     if (isLoading) return <Loading />;
-    if (error || !cars) return <div className="text-red-500 p-8 text-center font-bold">Erro ao carregar dados.</div>;
+    if (error || !carsSummary) return <div className="text-red-500 p-8 text-center font-bold">Erro ao carregar banco de dados.</div>;
 
     const validParticipants = participants.filter(p => p.id !== "");
 
@@ -132,7 +172,7 @@ export const DragRace = () => {
                     subtitle="Simulador de Performance"
                     description="Confronte fichas técnicas detalhadas e simule o desempenho de aceleração real entre até quatro veículos simultaneamente."
                 >
-                    Comparar <br />  Veículos
+                    Comparar <br /> Veículos
                 </SectionTitle>
 
                 {participants.length < 4 && (
@@ -152,13 +192,12 @@ export const DragRace = () => {
             </div>
 
             <div className={`grid gap-6 lg:gap-4 mt-20 lg:mt-40 ${participants.length === 2 ? 'grid-cols-2' :
-                participants.length === 3 ? 'grid-cols-1 gap-20 md:grid-cols-3' : 'grid-cols-1 gap-20 md:grid-cols-4'
+                participants.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-4'
                 }`}>
                 {participants.map((p) => (
                     <DetailedCarSelector
                         key={p.tempId}
-                        rawCars={cars}
-                        cars={cars}
+                        rawCars={carsSummary}
                         participant={p}
                         onUpdate={updateParticipant}
                         onRemove={(id) => {
@@ -171,16 +210,15 @@ export const DragRace = () => {
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden">
-                <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-sm text-gray-800 font-bold uppercase tracking-widest">Simulação 0-100 km/h</h3>
-                </div>
-
                 <div className="space-y-4 relative mb-6">
                     <div className="absolute right-8 top-0 bottom-0 w-px border-r border-dashed border-gray-300 z-0"></div>
                     {participants.map((p, idx) => {
-                        const car = cars.find(c => c.id === p.id);
+                        const car = detailedCars.find(c => c.id === p.id) || carsSummary.find(c => c.id === p.id);
                         const laneColor = ['bg-gray-800', 'bg-[#6319F7]', 'bg-red-500', 'bg-emerald-500'][idx % 4];
                         const rank = raceResults ? raceResults.findIndex(r => r.tempId === p.tempId) + 1 : null;
+
+                        const det = detailedCars.find(c => c.id === p.id);
+                        const accelTime = det ? (det.specs[p.stage]?.zeroToHundred || det.specs.stock.zeroToHundred) : 10;
 
                         return (
                             <div key={p.tempId} className="relative h-10 bg-gray-50 rounded-lg border border-gray-100 flex items-center px-2 z-10">
@@ -189,14 +227,14 @@ export const DragRace = () => {
                                         className={`absolute h-6 w-20 ${laneColor} rounded shadow-lg flex items-center justify-center z-10 text-white transition-all`}
                                         style={{
                                             left: racing ? 'calc(100% - 5.5rem)' : '0.5rem',
-                                            transitionDuration: racing ? `${car.specs[p.stage].zeroToHundred * 0.5}s` : '0.5s'
+                                            transitionDuration: racing ? `${accelTime * 0.4}s` : '0.5s'
                                         }}
                                     >
-                                        <span className="text-[8px] font-bold truncate">{car.model}</span>
+                                        <span className="text-[8px] font-bold truncate px-1">{car.model}</span>
                                     </div>
                                 )}
                                 {rank && (
-                                    <div className="absolute right-2 font-bold text-xs flex items-center gap-1 animate-fade-in">
+                                    <div className="absolute right-2 font-bold text-xs flex items-center gap-1 animate-fade-in text-gray-700">
                                         {rank === 1 && <Trophy size={12} className="text-yellow-500" />}
                                         {rank}º Lugar
                                     </div>
@@ -206,50 +244,46 @@ export const DragRace = () => {
                     })}
                 </div>
 
+                <Button className="mt-6 p-4 text-3xl font-black" onClick={handleRace} primary fullWidth disabled={racing}>
+                    {racing ? 'ACELERANDO...' : validParticipants.length < participants.length ? 'COMPLETE A SELEÇÃO' : `COMPARAR ${validParticipants.length} VEÍCULOS`}
+                </Button>
+
                 {raceResults && !racing && (
-                    <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-100 animate-in fade-in duration-500">
+                    <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-100 animate-in fade-in slide-in-from-top-2">
                         <h3 className="text-center font-bold text-gray-700 mb-4 flex justify-center items-center gap-2"><Medal size={18} /> Resultados Finais</h3>
                         <div className="space-y-2">
                             {raceResults.map((result, idx) => (
-                                <div key={result.tempId} className="flex justify-between items-center p-2 bg-white rounded border border-gray-200 shadow-sm">
+                                <div key={result.tempId} className="flex justify-between items-center p-3 bg-white rounded-lg border border-gray-200 shadow-sm">
                                     <div className="flex items-center gap-3">
                                         <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${idx === 0 ? 'bg-yellow-400 text-black' : 'bg-gray-200 text-gray-500'}`}>
                                             {idx + 1}
                                         </div>
-                                        <div className="text-sm font-bold text-gray-800">{result.name}</div>
+                                        <div className="text-sm font-bold text-gray-800">{result.name} <span className="text-gray-400 font-normal text-[10px] ml-1">{result.version}</span></div>
                                     </div>
-                                    <div className="font-mono font-bold text-[#6319F7]">{result.time}s</div>
+                                    <div className="font-mono font-bold text-[#6319F7]">{result.time.toFixed(2)}s</div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
 
-                <Button className="mt-6 p-4 text-3xl " onClick={handleRace} primary fullWidth disabled={racing}>
-                    {racing ? 'ACELERANDO...' : validParticipants.length < participants.length ? 'ADICIONE MAIS UM CARRO' : `COMPARAR ${validParticipants.length} CARROS`}
-                </Button>
-
                 {raceResults && !racing && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
                         <Button className="uppercase text-sm py-4 font-bold" fullWidth onClick={copiarLink}>
-                            <Share2 size={16} />
-                            Compartilhar
+                            <Share2 size={16} /> Compartilhar
                         </Button>
-                        <Button
-                            onClick={handleReset}
-                            className="flex items-center justify-center gap-2 text-sm cursor-pointer font-bold text-red-500 bg-red-50 rounded-lg hover:bg-red-500 hover:text-red-50 transition-all uppercase px-4 py-2"
-                        >
-                            <RotateCcw size={16} /> Refazer Tudo
+                        <Button onClick={handleReset} className="flex items-center justify-center gap-2 text-sm font-bold text-red-500 bg-red-50 rounded-lg hover:bg-red-500 hover:text-red-50 transition-all uppercase px-4 py-2">
+                            <RotateCcw size={16} /> Resetar
                         </Button>
                     </div>
                 )}
             </div>
 
-            {showComparison && validParticipants.length === participants.length && !racing && (
+            {showComparison && detailedCars.length === validParticipants.length && !racing && (
                 <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                    <TechnicalComparison cars={cars} participants={validParticipants} />
-                    <EquipmentComparison cars={cars} participants={validParticipants} />
-                    <VerdictSection cars={cars} participants={validParticipants} />
+                    <TechnicalComparison cars={detailedCars} participants={validParticipants} />
+                    <EquipmentComparison cars={detailedCars} participants={validParticipants} />
+                    <VerdictSection cars={detailedCars} participants={validParticipants} />
                 </div>
             )}
 
