@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 import StyledComponentsRegistry from '@/lib/registry'
 import { Providers } from './providers'
 import { Header } from '@/components/Header'
 import Main from '@/components/Main'
 import { Footer } from '@/components/Footer'
+import { CookieBanner } from '@/components/CookieBanner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,7 +46,6 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_TAG!} />
         <StyledComponentsRegistry>
           <Providers>
             <div className="min-h-screen bg-gray-50 text-gray-800 font-sans pb-24 md:pb-0">
@@ -54,6 +53,7 @@ export default function RootLayout({
               <Main>
                 {children}
               </Main>
+              <CookieBanner />
               <Footer />
             </div>
           </Providers>

@@ -58,6 +58,10 @@ export const Footer = () => {
                             <li><Link href="/detalhes" className="hover:text-[#6319F7]">Detalhes</Link></li>
                             <li><Link href="/custos" className="hover:text-[#6319F7]">Custos</Link></li>
                             <li><Link href="/eventos" className="hover:text-[#6319F7]">Eventos</Link></li>
+                            <li><Link href="/politica-de-privacidade" className="hover:text-[#6319F7]">Politica de privacidade</Link></li>
+                            <li><Link href="/termos-de-uso" className="hover:text-[#6319F7]">Termos de uso</Link></li>
+                            <li><Link href="/sobre-nos" className="hover:text-[#6319F7]">Sobre Nós</Link></li>
+                            <li><Link href="/contato" className="hover:text-[#6319F7]">Contato</Link></li>
                         </ul>
                     </div>
 
