@@ -26,7 +26,7 @@ export const Footer = () => {
                             </div>
                         </div>
 
-                        <p className="mt-4 text-sm text-gray-500 max-w-sm">
+                        <p className="mt-4 text-lg text-gray-600 max-w-sm">
                             Plataforma inteligente para comparar carros, analisar rankings
                             e tomar decisões mais seguras no mercado automotivo.
                         </p>
@@ -34,11 +34,11 @@ export const Footer = () => {
 
                     {/* NAVEGAÇÃO */}
                     <div>
-                        <h3 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4 uppercase tracking-wider">
                             Navegação
                         </h3>
 
-                        <ul className="space-y-2 text-sm text-gray-500 font-medium">
+                        <ul className="space-y-2 text-md text-gray-600 font-medium">
                             <li><Link href="/" className="hover:text-[#6319F7]">Home</Link></li>
                             <li><Link href="/comparar" className="hover:text-[#6319F7]">Comparar</Link></li>
                             <li><Link href="/produtos" className="hover:text-[#6319F7]">Produtos</Link></li>
@@ -50,11 +50,11 @@ export const Footer = () => {
 
                     {/* INFORMAÇÕES */}
                     <div>
-                        <h3 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4 uppercase tracking-wider">
                             Informações
                         </h3>
 
-                        <ul className="space-y-2 text-sm text-gray-500 font-medium">
+                        <ul className="space-y-2 text-md text-gray-600 font-medium">
                             <li><Link href="/detalhes" className="hover:text-[#6319F7]">Detalhes</Link></li>
                             <li><Link href="/custos" className="hover:text-[#6319F7]">Custos</Link></li>
                             <li><Link href="/eventos" className="hover:text-[#6319F7]">Eventos</Link></li>
@@ -69,11 +69,11 @@ export const Footer = () => {
 
                 {/* COPYRIGHT */}
                 <div className="mt-12 border-t border-gray-100 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-gray-600">
                         © {new Date().getFullYear()} AutoWebSpec. Todos os direitos reservados.
                     </p>
 
-                    <p className="text-sm text-gray-400">
+                    <p className="text-md text-gray-600">
                         Feito com foco em dados, clareza e performance.
                     </p>
                 </div>

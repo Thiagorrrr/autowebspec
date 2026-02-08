@@ -1,6 +1,6 @@
 "use client"
 import { Participant, RaceResult, Car } from "@/types/types";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { DetailedCarSelector } from "./components/DetailedCarSelector";
 import { EquipmentComparison } from "./components/EquipmentComparison";
 import { VerdictSection } from "./components/VerdictSection";
@@ -160,13 +160,47 @@ export const DragRace = () => {
             .catch(() => setAlertMessage({ type: "error", message: "Erro ao copiar link" }));
     };
 
+    const comparisonSchema = useMemo(() => {
+        if (!detailedCars || detailedCars.length === 0) return null;
+
+        return {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": `Comparativo: ${detailedCars.map(c => `${c.make} ${c.model}`).join(' vs ')}`,
+            "description": `Comparação detalhada de fichas técnicas, equipamentos e desempenho: ${detailedCars.map(c => `${c.make} ${c.model} ${c.version}`).join(' vs ')}.`,
+            "brand": {
+                "@type": "Brand",
+                "name": "AutoWebSpec"
+            },
+            "isRelatedTo": detailedCars.map(car => ({
+                "@type": "Product",
+                "name": `${car.make} ${car.model} ${car.version}`,
+                "image": car.image,
+                "description": `Ficha técnica de ${car.make} ${car.model}`,
+                "offers": {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/InStock"
+                }
+            }))
+        };
+    }, [detailedCars]);
+
     if (isLoading) return <Loading />;
     if (error || !carsSummary) return <div className="text-red-500 p-8 text-center font-bold">Erro ao carregar banco de dados.</div>;
 
     const validParticipants = participants.filter(p => p.id !== "");
 
+
+
     return (
         <div className="space-y-6 mt-8">
+            {/* Injeção do Schema Dinâmico */}
+            {comparisonSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(comparisonSchema) }}
+                />
+            )}
             <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6">
                 <SectionTitle
                     subtitle="Simulador de Performance"

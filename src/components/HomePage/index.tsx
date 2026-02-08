@@ -10,10 +10,39 @@ import { SectionTitle } from "../SectionTitle";
 import { Button } from "../Button";
 import { useNews } from "@/hooks/queries/useNews";
 import { Loading } from "./loading";
+import { useMemo } from "react";
 
 export const HomePage = () => {
     const pathname = usePathname();
     const { data, isLoading, error } = useNews();
+
+    // --- SCHEMA JSON-LD PARA HOME (Destaques e Navegação) ---
+    const homeSchema = useMemo(() => {
+        return {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "AutoWebSpec - Comparativos e Fichas Técnicas",
+            "description": "Compare carros lado a lado, veja rankings de custo-benefício e as últimas notícias do setor automotivo.",
+            "mainEntity": {
+                "@type": "ItemList",
+                "name": "Comparativos em Destaque",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Corolla vs Sentra",
+                        "url": "https://autowebspec.com.br/comparar/?carro1=toyota-corolla-2025-gli-2.0&carro2=nissan-sentra-2026-exclusive-2.0-cvt-interior-premium"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Polo vs 208",
+                        "url": "https://autowebspec.com.br/comparar/?carro1=volkswagen-polo-2025-highline-170-tsi-at&carro2=peugeot-208-2025-gt-turbo-at"
+                    }
+                ]
+            }
+        };
+    }, []);
 
     const dataDestaque = [
         {
@@ -59,6 +88,10 @@ export const HomePage = () => {
 
     return (
         <div className="grid gap-10 mt-8">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
+            />
             {/* ================= COMPARATIVOS ================= */}
             <section className="space-y-6">
                 <SectionTitle>Comparativos em Destaque</SectionTitle>

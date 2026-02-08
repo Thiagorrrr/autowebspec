@@ -13,9 +13,14 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: {
     default: "Auto Web Spec | Comparativos de Carros",
-    template: "%s | Auto Web Spec" // O %s será trocado pelo título da página específica
+    template: "%s | Auto Web Spec"
   },
-  description: "Compare especificações técnicas, desempenho e preços para escolher o melhor carro.",
+  description: "Encontre a ficha técnica completa e compare o desempenho dos modelos que você deseja.",
+  applicationName: 'AutoWebSpec', // Indica o nome do app/site
+  authors: [{ name: 'TP' }],
+  generator: 'Next.js',
+  keywords: ['carros', 'comparativo', 'ficha técnica', 'automóveis'],
+  referrer: 'origin-when-cross-origin',
   icons: {
     icon: [
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
@@ -27,6 +32,14 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
+  openGraph: {
+    type: 'website',
+    locale: 'pt_BR',
+    url: 'https://autowebspec.com.br',
+    siteName: 'AutoWebSpec',
+    title: 'Auto Web Spec | Comparativos de Carros',
+    description: 'Compare especificações técnicas e desempenho de carros lado a lado.',
+  },
   other: {
     "apple-mobile-web-app-title": "AutoWebSpec",
   },
@@ -37,12 +50,26 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Schema para forçar o Google a reconhecer o nome do site
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AutoWebSpec",
+    "alternateName": ["Auto Web Spec", "Auto WebSpec"],
+    "url": "https://autowebspec.com.br/"
+  }
+
   return (
     <html lang="pt-br">
       <head>
         <meta
           name="google-adsense-account"
           content={`ca-pub-${process.env.NEXT_PUBLIC_GOOGLE_TAG_ADS!}`}
+        />
+        {/* Injeção do Schema WebSite no Head */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className={inter.className}>

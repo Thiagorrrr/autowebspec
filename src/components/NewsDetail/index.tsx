@@ -3,29 +3,75 @@ import { Calendar, Clock, User } from "lucide-react";
 import { BackButton } from "../BackButton";
 import { Card } from "../Card";
 import { useRouter } from "next/navigation";
-import { Key } from "react";
+import { Key, useMemo } from "react"; // Adicionado useMemo
 import Link from "next/link";
 import Image from "next/image";
 import { useNews } from "@/hooks/queries/useNews";
 
 export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
     const { data, isLoading, error } = useNews();
-
-    const NEWS_DATA = data
-    const news = NEWS_DATA?.find(n => n.slug === newsSlug);
     const router = useRouter()
 
-    if (isLoading) return <p>Carregando...</p>;
-    if (error) return <p>Erro ao carregar</p>;
+    const news = useMemo(() => data?.find(n => n.slug === newsSlug), [data, newsSlug]);
+
+    // --- SCHEMA JSON-LD PARA NOTÍCIA ---
+    const newsSchema = useMemo(() => {
+        if (!news) return null;
+
+        return {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": news.title,
+            "description": news.summary || news.title,
+            "image": [news.image],
+            "datePublished": new Date(news.date).toISOString(), // Ideal que venha em ISO do backend
+            "author": [{
+                "@type": "Person",
+                "name": news.author || "Equipe AutoWebSpec",
+                "jobTitle": news.authorRole || "Editor"
+            }],
+            "publisher": {
+                "@type": "Organization",
+                "name": "AutoWebSpec",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://autowebspec.com.br/logo.png" // Ajuste para sua logo real
+                }
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://autowebspec.com.br/noticias/${news.slug}`
+            }
+        };
+    }, [news]);
+
+    if (isLoading) return <p className="text-center py-10">Carregando...</p>;
+    if (error) return <p className="text-center py-10">Erro ao carregar</p>;
     if (!news) {
         return <div className="text-red-500 p-4">Notícia não encontrada.</div>;
     }
+
     return (
         <div className="space-y-6 animate-fadeIn mt-8">
+            {/* Injeção do Schema Org */}
+            {newsSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(newsSchema) }}
+                />
+            )}
+
             <BackButton onClick={() => router.back()} label="Voltar para Notícias" />
 
             <Card className="overflow-hidden p-0">
-                <Image src={news.image} alt={news.title} width={100} height={150} className="w-full h-64 md:h-96 object-cover" />
+                <Image
+                    src={news.image}
+                    alt={news.title}
+                    width={1200} // Largura maior para alta qualidade
+                    height={675}
+                    className="w-full h-64 md:h-96 object-cover"
+                    priority // Imagem principal da notícia carrega primeiro
+                />
                 <div className="p-6 md:p-10">
                     <div className="flex flex-wrap items-center gap-4 mb-4">
                         <span className="bg-[#6319F7]/10 text-[#6319F7] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">{news.category}</span>
@@ -39,19 +85,17 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
 
                     <h1 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">{news.title}</h1>
 
-                    {/* Estilo para simular texto rico e formatação */}
                     <div className="prose prose-lg text-gray-700 max-w-none space-y-6 text-lg leading-relaxed">
                         {news.content.split('\n\n').map((paragraph: string, idx: Key | null | undefined) => {
                             if (paragraph.startsWith('## ')) {
                                 return <h2 key={idx} className="text-2xl font-bold text-gray-900 mt-8 mb-4">{paragraph.replace('## ', '')}</h2>
                             }
-                            // Detecta negrito simples (**texto**)
                             const parts = paragraph.split(/(\*\*.*?\*\*)/g);
                             return (
                                 <p key={idx}>
                                     {parts.map((part, i) =>
                                         part.startsWith('**') && part.endsWith('**')
-                                            ? <strong key={i}>{part.slice(2, -2)}</strong>
+                                            ? <strong key={i} className="text-gray-900">{part.slice(2, -2)}</strong>
                                             : part
                                     )}
                                 </p>
@@ -59,36 +103,35 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
                         })}
                     </div>
 
-                    {/* Author Box */}
                     <div className="mt-12 pt-8 border-t border-gray-200">
                         <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+                            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 overflow-hidden">
                                 <User size={24} />
                             </div>
                             <div>
                                 <p className="font-bold text-gray-900">{news.author}</p>
                                 <p className="text-sm text-gray-500">{news.authorRole}</p>
                             </div>
-                            {/* <div className="ml-auto flex gap-2">
-                                <button className="p-2 text-gray-400 hover:text-[#6319F7] transition-colors"><Share2 size={20} /></button>
-                                <button className="p-2 text-gray-400 hover:text-[#6319F7] transition-colors"><Bookmark size={20} /></button>
-                            </div> */}
                         </div>
                     </div>
                 </div>
             </Card>
 
-            {/* Related News (Simples, pegando outras notícias) */}
+            {/* Leia Também */}
             <div className="mt-12">
                 <h3 className="text-xl font-bold text-gray-800 mb-6">Leia Também</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {NEWS_DATA?.filter(n => n.id !== news.id).slice(0, 3).map(related => (
-
+                    {data?.filter(n => n.id !== news.id).slice(0, 3).map(related => (
                         <Link className="group cursor-pointer" href={`/noticias/${related.slug}`} key={related.slug}>
-
-                            <div key={related.id} >
+                            <div className="flex flex-col h-full">
                                 <div className="overflow-hidden rounded-lg mb-3 h-52">
-                                    <Image src={related.image} alt={related.title} width={100} height={150} className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" />
+                                    <Image
+                                        src={related.image}
+                                        alt={related.title}
+                                        width={400}
+                                        height={225}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
                                 </div>
                                 <h4 className="font-bold text-gray-900 group-hover:text-[#6319F7] transition-colors line-clamp-2">{related.title}</h4>
                                 <p className="text-xs text-gray-500 mt-1">{related.date}</p>
