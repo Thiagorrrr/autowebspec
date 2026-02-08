@@ -75,7 +75,7 @@ export default function AboutUs() {
                         src="/marcas/volkswagen/polo/polo.webp" // Exemplo de imagem que você já tem no projeto
                         alt="Background Tech"
                         fill
-                        className="object-cover scale-125 group-hover:scale-100 transition-transform duration-700"
+                        className="object-contain scale-125 group-hover:scale-100 transition-transform duration-700"
                     />
                 </div>
             </section>
@@ -109,7 +109,7 @@ export default function AboutUs() {
                     Pronto para começar?
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900">Encontre seu próximo carro agora mesmo.</h2>
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <div className="flex  sm:flex-row justify-center gap-4">
                     <Link href="/comparar">
                         <Button className="px-10 h-14 text-lg shadow-xl shadow-[#6319F7]/20">
                             Ver Comparativos
