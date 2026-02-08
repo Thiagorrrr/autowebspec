@@ -12,6 +12,7 @@ import { Alert } from "../Alert";
 import { Loading } from "./loading";
 import { TechnicalComparison } from "./components/TechnicalComparison";
 import { SectionTitle } from "../SectionTitle";
+import Script from "next/script";
 
 export type AlertMessage = {
     type: "success" | "error" | "alert";
@@ -166,8 +167,8 @@ export const DragRace = () => {
         return {
             "@context": "https://schema.org",
             "@type": "Product",
-            "name": `Comparativo: ${detailedCars.map(c => `${c.make} ${c.model}`).join(' vs ')}`,
-            "description": `Comparação detalhada de fichas técnicas, equipamentos e desempenho: ${detailedCars.map(c => `${c.make} ${c.model} ${c.version}`).join(' vs ')}.`,
+            "name": `Comparativo de Performance: ${detailedCars.map(c => `${c.make} ${c.model}`).join(' vs ')}`,
+            "description": `Simulação de aceleração e comparação técnica detalhada entre ${detailedCars.map(c => `${c.make} ${c.model} ${c.version}`).join(' e ')}.`,
             "brand": {
                 "@type": "Brand",
                 "name": "AutoWebSpec"
@@ -176,11 +177,7 @@ export const DragRace = () => {
                 "@type": "Product",
                 "name": `${car.make} ${car.model} ${car.version}`,
                 "image": car.image,
-                "description": `Ficha técnica de ${car.make} ${car.model}`,
-                "offers": {
-                    "@type": "Offer",
-                    "availability": "https://schema.org/InStock"
-                }
+                "description": `Ficha técnica completa de ${car.make} ${car.model}`
             }))
         };
     }, [detailedCars]);
@@ -196,8 +193,10 @@ export const DragRace = () => {
         <div className="space-y-6 mt-8">
             {/* Injeção do Schema Dinâmico */}
             {comparisonSchema && (
-                <script
+                <Script
+                    id="comparison-schema"
                     type="application/ld+json"
+                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(comparisonSchema) }}
                 />
             )}

@@ -3,9 +3,10 @@ import { Calendar, Clock, User } from "lucide-react";
 import { BackButton } from "../BackButton";
 import { Card } from "../Card";
 import { useRouter } from "next/navigation";
-import { Key, useMemo } from "react"; // Adicionado useMemo
+import { Key, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script"; // 1. Importe o componente Script
 import { useNews } from "@/hooks/queries/useNews";
 
 export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
@@ -14,7 +15,6 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
 
     const news = useMemo(() => data?.find(n => n.slug === newsSlug), [data, newsSlug]);
 
-    // --- SCHEMA JSON-LD PARA NOTÍCIA ---
     const newsSchema = useMemo(() => {
         if (!news) return null;
 
@@ -24,7 +24,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
             "headline": news.title,
             "description": news.summary || news.title,
             "image": [news.image],
-            "datePublished": new Date(news.date).toISOString(), // Ideal que venha em ISO do backend
+            "datePublished": news.date,
             "author": [{
                 "@type": "Person",
                 "name": news.author || "Equipe AutoWebSpec",
@@ -35,7 +35,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
                 "name": "AutoWebSpec",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://autowebspec.com.br/logo.png" // Ajuste para sua logo real
+                    "url": "https://autowebspec.com.br/logo.png"
                 }
             },
             "mainEntityOfPage": {
@@ -53,24 +53,27 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
 
     return (
         <div className="space-y-6 animate-fadeIn mt-8">
-            {/* Injeção do Schema Org */}
+            {/* 2. Injeção usando o componente Script do Next.js com estratégia correta */}
             {newsSchema && (
-                <script
+                <Script
+                    id={`news-schema-${news.slug}`}
                     type="application/ld+json"
+                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(newsSchema) }}
                 />
             )}
 
             <BackButton onClick={() => router.back()} label="Voltar para Notícias" />
 
+            {/* ... restante do seu código JSX (Card, Image, Conteúdo, etc) ... */}
             <Card className="overflow-hidden p-0">
                 <Image
                     src={news.image}
                     alt={news.title}
-                    width={1200} // Largura maior para alta qualidade
+                    width={1200}
                     height={675}
                     className="w-full h-64 md:h-96 object-cover"
-                    priority // Imagem principal da notícia carrega primeiro
+                    priority
                 />
                 <div className="p-6 md:p-10">
                     <div className="flex flex-wrap items-center gap-4 mb-4">

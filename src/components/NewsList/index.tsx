@@ -5,6 +5,7 @@ import { SectionTitle } from "../SectionTitle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import Script from "next/script"; // Importação necessária
 import { useNews } from "@/hooks/queries/useNews";
 import { Loading } from "./loading";
 import { useMemo } from "react";
@@ -15,10 +16,9 @@ export const NewsList = () => {
 
     const sortedData = useMemo(() => {
         if (!data) return [];
-        return [...data].sort((a, b) => b.id - a.id); // Inverti para os IDs maiores (mais recentes) virem primeiro
+        return [...data].sort((a, b) => b.id - a.id);
     }, [data]);
 
-    // --- CÓDIGO DO SCHEMA JSON-LD ---
     const jsonLd = useMemo(() => {
         if (!sortedData.length) return null;
 
@@ -40,10 +40,12 @@ export const NewsList = () => {
 
     return (
         <div className="space-y-6 mt-8">
-            {/* Injeção do Schema Org no HEAD */}
+            {/* Injeção robusta do Schema Org */}
             {jsonLd && (
-                <script
+                <Script
+                    id="news-list-schema"
                     type="application/ld+json"
+                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />
             )}
@@ -64,10 +66,10 @@ export const NewsList = () => {
                                 <Image
                                     src={news.image}
                                     alt={news.title}
-                                    width={800} // Aumentei para melhor SEO de imagem no destaque
+                                    width={800}
                                     height={450}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    priority // Carregamento prioritário para a imagem de destaque
+                                    priority
                                 />
                                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
                                     <span className="bg-[#6319F7] text-white text-xs font-bold px-2 py-1 rounded w-fit mb-2">{news.category}</span>

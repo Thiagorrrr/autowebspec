@@ -11,6 +11,7 @@ import { Button } from "../Button";
 import { useNews } from "@/hooks/queries/useNews";
 import { Loading } from "./loading";
 import { useMemo } from "react";
+import Script from "next/script";
 
 export const HomePage = () => {
     const pathname = usePathname();
@@ -88,10 +89,14 @@ export const HomePage = () => {
 
     return (
         <div className="grid gap-10 mt-8">
-            <script
+
+            <Script
+                id="comparison-schema"
                 type="application/ld+json"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
             />
+
             {/* ================= COMPARATIVOS ================= */}
             <section className="space-y-6">
                 <SectionTitle>Comparativos em Destaque</SectionTitle>
