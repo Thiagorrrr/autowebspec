@@ -99,7 +99,7 @@ export const HomePage = () => {
 
             {/* ================= COMPARATIVOS ================= */}
             <section className="space-y-6">
-                <SectionTitle>Comparativos em Destaque</SectionTitle>
+                <SectionTitle className="text-sm">Comparativos em Destaque</SectionTitle>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {dataDestaque.map((news) => (

@@ -13,7 +13,7 @@ import { Loading } from "./loading";
 import { TechnicalComparison } from "./components/TechnicalComparison";
 import { SectionTitle } from "../SectionTitle";
 import Script from "next/script";
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export type AlertMessage = {
     type: "success" | "error" | "alert";
@@ -34,12 +34,14 @@ export const DragRace = () => {
 
 
     const pathname = usePathname();
-    const searchParams = useSearchParams();
+    const [canonicalUrl, setCanonicalUrl] = useState(`https://autowebspec.com.br${pathname}`);
 
-    // Monta a URL Canonical dinamicamente
-    const params = searchParams.toString();
-    const cleanPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
-    const canonicalUrl = `https://autowebspec.com.br${cleanPath}${params ? '?' + params : ''}`;
+    useEffect(() => {
+        const params = window.location.search;
+        const cleanPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+
+        setCanonicalUrl(`https://autowebspec.com.br${cleanPath}${params}`);
+    }, [pathname]);
 
     const atualizarUrl = useCallback((parts: Participant[]) => {
         const validParts = parts.filter(p => p.id !== "");
