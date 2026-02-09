@@ -26,7 +26,7 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({
 
             {/* Bloco de Texto Principal */}
             <div className="flex flex-col">
-                <h2 className="text-2xl lg:text-4xl font-black text-gray-900 uppercase tracking-tighter leading-[0.85]">
+                <h2 className="text-3xl lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-[0.85]">
                     {children}
                 </h2>
 

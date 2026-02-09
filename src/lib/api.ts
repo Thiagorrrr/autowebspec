@@ -12,6 +12,8 @@ export async function fetchCars(): Promise<Car[]> {
 
 export async function fetchNews(): Promise<NewsArticle[]> {
     const res = await fetch(`${BASE_URL_NEWS}/news`, {
+        cache: "no-store", // força SEM CACHE
+
     });
     return res.json();
 }
