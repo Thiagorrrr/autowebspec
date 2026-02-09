@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: `Detalhes sobre ${marca} ${modelo}`,
         description: `Ficha técnica, versões e especificações do ${marca} ${modelo}. Confira todos os detalhes técnicos e equipamentos de série deste veículo.`,
         alternates: {
-            canonical: `https://autowebspec.com.br/marcas/${params.marca}/${params.modelo}`,
+            canonical: `https://autowebspec.com.br/marcas/${params.marca}/${params.modelo}/`,
         },
     };
 }

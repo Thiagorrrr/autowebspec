@@ -22,7 +22,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: `${titleFromSlug}`,
-        description: `${titleFromSlug}. Confira todos os detalhes, fotos e informações completas sobre esta notícia no portal Auto Web Spec.`
+        description: `${titleFromSlug}. Confira todos os detalhes, fotos e informações completas sobre esta notícia no portal Auto Web Spec.`,
+        alternates: {
+            canonical: `https://autowebspec.com.br/noticias/${params.slug}/`,
+        },
     };
 }
 

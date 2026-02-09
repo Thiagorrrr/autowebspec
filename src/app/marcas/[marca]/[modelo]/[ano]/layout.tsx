@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: `Mais detalhes sobre as versões de ${marca} ${modelo} ${ano} - Versões e Ficha Técnica`,
         description: `Todas as versões e especificações técnicas para o ${marca} ${modelo} ${ano}. Compare motorização, equipamentos e detalhes de cada variante.`,
         alternates: {
-            canonical: `https://autowebspec.com.br/marcas/${params.marca}/${params.modelo}/${params.ano}`,
+            canonical: `https://autowebspec.com.br/marcas/${params.marca}/${params.modelo}/${params.ano}/`,
         },
     };
 }
