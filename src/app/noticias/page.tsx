@@ -3,7 +3,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Notícias e Tendências Automotivas",
-    description: "Fique por dentro das últimas novidades do mundo automotivo, lançamentos de acessórios, tecnologia e atualizações do mercado."
+    description: "Fique por dentro das últimas novidades do mundo automotivo, lançamentos de acessórios, tecnologia e atualizações do mercado.",
+    alternates: {
+        canonical: 'https://autowebspec.com.br/noticias/',
+    },
 };
 const noticias = () => {
     return (

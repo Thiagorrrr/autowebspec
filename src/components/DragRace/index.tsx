@@ -13,6 +13,7 @@ import { Loading } from "./loading";
 import { TechnicalComparison } from "./components/TechnicalComparison";
 import { SectionTitle } from "../SectionTitle";
 import Script from "next/script";
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export type AlertMessage = {
     type: "success" | "error" | "alert";
@@ -30,6 +31,15 @@ export const DragRace = () => {
     const [detailedCars, setDetailedCars] = useState<Car[]>([]);
     const [showComparison, setShowComparison] = useState(false);
     const initialized = useRef(false);
+
+
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    // Monta a URL Canonical dinamicamente
+    const params = searchParams.toString();
+    const cleanPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+    const canonicalUrl = `https://autowebspec.com.br${cleanPath}${params ? '?' + params : ''}`;
 
     const atualizarUrl = useCallback((parts: Participant[]) => {
         const validParts = parts.filter(p => p.id !== "");
@@ -192,6 +202,7 @@ export const DragRace = () => {
     return (
         <div className="space-y-6 mt-8">
             {/* Injeção do Schema Dinâmico */}
+            <link rel="canonical" href={canonicalUrl} />
             {comparisonSchema && (
                 <Script
                     id="comparison-schema"

@@ -8,13 +8,14 @@ import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script"; // 1. Importe o componente Script
 import { useNews } from "@/hooks/queries/useNews";
+import { Loading } from "./loading";
 
 export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
     const { data, isLoading, error } = useNews();
     const router = useRouter()
 
     const news = useMemo(() => data?.find(n => n.slug === newsSlug), [data, newsSlug]);
-
+    const canonicalUrl = `https://autowebspec.com.br/noticias/${newsSlug}/`;
     const newsSchema = useMemo(() => {
         if (!news) return null;
 
@@ -45,7 +46,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
         };
     }, [news]);
 
-    if (isLoading) return <p className="text-center py-10">Carregando...</p>;
+    if (isLoading) return <Loading />
     if (error) return <p className="text-center py-10">Erro ao carregar</p>;
     if (!news) {
         return <div className="text-red-500 p-4">Notícia não encontrada.</div>;
@@ -54,6 +55,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
     return (
         <div className="space-y-6 animate-fadeIn mt-8">
             {/* 2. Injeção usando o componente Script do Next.js com estratégia correta */}
+            <link rel="canonical" href={canonicalUrl} />
             {newsSchema && (
                 <Script
                     id={`news-schema-${news.slug}`}

@@ -11,7 +11,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: `Modelos da ${nomeMarca}`,
-        description: `Lista completa de todos os modelos de carros da ${nomeMarca}. Veja os veículos disponíveis e explore as opções desta marca.`
+        description: `Lista completa de todos os modelos de carros da ${nomeMarca}. Veja os veículos disponíveis e explore as opções desta marca.`,
+        alternates: {
+            canonical: `https://autowebspec.com.br/marcas/${params.marca}`,
+        },
     };
 }
 

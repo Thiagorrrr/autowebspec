@@ -43,6 +43,9 @@ export const metadata: Metadata = {
   other: {
     "apple-mobile-web-app-title": "AutoWebSpec",
   },
+  alternates: {
+    canonical: 'https://autowebspec.com.br',
+  },
 }
 
 export default function RootLayout({

@@ -53,7 +53,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: `Mais detalhes de ${nomeCompleto} - Ficha Técnica e Equipamentos`,
-        description: `Ficha técnica detalhada, motorização, consumo e todos os itens de série do ${nomeCompleto}. Veja os dados técnicos completos deste veículo.`
+        description: `Ficha técnica detalhada, motorização, consumo e todos os itens de série do ${nomeCompleto}. Veja os dados técnicos completos deste veículo.`,
+        alternates: {
+            canonical: `https://autowebspec.com.br/marcas/${params.marca}/${params.modelo}/${params.ano}/${params.versao}`,
+        },
     };
 }
 export default function Layout({ children }: { children: ReactNode }) {
