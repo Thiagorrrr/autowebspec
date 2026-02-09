@@ -7,9 +7,9 @@ import Image from "next/image";
 import Script from "next/script";
 import { useNews } from "@/hooks/queries/useNews";
 import { Loading } from "./loading";
-import { BackButton } from "../BackButton";
+import { BackButton } from "@/components/BackButton";
 import { AlertMessage } from "../DragRace";
-import { Alert } from "../Alert";
+import { Alert } from "@/components/Alert"
 
 export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
     const { data, isLoading, error } = useNews();
@@ -123,7 +123,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
                             // Subtítulos H2
                             if (paragraph.startsWith('## ')) {
                                 return (
-                                    <h2 key={idx} className="text-3xl md:text-4xl font-black text-gray-900 mt-16 mb-8 flex items-center gap-4">
+                                    <h2 key={idx} className="text-3xl md:text-5xl font-black text-gray-900 mt-16 mb-8 flex items-center gap-4">
                                         <div className="w-2.5 h-10 bg-[#6319F7] rounded-full"></div>
                                         {paragraph.replace('## ', '')}
                                     </h2>
@@ -165,7 +165,7 @@ export const NewsDetail: React.FC<{ newsSlug: string }> = ({ newsSlug }) => {
                             // Parágrafo Padrão
                             const parts = paragraph.split(/(\*\*.*?\*\*)/g);
                             return (
-                                <p key={idx} className="text-gray-600 leading-[1.8] text-lg md:text-xl mb-8">
+                                <p key={idx} className="text-gray-600 leading-[1.8] text-xl md:text-2xl mb-8">
                                     {parts.map((part, i) =>
                                         part.startsWith('**') && part.endsWith('**')
                                             ? <strong key={i} className="text-gray-950 font-extrabold">{part.slice(2, -2)}</strong>

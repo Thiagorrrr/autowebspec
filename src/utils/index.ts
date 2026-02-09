@@ -27,6 +27,9 @@ const parseCons = (val: string | null | undefined): number => {
     return parseFloat(val.replace(/[^\d,.]/g, "").replace(",", ".")) || 0;
 };
 
+export const formatPrice = (value: number) => Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(value)
+
+
 // Função para calcular pontuação e ranking geral
 export const calculateOverallRanking = ({ participants, cars }: {
     participants: Participant[];

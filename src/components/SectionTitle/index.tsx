@@ -3,13 +3,15 @@ interface SectionTitleProps {
     subtitle?: string;         // Opcional: Texto acima da linha roxa
     description?: string;      // Opcional: Texto explicativo abaixo
     className?: string;
+    size?: string;
 }
 
 export const SectionTitle: React.FC<SectionTitleProps> = ({
     children,
     subtitle,
     description,
-    className = ""
+    className = "",
+    size = ""
 }) => {
     return (
         <div className={`py-8 lg:py-12 ${className}`}>
@@ -26,12 +28,11 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({
 
             {/* Bloco de Texto Principal */}
             <div className="flex flex-col">
-                <h2 className="text-[16px] lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-[0.85]">
-                    {children}
+                <h2 className={`${size ? size : 'text-[20px]'} lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-[0.85]`}>                    {children}
                 </h2>
 
                 {description && (
-                    <p className="mt-4 max-w-md text-sm lg:text-base text-gray-500 font-medium leading-relaxed">
+                    <p className="mt-4 max-w-md text-lg  lg:text-base text-gray-500 font-medium leading-relaxed">
                         {description}
                     </p>
                 )}

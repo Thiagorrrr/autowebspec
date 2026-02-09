@@ -4,6 +4,7 @@ import { ExternalLink, Star, ShieldCheck, TrendingUp } from "lucide-react";
 import { Card } from "../Card";
 import { SectionTitle } from "../SectionTitle";
 import Image from "next/image";
+import { formatPrice } from "@/utils";
 
 export type Product = {
     id: string;
@@ -68,6 +69,8 @@ export const data: Product[] = [
     },
 ];
 
+
+
 export const ProductList = () => {
     const featuredProduct = data[0];
 
@@ -120,11 +123,11 @@ export const ProductList = () => {
                         <div>
                             {featuredProduct.oldPrice && (
                                 <span className="text-sm line-through text-gray-400">
-                                    R$ {featuredProduct.oldPrice}
+                                    {formatPrice(featuredProduct.oldPrice)}
                                 </span>
                             )}
                             <p className="text-3xl font-bold text-[#6319F7]">
-                                R$ {featuredProduct.price}
+                                {formatPrice(featuredProduct.price)}
                             </p>
                         </div>
 
@@ -172,11 +175,11 @@ export const ProductList = () => {
                             <div className="mt-4">
                                 {product.oldPrice && (
                                     <span className="text-sm line-through text-gray-400">
-                                        R$ {product.oldPrice}
+                                        {formatPrice(product.oldPrice)}
                                     </span>
                                 )}
                                 <p className="text-xl font-bold text-[#6319F7]">
-                                    R$ {product.price}
+                                    {formatPrice(product.price)}
                                 </p>
                             </div>
 

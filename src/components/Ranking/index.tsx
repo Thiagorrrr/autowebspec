@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCars } from "@/hooks/queries/useCars";
 import { Loading } from "./loading";
 import { SectionTitle } from "../SectionTitle";
+import { formatPrice } from "@/utils";
 
 const PRICE_OPTIONS = [
   { label: 'Todos os preços', min: 0, max: Infinity },
@@ -157,7 +158,7 @@ export const Ranking = () => {
 
                   <div className="mt-2 md:hidden">
                     <div className="text-[#6319F7] font-black text-lg italic">
-                      {car.fipe}
+                      {formatPrice(car.price)}
                     </div>
                   </div>
                 </div>

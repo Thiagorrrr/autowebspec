@@ -239,7 +239,7 @@ export const TechnicalComparison: React.FC<TechnicalComparisonProps> = ({
                 {
                     label: "FIPE",
                     getValue: (c) => c.price || 0,
-                    unit: "R$",
+                    unit: "",
                     better: "low"
                 },
                 {

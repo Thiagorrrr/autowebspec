@@ -99,7 +99,7 @@ export const HomePage = () => {
 
             {/* ================= COMPARATIVOS ================= */}
             <section className="space-y-6">
-                <SectionTitle className="text-sm">Comparativos em Destaque</SectionTitle>
+                <SectionTitle size="text-[16px]">Comparativos em Destaque</SectionTitle>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {dataDestaque.map((news) => (
@@ -128,10 +128,10 @@ export const HomePage = () => {
                                 </div>
 
                                 <div className="p-5 flex flex-col flex-1 bg-white">
-                                    <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#6319F7] transition-colors">
+                                    <h3 className="font-bold text-xl text-gray-900 group-hover:text-[#6319F7] transition-colors">
                                         {news.title}
                                     </h3>
-                                    <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                                    <p className="text-md text-gray-600 mt-2 line-clamp-2">
                                         {news.subtitle}
                                     </p>
                                     <div className="mt-6">
@@ -148,7 +148,7 @@ export const HomePage = () => {
 
             {/* ================= RANKING ================= */}
             <section className="bg-gray-50 -mx-4 px-4 py-16 rounded-4xl">
-                <SectionTitle >Melhores do Ano por Preço</SectionTitle>
+                <SectionTitle size="text-[16px]">Melhores do Ano por Preço</SectionTitle>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6  mx-auto">
                     {dataRanking.map((item, index) => (
@@ -187,8 +187,8 @@ export const HomePage = () => {
                                     <h3 className={`font-bold text-gray-900 ${index === 0 ? 'text-2xl' : 'text-lg'}`}>
                                         {item.title}
                                     </h3>
-                                    {index === 0 && <p className="text-gray-500 text-sm mt-2">O campeão de vendas e custo-benefício desta semana.</p>}
-                                    <div className="mt-4 flex items-center text-[#6319F7] font-bold text-sm">
+                                    {index === 0 && <p className="text-gray-600 text-sm mt-2">O campeão de vendas e custo-benefício desta semana.</p>}
+                                    <div className="mt-4 flex items-center text-[#6319F7] font-bold text-md">
                                         Ver Detalhes <ChevronRight size={16} />
                                     </div>
                                 </div>
@@ -200,13 +200,13 @@ export const HomePage = () => {
 
             {/* ================= NOTÍCIAS ================= */}
             <section className="space-y-6">
-                <SectionTitle>Últimas Notícias</SectionTitle>
+                <SectionTitle size="text-[16px]">Últimas Notícias</SectionTitle>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {data?.slice(0, 3).map((news) => (
                         <Link
                             key={news.id}
-                            href={`${pathname}${news.slug}`}
+                            href={`/noticias/${news.slug}`}
                             className="group"
                         >
                             <Card className="h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
@@ -224,11 +224,11 @@ export const HomePage = () => {
                                 </div>
 
                                 <div className="p-4 flex flex-col flex-1">
-                                    <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2">
+                                    <h3 className="font-bold text-xl text-gray-800 mb-2 line-clamp-2">
                                         {news.title}
                                     </h3>
 
-                                    <p className="text-sm text-gray-500 line-clamp-3 flex-1">
+                                    <p className="text-md text-gray-600 line-clamp-3 flex-1">
                                         {news.summary}
                                     </p>
 

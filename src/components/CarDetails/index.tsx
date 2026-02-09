@@ -12,6 +12,7 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/effect-fade';
 
 import { Navigation, Pagination, EffectFade, Scrollbar } from 'swiper/modules';
+import { formatPrice } from "@/utils";
 
 export const CarDetails = (car: Car) => {
 
@@ -90,7 +91,7 @@ export const CarDetails = (car: Car) => {
                     <div><Label>Marca</Label><div className="text-md  lg:text-lg font-bold">{car?.make}</div></div>
                     <div><Label>Modelo</Label><div className="text-md  lg:text-lg font-bold">{car?.model}</div></div>
                     <div><Label>Ano</Label><div className="text-md  lg:text-lg font-bold">{car?.year}</div></div>
-                    <div><Label>FIPE</Label><div className="text-md  lg:text-lg font-bold">{car?.fipe}</div></div>
+                    <div><Label>FIPE</Label><div className="text-md  lg:text-lg font-bold">{formatPrice(car?.price)}</div></div>
                     <div><Label>Combustível</Label><div className="text-md  lg:text-lg font-bold">{car?.fuel}</div></div>
                     <div><Label>Portas</Label><div className="text-md  lg:text-lg font-bold">{car?.doors}</div></div>
                     <div><Label>Lugares</Label><div className="text-md  lg:text-lg font-bold">{car?.seats}</div></div>
