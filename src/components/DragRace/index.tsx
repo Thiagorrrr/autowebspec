@@ -13,7 +13,6 @@ import { Loading } from "./loading";
 import { TechnicalComparison } from "./components/TechnicalComparison";
 import { SectionTitle } from "../SectionTitle";
 import Script from "next/script";
-import { usePathname } from 'next/navigation';
 
 export type AlertMessage = {
     type: "success" | "error" | "alert";
@@ -32,16 +31,6 @@ export const DragRace = () => {
     const [showComparison, setShowComparison] = useState(false);
     const initialized = useRef(false);
 
-
-    const pathname = usePathname();
-    const [canonicalUrl, setCanonicalUrl] = useState(`https://autowebspec.com.br${pathname}`);
-
-    useEffect(() => {
-        const params = window.location.search;
-        const cleanPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
-
-        setCanonicalUrl(`https://autowebspec.com.br${cleanPath}${params}`);
-    }, [pathname]);
 
     const atualizarUrl = useCallback((parts: Participant[]) => {
         const validParts = parts.filter(p => p.id !== "");
@@ -204,7 +193,6 @@ export const DragRace = () => {
     return (
         <div className="space-y-6 mt-8">
             {/* Injeção do Schema Dinâmico */}
-            <link rel="canonical" href={canonicalUrl} />
             {comparisonSchema && (
                 <Script
                     id="comparison-schema"
