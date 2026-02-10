@@ -59,8 +59,8 @@ export const CookieBanner = () => {
                             </div>
                             <div className="space-y-3">
                                 <div className="flex justify-between items-start">
-                                    <h3 className="text-2xl font-bold text-gray-900">Privacidade e Cookies</h3>
-                                    <button name="close Cookie Banner btn" onClick={() => setIsVisible(false)} className="text-gray-400 hover:text-gray-600">
+                                    <span className="text-2xl font-bold text-gray-900">Privacidade e Cookies</span>
+                                    <button aria-label="Fechar banner de cookies" onClick={() => setIsVisible(false)} className="text-gray-400 hover:text-gray-600">
                                         <X size={24} />
                                     </button>
                                 </div>

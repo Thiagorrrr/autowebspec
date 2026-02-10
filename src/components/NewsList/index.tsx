@@ -54,6 +54,7 @@ export const NewsList = () => {
 
             <div className="mt-12 mb-12">
                 <SectionTitle
+                    principal
                     subtitle="Autowebspec News"
                     description="Fique por dentro dos últimos lançamentos, flagras exclusivos e as tendências que estão moldando o futuro do mercado automotivo."
                 >
@@ -85,9 +86,9 @@ export const NewsList = () => {
                                 <span className="mb-4 inline-block w-fit rounded-full bg-[#6319F7]/10 px-4 py-1 text-[10px] font-black uppercase tracking-widest text-[#6319F7]">
                                     {news.category}
                                 </span>
-                                <h3 className="mb-4 text-2xl md:text-3xl font-black leading-tight text-gray-900 group-hover:text-[#6319F7] transition-colors">
+                                <h2 className="mb-4 text-2xl md:text-3xl font-black leading-tight text-gray-900 group-hover:text-[#6319F7] transition-colors">
                                     {news.title}
-                                </h3>
+                                </h2>
                                 <p className="mb-8 text-gray-600 line-clamp-3 text-lg leading-relaxed">
                                     {news.summary}
                                 </p>
@@ -135,9 +136,9 @@ export const NewsList = () => {
                                 <span>•</span>
                                 <span className="truncate">{news.date}</span>
                             </div>
-                            <h3 className="mb-3 text-lg font-black leading-snug text-gray-900 group-hover:text-[#6319F7] transition-colors line-clamp-2">
+                            <h2 className="mb-3 text-lg font-black leading-snug text-gray-900 group-hover:text-[#6319F7] transition-colors line-clamp-2">
                                 {news.title}
-                            </h3>
+                            </h2>
                             <p className="mb-4 line-clamp-2 text-md leading-relaxed text-gray-600">
                                 {news.summary}
                             </p>
@@ -152,7 +153,7 @@ export const NewsList = () => {
 
             {/* Call to Action (Opcional) */}
             <div className="mt-24 rounded-[3rem] bg-gray-900 p-12 text-center text-white">
-                <h3 className="mb-4 text-3xl font-black">Quer ver os dados reais?</h3>
+                <h2 className="mb-4 text-3xl font-black">Quer ver os dados reais?</h2>
                 <p className="mb-8 text-gray-400">Compare especificações técnicas e preços no nosso comparador exclusivo.</p>
                 <Link
                     href="/comparar"

@@ -36,9 +36,9 @@ export const Header = () => {
           </div>
 
           <Link href="/" className="leading-tight">
-            <h1 className="text-xl font-black tracking-tighter text-gray-900">
+            <span className="text-xl font-black tracking-tighter text-gray-900">
               AUTO<span className="text-[#6319F7]">WEBSPEC</span>
-            </h1>
+            </span>
             <p className="text-[10px] uppercase tracking-[0.2em] font-bold">
               Comparador Pro
             </p>
@@ -46,7 +46,7 @@ export const Header = () => {
         </div>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden md:flex gap-8 text-sm font-bold">
+        <nav className="hidden md:flex gap-8 text-sm font-bold" aria-label="Menu principal">
           {menuItems.map(({ label, href }) => (
             <Link
               key={href}
@@ -64,7 +64,8 @@ export const Header = () => {
         {/* HAMBURGER / X */}
         <button
           onClick={() => setOpen(!open)}
-          aria-label="Menu"
+          aria-label={open ? "Fechar menu" : "Abrir menu de navegação"}
+          aria-expanded={open}
           className="md:hidden relative w-12 h-12 flex items-center justify-center z-60"
         >
           <span
@@ -100,7 +101,7 @@ export const Header = () => {
         `}
       >
 
-        <nav className="flex flex-col text-md font-bold uppercase ">
+        <nav className="flex flex-col text-md font-bold uppercase " aria-label="Menu móvel">
           {menuItems.map(({ label, href }) => (
             <Link
               key={href}

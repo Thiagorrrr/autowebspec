@@ -65,6 +65,7 @@ export const Ranking = () => {
   return (
     <div className="max-w-6xl mx-auto space-y-6 mt-8 px-4 pb-20">
       <SectionTitle
+        principal
         subtitle="Market Intelligence"
         description="Compare os valores de mercado e descubra quais modelos oferecem o melhor conjunto técnico pelo menor preço atualizado."
       >
@@ -148,9 +149,9 @@ export const Ranking = () => {
                       </span>
                       <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest hidden sm:block">{car.make}</p>
                     </div>
-                    <h3 className="font-bold text-gray-900 text-lg md:text-xl truncate leading-tight">
+                    <h2 className="font-bold text-gray-900 text-lg md:text-xl truncate leading-tight">
                       <span className="sm:hidden">{car.make} </span>{car.model}  {car.version}
-                    </h3>
+                    </h2>
                     <p className="text-gray-400 text-[11px] md:text-sm truncate font-medium mt-0.5">
                       {car.year} • {car.specs.stock?.hp}cv
                     </p>

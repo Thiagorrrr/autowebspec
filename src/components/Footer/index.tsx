@@ -8,7 +8,7 @@ export const Footer = () => {
         <footer className="bg-linear-to-b from-gray-50 to-white border-t border-gray-200 mt-20">
             <div className="max-w-7xl mx-auto px-4 py-12">
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
                     {/* LOGO / MARCA */}
                     <div>
@@ -17,9 +17,9 @@ export const Footer = () => {
                                 <Flame className="text-white" size={18} fill="currentColor" />
                             </div>
                             <div>
-                                <h2 className="text-xl font-black tracking-tighter text-gray-900">
+                                <span className="text-xl font-black tracking-tighter text-gray-900">
                                     AUTO<span className="text-[#6319F7]">WEBSPEC</span>
-                                </h2>
+                                </span>
                                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold">
                                     Comparador Pro
                                 </p>
@@ -33,38 +33,132 @@ export const Footer = () => {
                     </div>
 
                     {/* NAVEGAÇÃO */}
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4 uppercase tracking-wider">
-                            Navegação
-                        </h3>
+                    <div className="grid grid-cols-2 ">
 
-                        <ul className="space-y-2 text-lg text-gray-600 font-medium">
-                            <li><Link href="/" className="hover:text-[#6319F7]">Home</Link></li>
-                            <li><Link href="/comparar" className="hover:text-[#6319F7]">Comparar</Link></li>
-                            <li><Link href="/produtos" className="hover:text-[#6319F7]">Produtos</Link></li>
-                            <li><Link href="/ranking" className="hover:text-[#6319F7]">Ranking</Link></li>
-                            <li><Link href="/noticias" className="hover:text-[#6319F7]">Notícias</Link></li>
-                            <li><Link href="/marcas" className="hover:text-[#6319F7]">Marcas</Link></li>
-                        </ul>
+                        <nav aria-labelledby="footer-main-nav">
+                            <span id="footer-main-nav" className="text-xl font-bold text-gray-900 mb-4 uppercase tracking-wider">
+                                Navegação
+                            </span>
+
+                            <ul className="flex flex-col text-lg text-gray-600 font-medium">
+                                <li>
+                                    <Link
+                                        href="/"
+                                        className="flex items-center w-full py-3 hover:text-[#6319F7] transition-all duration-200"
+                                    >
+                                        Home
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/comparar"
+                                        className="flex items-center w-full py-3 hover:text-[#6319F7] transition-all duration-200"
+                                    >
+                                        Comparar
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/produtos"
+                                        className="flex items-center w-full py-3 hover:text-[#6319F7] transition-all duration-200"
+                                    >
+                                        Produtos
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/ranking"
+                                        className="flex items-center w-full py-3 hover:text-[#6319F7] transition-all duration-200"
+                                    >
+                                        Ranking
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/noticias"
+                                        className="flex items-center w-full py-3 hover:text-[#6319F7] transition-all duration-200"
+                                    >
+                                        Notícias
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/marcas"
+                                        className="flex items-center w-full py-3 hover:text-[#6319F7] transition-all duration-200"
+                                    >
+                                        Marcas
+                                    </Link>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        {/* INFORMAÇÕES */}
+                        <nav aria-labelledby="footer-info-nav">
+
+                            <span id="footer-info-nav" className="text-xl font-bold text-gray-900 mb-4 uppercase tracking-wider">
+                                Informações
+                            </span>
+
+                            <ul className="flex flex-col text-lg text-gray-600 font-medium">
+                                <li>
+                                    <Link
+                                        href="/detalhes"
+                                        className="flex items-center py-3 hover:text-[#6319F7] transition-colors"
+                                    >
+                                        Detalhes
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/custos"
+                                        className="flex items-center py-3 hover:text-[#6319F7] transition-colors"
+                                    >
+                                        Custos
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/eventos"
+                                        className="flex items-center py-3 hover:text-[#6319F7] transition-colors"
+                                    >
+                                        Eventos
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/politica-de-privacidade"
+                                        className="flex items-center py-3 hover:text-[#6319F7] transition-colors"
+                                    >
+                                        Política de privacidade
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/termos-de-uso"
+                                        className="flex items-center py-3 hover:text-[#6319F7] transition-colors"
+                                    >
+                                        Termos de uso
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/sobre-nos"
+                                        className="flex items-center py-3 hover:text-[#6319F7] transition-colors"
+                                    >
+                                        Sobre Nós
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/contato"
+                                        className="flex items-center py-3 hover:text-[#6319F7] transition-colors"
+                                    >
+                                        Contato
+                                    </Link>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
-
-                    {/* INFORMAÇÕES */}
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4 uppercase tracking-wider">
-                            Informações
-                        </h3>
-
-                        <ul className="space-y-2 text-lg text-gray-600 font-medium">
-                            <li><Link href="/detalhes" className="hover:text-[#6319F7]">Detalhes</Link></li>
-                            <li><Link href="/custos" className="hover:text-[#6319F7]">Custos</Link></li>
-                            <li><Link href="/eventos" className="hover:text-[#6319F7]">Eventos</Link></li>
-                            <li><Link href="/politica-de-privacidade" className="hover:text-[#6319F7]">Politica de privacidade</Link></li>
-                            <li><Link href="/termos-de-uso" className="hover:text-[#6319F7]">Termos de uso</Link></li>
-                            <li><Link href="/sobre-nos" className="hover:text-[#6319F7]">Sobre Nós</Link></li>
-                            <li><Link href="/contato" className="hover:text-[#6319F7]">Contato</Link></li>
-                        </ul>
-                    </div>
-
                 </div>
 
                 {/* COPYRIGHT */}

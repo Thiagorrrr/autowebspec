@@ -77,6 +77,7 @@ export const ProductList = () => {
     return (
         <div className="space-y-12 mt-8">
             <SectionTitle
+                principal
                 subtitle="Upgrade & Performance"
                 description="Explore nossa seleção de peças e acessórios desenvolvidos para extrair o máximo de performance e exclusividade do seu veículo."
             >

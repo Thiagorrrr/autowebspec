@@ -101,6 +101,7 @@ export const BrandsList = () => {
     return (
         <div className="space-y-6 mt-8">
             <SectionTitle
+                principal
                 subtitle="Database Autowebspec"
                 description="Explore o catálogo completo das maiores montadoras do mundo. Acesse fichas técnicas, modelos e especificações exclusivas por fabricante."
             >
@@ -117,7 +118,7 @@ export const BrandsList = () => {
                                 <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full mb-3">
                                     <Image src={`/marcas/${make.toLowerCase()}/${make.toLowerCase()}-logo.webp`} alt="image" width={50} height={50} />
                                 </div>
-                                <h3 className="font-black text-lg text-gray-800"  >{make}</h3>
+                                <h2 className="font-black text-lg text-gray-800"  >{make}</h2>
 
                                 <span className="text-xs text-[#6319F7] font-bold flex items-center justify-center mt-1">
 

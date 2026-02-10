@@ -4,6 +4,7 @@ interface SectionTitleProps {
     description?: string;      // Opcional: Texto explicativo abaixo
     className?: string;
     size?: string;
+    principal?: boolean;
 }
 
 export const SectionTitle: React.FC<SectionTitleProps> = ({
@@ -11,7 +12,8 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({
     subtitle,
     description,
     className = "",
-    size = ""
+    size = "",
+    principal = false
 }) => {
     return (
         <div className={`py-8 lg:py-12 ${className}`}>
@@ -28,8 +30,14 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({
 
             {/* Bloco de Texto Principal */}
             <div className="flex flex-col">
-                <h2 className={`${size ? size : 'text-[20px]'} lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-[0.85]`}>                    {children}
-                </h2>
+                {
+                    principal ?
+                        <h1 className={`${size ? size : 'text-[20px]'} lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-[0.85]`}>                    {children}
+                        </h1> :
+                        <h2 className={`${size ? size : 'text-[20px]'} lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-[0.85]`}>                    {children}
+                        </h2>
+                }
+
 
                 {description && (
                     <p className="mt-4 max-w-md text-lg  lg:text-base text-gray-500 font-medium leading-relaxed">

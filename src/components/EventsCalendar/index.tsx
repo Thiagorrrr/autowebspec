@@ -87,6 +87,7 @@ export const EVENTS: EventData[] = [
 export const EventsCalendar: React.FC = () => (
   <div className="space-y-4 mt-8">
     <SectionTitle
+      principal
       subtitle="Calendário Automotivo"
       description="Fique por dentro das datas mais importantes do setor: de encontros de clássicos a competições de arrancada e track days oficiais."
     >
@@ -100,7 +101,7 @@ export const EventsCalendar: React.FC = () => (
           <span className="text-xl font-black">{evt.date.split(' ')[0]}</span>
         </div>
         <div className="flex-1">
-          <h3 className="font-bold text-gray-800 text-lg group-hover:text-[#6319F7] transition-colors">{evt.name}</h3>
+          <h2 className="font-bold text-gray-800 text-lg group-hover:text-[#6319F7] transition-colors">{evt.name}</h2>
           <div className="flex items-center gap-1 text-gray-400 text-sm mt-1"><MapPin size={14} /> {evt.location}</div>
         </div>
         <div className="text-gray-300"><ChevronRight /></div>

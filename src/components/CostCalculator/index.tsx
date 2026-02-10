@@ -127,6 +127,7 @@ export const CostCalculator = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <SectionTitle
+        principal
         subtitle="Gestão Financeira"
         description="Projete seus gastos fixos e variáveis. Calcule combustível, depreciação e manutenção para entender o custo real de rodagem do veículo."
       >
@@ -140,7 +141,7 @@ export const CostCalculator = () => {
           <div className="flex items-center gap-2 mb-6">
             <div className="w-1.5 h-5 bg-[#6319F7] rounded-full"></div>
             <div>
-              <h3 className="font-black uppercase text-sm tracking-tight text-gray-900">Configuração do Veículo</h3>
+              <h2 className="font-black uppercase text-sm tracking-tight text-gray-900">Configuração do Veículo</h2>
               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Identificação na base de dados</p>
             </div>
           </div>
@@ -226,7 +227,7 @@ export const CostCalculator = () => {
         {/* TOTAL FINAL - VERSÃO SUAVE */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-gray-50 p-6 rounded-2xl border border-gray-100">
           <div>
-            <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Total Mensal Estimado</h4>
+            <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Total Mensal Estimado</h3>
             <p className="text-xs text-gray-500 font-medium italic">Baseado no perfil {kmMonthly}km/mês</p>
           </div>
           <div className="text-3xl font-black text-[#6319F7] tracking-tighter">

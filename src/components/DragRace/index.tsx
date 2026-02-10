@@ -203,6 +203,7 @@ export const DragRace = () => {
             )}
             <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6">
                 <SectionTitle
+                    principal
                     subtitle="Simulador de Performance"
                     description="Confronte fichas técnicas detalhadas e simule o desempenho de aceleração real entre até quatro veículos simultaneamente."
                 >
@@ -284,7 +285,7 @@ export const DragRace = () => {
 
                 {raceResults && !racing && (
                     <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-100 animate-in fade-in slide-in-from-top-2">
-                        <h3 className="text-center font-bold text-gray-700 mb-4 flex justify-center items-center gap-2"><Medal size={18} /> Resultados Finais</h3>
+                        <h2 className="text-center font-bold text-gray-700 mb-4 flex justify-center items-center gap-2"><Medal size={18} /> Resultados Finais</h2>
                         <div className="space-y-2">
                             {raceResults.map((result, idx) => (
                                 <div key={result.tempId} className="flex justify-between items-center p-3 bg-white rounded-lg border border-gray-200 shadow-sm">
