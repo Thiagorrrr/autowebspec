@@ -166,7 +166,7 @@ export const HomePage = () => {
                                             : item.position === 2
                                                 ? 'bg-gray-300 text-gray-800'
                                                 : item.position === 3
-                                                    ? 'bg-[#CD7F32] text-white'
+                                                    ? 'bg-[#A66320] text-white'
                                                     : 'bg-gray-100 text-gray-600'
                                         }`}>
                                         {item.position}º Posição

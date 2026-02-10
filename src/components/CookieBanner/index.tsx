@@ -55,31 +55,31 @@ export const CookieBanner = () => {
                     <Card className="p-6 border-none shadow-2xl bg-white/95 backdrop-blur-md border border-gray-100">
                         <div className="flex items-start gap-4">
                             <div className="p-3 bg-[#6319F7]/10 rounded-2xl text-[#6319F7] shrink-0">
-                                <Cookie size={24} />
+                                <Cookie size={30} />
                             </div>
                             <div className="space-y-3">
                                 <div className="flex justify-between items-start">
-                                    <h3 className="font-bold text-gray-900">Privacidade e Cookies</h3>
-                                    <button onClick={() => setIsVisible(false)} className="text-gray-400 hover:text-gray-600">
-                                        <X size={18} />
+                                    <h3 className="text-2xl font-bold text-gray-900">Privacidade e Cookies</h3>
+                                    <button name="close Cookie Banner btn" onClick={() => setIsVisible(false)} className="text-gray-400 hover:text-gray-600">
+                                        <X size={24} />
                                     </button>
                                 </div>
-                                <p className="text-sm text-gray-600 leading-relaxed">
+                                <p className="text-lg text-gray-600 leading-relaxed">
                                     O <strong>AutoWebSpec</strong> utiliza cookies para melhorar sua experiência. Solicitamos sua autorização a cada 90 dias para garantir que suas preferências estejam atualizadas.
                                 </p>
                                 <div className="flex flex-col gap-2 pt-2">
-                                    <Button onClick={() => saveChoice("enabled")} className="font-bold">
+                                    <Button onClick={() => saveChoice("enabled")} className="font-bold text-lg">
                                         Aceitar Cookies
                                     </Button>
                                     <div className="flex gap-2">
                                         <Button
                                             onClick={() => saveChoice("disabled")}
-                                            className="flex-1 text-xs"
+                                            className="flex-1 text-md"
                                         >
                                             Recusar
                                         </Button>
                                         <Link href="/politica-de-privacidade" className="flex-1">
-                                            <Button className="w-full text-xs">
+                                            <Button className="w-full text-md">
                                                 Ler Política
                                             </Button>
                                         </Link>
