@@ -5,6 +5,8 @@ import { Card } from "../Card";
 import { SectionTitle } from "../SectionTitle";
 import Image from "next/image";
 import { formatPrice } from "@/utils";
+import { useMemo } from "react";
+import Script from "next/script";
 
 export type Product = {
     id: string;
@@ -21,6 +23,18 @@ export type Product = {
 export const data: Product[] = [
     {
         id: "1",
+        slug: "scanner-automotivo-bluetooth-obd2-eml-327-android-ios-obdii",
+        title: "Scanner Automotivo Bluetooth Obd2 Eml 327 Android Ios Obdii",
+        image: "https://http2.mlstatic.com/D_Q_NP_886444-MLB95702648919_102025-V.webp",
+        price: 47.97,
+        oldPrice: 28.90,
+        category: "Acessórios",
+        summary:
+            "Scanner Automotivo, analíse seu carro ou faça pequenas correções",
+        affiliateUrl: "https://mercadolivre.com/sec/19r7ak7",
+    },
+    {
+        id: "2",
         slug: "kit-lavagem-automotiva-v-floc-blend-sintra-intense-vonixx",
         title: "Kit Lavagem Automotiva V-floc Blend Sintra Intense Vonixx",
         image: "https://http2.mlstatic.com/D_NQ_NP_2X_826294-MLB100079046040_122025-F.webp",
@@ -32,7 +46,7 @@ export const data: Product[] = [
         affiliateUrl: "https://mercadolivre.com/sec/1ocaPNb",
     },
     {
-        id: "2",
+        id: "3",
         slug: "modulo-taramps",
         title: "Modulo Taramps Ts400x4 Potencia de 400watts 2 Ohms Amplificador 400rms T400 4 Canais Som Automotivo 2 Ohms Rca Ts 400x4 Crossover",
         image: "https://http2.mlstatic.com/D_NQ_NP_2X_711919-MLA99446273578_112025-F.webp",
@@ -44,7 +58,7 @@ export const data: Product[] = [
         affiliateUrl: "https://mercadolivre.com/sec/21AGVhZ",
     },
     {
-        id: "3",
+        id: "4",
         slug: "aspirador-automotivo-portátil",
         title: "Aspirador Automotivo Portátil WAP CAR com Filtro HEPA e Cabo de 3,7m",
         image: "https://http2.mlstatic.com/D_NQ_NP_2X_602698-MLU75357931105_032024-F.webp",
@@ -56,7 +70,7 @@ export const data: Product[] = [
         affiliateUrl: "https://mercadolivre.com/sec/1FVghHV",
     },
     {
-        id: "4",
+        id: "5",
         slug: "cadeirinha-infantil-reclinavel-legacy-cinza-e-preto-mescla-voyage",
         title: "Cadeirinha Infantil Reclinável Legacy Cinza e Preto Mescla Voyage",
         image: "https://http2.mlstatic.com/D_NQ_NP_2X_856035-MLA99488954664_112025-F.webp",
@@ -74,8 +88,43 @@ export const data: Product[] = [
 export const ProductList = () => {
     const featuredProduct = data[0];
 
+    const productsSchema = useMemo(() => {
+        return {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Produtos e Acessórios Automotivos Recomendados",
+            "description": "Seleção de acessórios, scanners e itens de limpeza para performance e cuidado automotivo.",
+            "itemListElement": data.map((product, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    "@type": "Product",
+                    "name": product.title,
+                    "description": product.summary,
+                    "image": product.image,
+                    "category": product.category,
+                    "offers": {
+                        "@type": "Offer",
+                        "price": product.price,
+                        "priceCurrency": "BRL",
+                        "availability": "https://schema.org/InStock",
+                        "url": product.affiliateUrl
+                    }
+                }
+            }))
+        };
+    }, []);
+
     return (
         <div className="space-y-12 mt-8">
+            {productsSchema && (
+                <Script
+                    id="comparison-schema"
+                    type="application/ld+json"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(productsSchema) }}
+                />
+            )}
             <SectionTitle
                 principal
                 subtitle="Upgrade & Performance"

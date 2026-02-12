@@ -17,6 +17,11 @@ export const HomePage = () => {
     const pathname = usePathname();
     const { data, isLoading, error } = useNews();
 
+    const sortedData = useMemo(() => {
+        if (!data) return [];
+        return [...data].sort((a, b) => Number(b.id) - Number(a.id));
+    }, [data]);
+
     // --- SCHEMA JSON-LD PARA HOME (Destaques e Navegação) ---
     const homeSchema = useMemo(() => {
         return {
@@ -203,7 +208,7 @@ export const HomePage = () => {
                 <SectionTitle size="text-[16px]">Últimas Notícias</SectionTitle>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {data?.slice(0, 3).map((news) => (
+                    {sortedData?.slice(0, 3).map((news) => (
                         <Link
                             key={news.id}
                             href={`/noticias/${news.slug}`}

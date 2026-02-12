@@ -106,7 +106,7 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
 
             <div className="grid grid-cols-2 gap-2 mb-3">
                 <div className="col-span-2">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase">Fabricante</label>
+                    <label className="text-[10px] font-bold text-gray-500 uppercase">Fabricante</label>
                     <select
                         value={selectedMake}
                         onChange={(e) => {
@@ -123,7 +123,7 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                 </div>
 
                 <div>
-                    <label className="text-[10px] font-bold text-gray-400 uppercase">Modelo</label>
+                    <label className="text-[10px] font-bold text-gray-500 uppercase">Modelo</label>
                     <select
                         disabled={!selectedMake}
                         value={selectedModel}
@@ -139,7 +139,7 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                     </select>
                 </div>
                 <div>
-                    <label className="text-[10px] font-bold text-gray-400 uppercase">Ano</label>
+                    <label className="text-[10px] font-bold text-gray-500 uppercase">Ano</label>
                     <select
                         disabled={!selectedModel}
                         value={selectedYear}
@@ -154,7 +154,7 @@ export const DetailedCarSelector: React.FC<DetailedCarSelectorProps> = ({ rawCar
                     </select>
                 </div>
                 <div className="col-span-2">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase">Versão</label>
+                    <label className="text-[10px] font-bold text-gray-500 uppercase">Versão</label>
                     <select
                         disabled={!selectedYear}
                         value={participant.id || ""}
