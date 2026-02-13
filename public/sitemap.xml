@@ -1,43 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <url><loc>https://autowebspec.com.br/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>1.00</priority></url>
+  <url><loc>https://autowebspec.com.br/comparar/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/produtos/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/marcas/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/ranking/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/detalhes/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/custos/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/eventos/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/politica-de-privacidade/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/termos-de-uso/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/sobre-nos/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
+  <url><loc>https://autowebspec.com.br/contato/</loc><lastmod>2026-02-13T17:00:00+00:00</lastmod><priority>0.80</priority></url>
 
-  <!-- Páginas principais -->
-  <url><loc>https://autowebspec.com.br/</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas</loc></url>
-  <url><loc>https://autowebspec.com.br/noticias</loc></url>
-  <url><loc>https://autowebspec.com.br/ranking</loc></url>
-  <url><loc>https://autowebspec.com.br/custos</loc></url>
-  <url><loc>https://autowebspec.com.br/detalhes</loc></url>
-  <url><loc>https://autowebspec.com.br/eventos</loc></url>
-  <url><loc>https://autowebspec.com.br/politica-de-privacidade</loc></url>
-  <url><loc>https://autowebspec.com.br/produtos</loc></url>
-  <url><loc>https://autowebspec.com.br/sobre-nos</loc></url>
-  <url><loc>https://autowebspec.com.br/termos-de-uso</loc></url>
-
-  <!-- Marcas -->
-  <url><loc>https://autowebspec.com.br/marcas/chevrolet</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas/hyundai</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas/peugeot</loc></url>
-
-  <!-- Modelos -->
-  <url><loc>https://autowebspec.com.br/marcas/chevrolet/onix</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas/hyundai/hb20</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas/peugeot/208</loc></url>
-
-  <!-- Anos -->
-  <url><loc>https://autowebspec.com.br/marcas/chevrolet/onix/2025</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas/hyundai/hb20/2025</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas/peugeot/208/2025</loc></url>
-
-  <!-- Versões -->
-  <url><loc>https://autowebspec.com.br/marcas/chevrolet/onix/2025/1.0-turbo-at</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas/hyundai/hb20/2025/1.0-tgdi-at-platinum-safety</loc></url>
-  <url><loc>https://autowebspec.com.br/marcas/peugeot/208/2025/1.0-turbo-cvt-gt</loc></url>
-
-  <!-- Notícias -->
-  <url><loc>https://autowebspec.com.br/noticias/novo-golf-gti-2025-o-ultimo-a-combustao</loc></url>
-  <url><loc>https://autowebspec.com.br/noticias/civic-type-r-vs-gr-corolla-a-batalha-japonesa</loc></url>
-  <url><loc>https://autowebspec.com.br/noticias/manutencao-de-turbos-guia-completo</loc></url>
-  <url><loc>https://autowebspec.com.br/noticias/precos-de-usados-caem-5-no-ultimo-trimestre</loc></url>
+  <url><loc>https://autowebspec.com.br/noticias/cnh-digital-como-baixar-e-usar-beneficios</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/toyota-yaris-cross-tudo-sobre-o-lancamento-que-esta-sacudindo-o-mercado-brasileiro</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/hb20-lidera-vendas-brasil-dezembro-2025</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/nova-regra-permite-tirar-cnh-sem-precisar-de-autoescola</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/precos-de-usados-caem-5-no-ultimo-trimestre</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/projeto-de-lei-inspecao-veicular-5-anos-obrigatoria</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/byd-dolphin-mini-eletrico-mais-vendido-brasil</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/novo-golf-gti-2025-o-ultimo-a-combustao</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/manutencao-de-turbos-guia-completo</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/projeto-lei-taxa-veiculos-subsidio-transporte-publico</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/civic-type-r-vs-gr-corolla-a-batalha-japonesa</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/exame-toxicologico-2026-prazos-multas-condutores</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
+  <url><loc>https://autowebspec.com.br/noticias/ipva-2026-calendario-pagamento-descontos</loc><lastmod>2026-02-13T20:17:41+00:00</lastmod><priority>0.70</priority></url>
 
 </urlset>
